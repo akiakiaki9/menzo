@@ -1,0 +1,450 @@
+/* RatingStats.css - МАКСИМАЛЬНО УМЕНЬШЕННАЯ ВЫСОТА */
+
+.rating-stats-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.rating-stats-container:hover {
+    border-color: rgba(230, 126, 34, 0.2);
+}
+
+/* ========== GOLD СТИЛИ ========== */
+.rating-stats-container.gold-rating-stats {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(0, 0, 0, 0.2));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.rating-stats-container.gold-rating-stats:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+
+/* Gold бейдж */
+.rating-gold-badge {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    color: #0a0a0a;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    z-index: 5;
+    box-shadow: 0 1px 4px rgba(251, 191, 36, 0.3);
+}
+
+.rating-gold-badge svg {
+    font-size: 0.55rem;
+}
+
+/* Gold звезды */
+.gold-star {
+    filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.5));
+}
+
+/* Gold категории */
+.rating-category.gold-category {
+    background: rgba(251, 191, 36, 0.03);
+    border-radius: 8px;
+    padding: 3px 5px;
+    margin: -3px -5px;
+}
+
+/* Gold кнопка */
+.rating-action-btn.gold-action-btn:not(.rated) {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    box-shadow: 0 0 6px rgba(251, 191, 36, 0.3);
+    animation: goldBtnPulse 2s ease-in-out infinite;
+}
+
+@keyframes goldBtnPulse {
+    0%, 100% {
+        box-shadow: 0 0 3px rgba(251, 191, 36, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+    }
+}
+
+/* ========== ОСНОВНОЙ БЛОК РЕЙТИНГА ========== */
+.rating-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rating-score {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.score-number {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.score-divider {
+    align-self: flex-end;
+    margin-bottom: 3px;
+}
+
+.score-max {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.score-stars {
+    display: flex;
+    gap: 2px;
+    margin-left: 4px;
+    align-self: flex-end;
+    margin-bottom: 4px;
+}
+
+.score-stars .star {
+    font-size: 0.7rem;
+}
+
+.rating-info {
+    flex: 1;
+}
+
+.rating-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.rating-count {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+/* ========== КАТЕГОРИИ ========== */
+.rating-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.rating-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.rating-category:hover .category-icon {
+    transform: scale(1.05);
+}
+
+.category-info {
+    flex: 1;
+}
+
+.category-label {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+    font-weight: 500;
+}
+
+.category-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.category-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.category-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.category-score {
+    font-size: 0.6rem;
+    font-weight: 700;
+    min-width: 24px;
+    text-align: right;
+}
+
+/* ========== КНОПКА ДЕЙСТВИЯ ========== */
+.rating-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.75rem;
+    transition: all 0.3s;
+    border: none;
+    background: linear-gradient(135deg, #444, #333);
+    color: white;
+}
+
+.rating-action-btn.rated {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+}
+
+.rating-action-btn:not(.rated) {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+}
+
+.rating-action-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+.rating-action-btn.rated:hover {
+    background: rgba(230, 126, 34, 0.1);
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .rating-stats-container {
+        padding: 10px;
+    }
+    
+    .score-number {
+        font-size: 1.8rem;
+    }
+    
+    .rating-main {
+        gap: 10px;
+    }
+}
+
+/* Мобильные */
+@media (max-width: 768px) {
+    .rating-stats-container {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 12px;
+    }
+    
+    .rating-main {
+        gap: 10px;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+    }
+    
+    .score-number {
+        font-size: 1.6rem;
+    }
+    
+    .score-stars .star {
+        font-size: 0.65rem;
+    }
+    
+    .rating-text {
+        font-size: 0.8rem;
+    }
+    
+    .rating-count {
+        font-size: 0.55rem;
+    }
+    
+    .rating-categories {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .rating-category {
+        gap: 8px;
+    }
+    
+    .category-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+        border-radius: 6px;
+    }
+    
+    .category-label {
+        font-size: 0.55rem;
+    }
+    
+    .category-bar {
+        height: 3px;
+    }
+    
+    .category-score {
+        font-size: 0.55rem;
+        min-width: 22px;
+    }
+    
+    .rating-action-btn {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        gap: 5px;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .rating-stats-container {
+        padding: 8px;
+        margin: 8px 0;
+        border-radius: 10px;
+    }
+    
+    .rating-gold-badge {
+        top: -4px;
+        right: 6px;
+        padding: 1px 6px;
+        font-size: 0.45rem;
+    }
+    
+    .rating-main {
+        gap: 8px;
+    }
+    
+    .score-number {
+        font-size: 1.4rem;
+    }
+    
+    .score-max {
+        font-size: 0.6rem;
+    }
+    
+    .score-stars .star {
+        font-size: 0.6rem;
+    }
+    
+    .rating-text {
+        font-size: 0.75rem;
+    }
+    
+    .rating-categories {
+        gap: 5px;
+    }
+    
+    .rating-category {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .category-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 0.65rem;
+    }
+    
+    .category-info {
+        min-width: calc(100% - 30px);
+    }
+    
+    .category-label {
+        font-size: 0.5rem;
+    }
+    
+    .category-score {
+        font-size: 0.5rem;
+        min-width: 20px;
+    }
+    
+    .rating-action-btn {
+        padding: 5px 10px;
+        font-size: 0.65rem;
+        gap: 4px;
+    }
+}
+
+/* Очень маленькие */
+@media (max-width: 360px) {
+    .rating-stats-container {
+        padding: 6px;
+    }
+    
+    .score-number {
+        font-size: 1.2rem;
+    }
+    
+    .rating-action-btn span {
+        display: none;
+    }
+    
+    .rating-action-btn svg {
+        margin: 0;
+    }
+    
+    .rating-action-btn {
+        padding: 6px;
+        width: auto;
+    }
+}
+
+/* ========== ДОСТУПНОСТЬ ========== */
+@media (prefers-reduced-motion: reduce) {
+    .category-bar-fill,
+    .rating-action-btn,
+    .category-icon,
+    .rating-action-btn.gold-action-btn:not(.rated) {
+        transition: none;
+        animation: none;
+    }
+    
+    .rating-action-btn:hover {
+        transform: none;
+    }
+}
+
+/* Тач-оптимизация */
+@media (max-width: 768px) {
+    .rating-action-btn {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .rating-action-btn:active {
+        transform: scale(0.97);
+    }
+}

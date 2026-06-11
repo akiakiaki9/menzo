@@ -1,0 +1,354 @@
+/* ============================================
+   GOLD CARD STYLES - Премиум черно-золотой дизайн
+   ============================================ */
+
+:root {
+    --gold-primary: #fbbf24;
+    --gold-secondary: #f59e0b;
+    --gold-dark: #d97706;
+    --gold-light: #fcd34d;
+    --gold-glow: rgba(251, 191, 36, 0.4);
+    --gold-glow-strong: rgba(251, 191, 36, 0.7);
+    --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    --gold-gradient-horizontal: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706, #f59e0b, #fbbf24);
+    --gold-border: rgba(251, 191, 36, 0.4);
+}
+
+/* ========== ПРЕМИУМ ЧЕРНО-ЗОЛОТАЯ КАРТОЧКА ========== */
+.gold-card {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1205 50%, #0a0a0a 100%) !important;
+    border: 2px solid var(--gold-primary) !important;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px;
+}
+
+/* Золотая лента - бегущая полоса (каждую секунду) */
+.gold-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(251, 191, 36, 0.15),
+        rgba(251, 191, 36, 0.3),
+        rgba(251, 191, 36, 0.5),
+        rgba(251, 191, 36, 0.3),
+        rgba(251, 191, 36, 0.15),
+        transparent
+    );
+    z-index: 1;
+    animation: goldRibbon 1s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes goldRibbon {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Золотое свечение по краям */
+.gold-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, 
+        transparent 30%,
+        rgba(251, 191, 36, 0.3) 50%,
+        transparent 70%
+    );
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gold-card:hover::after {
+    opacity: 1;
+}
+
+/* Золотая тень и свечение */
+.gold-card {
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+.gold-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(251, 191, 36, 0.4);
+    border-color: var(--gold-light) !important;
+}
+
+/* ========== ЗОЛОТОЙ РЕЙТИНГ ========== */
+.gold-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(0, 0, 0, 0.5));
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-weight: 700;
+    color: var(--gold-primary);
+    font-size: 0.85rem;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.5px;
+}
+
+.gold-rating svg {
+    color: var(--gold-primary);
+    filter: drop-shadow(0 0 3px var(--gold-primary));
+    font-size: 0.8rem;
+}
+
+.gold-rating-small {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    gap: 4px;
+}
+
+.gold-rating-small svg {
+    font-size: 0.65rem;
+}
+
+/* ========== ЗОЛОТОЙ БЕЙДЖ ========== */
+.gold-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    color: #0a0a0a;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 20;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.4);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.gold-badge svg {
+    font-size: 0.8rem;
+    color: #0a0a0a;
+}
+
+.gold-badge-small {
+    padding: 4px 10px;
+    font-size: 0.6rem;
+}
+
+.gold-badge-small svg {
+    font-size: 0.7rem;
+}
+
+/* ========== ЗОЛОТОЙ ЗАГОЛОВОК ========== */
+.gold-title {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #fcd34d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* ========== ЗОЛОТАЯ КНОПКА ========== */
+.gold-button {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    border: none;
+    color: #0a0a0a;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gold-button:hover {
+    transform: translateY(-2px);
+    gap: 15px;
+    background: linear-gradient(135deg, #fcd34d, #fbbf24, #f59e0b);
+    box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+}
+
+/* ========== ЗОЛОТОЙ ТЕКСТ ========== */
+.gold-text {
+    color: var(--gold-primary);
+    font-weight: 600;
+}
+
+/* ========== ЗОЛОТОЙ ГРАДИЕНТНЫЙ БОРДЕР ========== */
+.gold-border {
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.gold-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706, #f59e0b, #fbbf24);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.gold-border:hover::before {
+    opacity: 1;
+}
+
+/* ========== ЗОЛОТОЙ СВЕТЯЩИЙСЯ ТЕКСТ ========== */
+.gold-text-glow {
+    color: var(--gold-primary);
+    text-shadow: 0 0 10px var(--gold-primary);
+    animation: goldTextGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes goldTextGlow {
+    from {
+        text-shadow: 0 0 5px var(--gold-primary);
+    }
+    to {
+        text-shadow: 0 0 15px var(--gold-primary);
+    }
+}
+
+/* ========== ЗОЛОТАЯ ЗВЕЗДА ========== */
+.gold-star {
+    color: var(--gold-primary);
+    filter: drop-shadow(0 0 3px var(--gold-primary));
+    display: inline-block;
+}
+
+.gold-star-filled {
+    color: var(--gold-primary);
+}
+
+/* ========== БЕГУЩАЯ ЗОЛОТАЯ ЛЕНТА (для любых элементов) ========== */
+.gold-ribbon {
+    position: relative;
+    overflow: hidden;
+}
+
+.gold-ribbon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(251, 191, 36, 0.2),
+        rgba(251, 191, 36, 0.4),
+        rgba(251, 191, 36, 0.2),
+        transparent
+    );
+    animation: goldRibbonFast 0.8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes goldRibbonFast {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ========== ЗОЛОТОЙ БЛЕСК ========== */
+.gold-sparkle {
+    position: relative;
+}
+
+.gold-sparkle::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.6), transparent);
+    border-radius: 50%;
+    animation: goldSparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes goldSparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* ========== АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ========== */
+@media (max-width: 768px) {
+    .gold-badge {
+        padding: 4px 10px;
+        font-size: 0.55rem;
+    }
+    
+    .gold-badge svg {
+        font-size: 0.65rem;
+    }
+    
+    .gold-rating {
+        padding: 3px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .gold-rating svg {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gold-card {
+        border-width: 1.5px;
+    }
+}
+
+/* ========== СНИЖЕНИЕ АНИМАЦИЙ ========== */
+@media (prefers-reduced-motion: reduce) {
+    .gold-card::before,
+    .gold-ribbon::before,
+    .gold-sparkle::before {
+        animation: none;
+    }
+    
+    .gold-card {
+        box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+    }
+    
+    .gold-button {
+        animation: none;
+    }
+}

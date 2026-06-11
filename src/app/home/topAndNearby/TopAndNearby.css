@@ -1,0 +1,580 @@
+/* TopAndNearby.css - улучшенный */
+
+:root {
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --accent-light: rgba(245, 158, 11, 0.15);
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+}
+
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+.top-nearby-section {
+    padding: 60px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+    position: relative;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ========== ЗАГОЛОВОК ========== */
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-light);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    margin-bottom: 16px;
+}
+
+.badge-icon {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.header-badge span {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ========== GRID LAYOUT ========== */
+.top-nearby-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* ========== ОБЩИЕ СТИЛИ БЛОКОВ ========== */
+.top-block,
+.nearby-block {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 24px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.top-block:hover,
+.nearby-block:hover {
+    border-color: rgba(245, 158, 11, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== ЗАГОЛОВКИ БЛОКОВ ========== */
+.block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.block-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.header-icon.trophy {
+    color: #fbbf24;
+}
+
+.view-all {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.view-all:hover {
+    color: var(--accent-hover);
+    gap: 8px;
+}
+
+/* ========== ТОП СПИСОК ========== */
+.ranked-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ranked-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+.ranked-item:hover {
+    background: var(--accent-light);
+    transform: translateX(5px);
+}
+
+.item-gold-badge {
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.rank-number {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--accent-light), transparent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.ranked-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ranked-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.ranked-item:hover .ranked-image img {
+    transform: scale(1.05);
+}
+
+.ranked-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ranked-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ranked-cuisine {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ranked-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.price {
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+/* ========== РЯДОМ С ВАМИ ========== */
+.nearby-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nearby-item {
+    display: flex;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+.nearby-item:hover {
+    background: var(--accent-light);
+    transform: translateX(5px);
+}
+
+.nearby-gold-badge {
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.nearby-image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.nearby-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.nearby-item:hover .nearby-image img {
+    transform: scale(1.05);
+}
+
+.distance-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.55rem;
+    font-weight: 600;
+}
+
+.nearby-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.nearby-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nearby-cuisine {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nearby-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ========== ПУСТОЕ СОСТОЯНИЕ ========== */
+.nearby-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.nearby-empty svg {
+    color: var(--accent);
+    opacity: 0.5;
+}
+
+.empty-link {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.empty-link:hover {
+    color: var(--accent-hover);
+}
+
+/* ========== ЗАГРУЗКА ========== */
+.loading-skeleton {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ========== GOLD РЕЙТИНГ (из gold-card.css) ========== */
+.gold-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.05));
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-weight: 700;
+    color: #fbbf24;
+    font-size: 0.85rem;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.gold-rating svg {
+    color: #fbbf24;
+}
+
+.gold-rating-small {
+    padding: 2px 8px;
+    font-size: 0.7rem;
+}
+
+.gold-rating-small svg {
+    font-size: 0.65rem;
+}
+
+.gold-badge-small {
+    padding: 3px 10px;
+    font-size: 0.6rem;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.gold-badge-small svg {
+    font-size: 0.65rem;
+}
+
+.gold-title {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .top-nearby-section {
+        padding: 50px 0;
+    }
+    
+    .container {
+        padding: 0 24px;
+    }
+    
+    .top-nearby-grid {
+        gap: 20px;
+    }
+    
+    .top-block,
+    .nearby-block {
+        padding: 20px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .top-nearby-section {
+        padding: 40px 0;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .section-header {
+        margin-bottom: 32px;
+    }
+    
+    .header-badge {
+        padding: 4px 12px;
+    }
+    
+    .header-badge span {
+        font-size: 0.7rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .top-nearby-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .top-block,
+    .nearby-block {
+        padding: 16px;
+    }
+    
+    .block-header h2 {
+        font-size: 1rem;
+    }
+    
+    .ranked-item {
+        padding: 8px;
+        gap: 10px;
+    }
+    
+    .rank-number {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    .ranked-image {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .ranked-info h3 {
+        font-size: 0.85rem;
+    }
+    
+    .nearby-item {
+        padding: 8px;
+        gap: 10px;
+    }
+    
+    .nearby-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .nearby-info h3 {
+        font-size: 0.85rem;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .top-nearby-section {
+        padding: 30px 0;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .ranked-info h3 {
+        font-size: 0.8rem;
+        white-space: normal;
+        word-break: break-word;
+    }
+    
+    .nearby-info h3 {
+        font-size: 0.8rem;
+        white-space: normal;
+        word-break: break-word;
+    }
+    
+    .nearby-image {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .gold-rating-small {
+        padding: 2px 6px;
+        font-size: 0.6rem;
+    }
+}
+
+/* Снижение анимаций */
+@media (prefers-reduced-motion: reduce) {
+    .ranked-item,
+    .nearby-item,
+    .spinner {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+}

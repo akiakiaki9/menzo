@@ -1,0 +1,639 @@
+/* Map.css - уменьшенная высота */
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Leaflet кастомизация */
+.leaflet-popup-content-wrapper {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-popup-tip {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+/* ========== МАРКЕР ПОЛЬЗОВАТЕЛЯ ========== */
+.user-marker-inner {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.user-marker-dot {
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+}
+
+.user-marker-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ========== МАРКЕР РЕСТОРАНА ========== */
+.restaurant-marker {
+    cursor: pointer;
+}
+
+.restaurant-marker-inner {
+    width: 32px;
+    height: 32px;
+    background: #e67e22;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.restaurant-marker:hover .restaurant-marker-inner {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.restaurant-marker-price {
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.restaurant-marker-pulse {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.restaurant-marker:hover .restaurant-marker-pulse {
+    opacity: 0.4;
+    animation: pulseWave 1.5s infinite;
+}
+
+@keyframes pulseWave {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ========== GOLD МАРКЕРЫ ========== */
+.restaurant-marker.gold-marker-container .restaurant-marker-inner {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706) !important;
+    animation: goldMarkerPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes goldMarkerPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.2);
+    }
+}
+
+.gold-crown-icon {
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    font-size: 0.6rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gold-pulse {
+    animation: goldPulseWave 1.5s ease-in-out infinite;
+}
+
+@keyframes goldPulseWave {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ========== ПОПАП ========== */
+.restaurant-popup {
+    min-width: 240px;
+}
+
+.popup-image {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.popup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-placeholder svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--accent);
+    opacity: 0.5;
+}
+
+.popup-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.popup-cuisine {
+    margin: 0 0 6px 0;
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+}
+
+.popup-meta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    font-size: 0.65rem;
+}
+
+.popup-price {
+    font-weight: 600;
+}
+
+.popup-rating {
+    color: #f39c12;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.popup-details-btn,
+.popup-directions-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.popup-details-btn {
+    background: var(--accent);
+    color: white;
+    flex: 1;
+}
+
+.popup-details-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.popup-directions-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.popup-directions-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* ========== ЗОЛОТОЙ ПОПАП ========== */
+.gold-popup .popup-image {
+    position: relative;
+}
+
+.gold-popup .popup-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), transparent);
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.popup-gold-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    z-index: 5;
+}
+
+/* ========== ЭЛЕМЕНТЫ УПРАВЛЕНИЯ ========== */
+.map-controls {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.zoom-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-btn {
+    width: 34px;
+    height: 34px;
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.locate-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.75rem;
+    backdrop-filter: blur(10px);
+}
+
+.locate-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ========== ПОДСКАЗКА ========== */
+.map-hint {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hint-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.gold-hint {
+    color: #fbbf24;
+    font-weight: 500;
+}
+
+.hint-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.hint-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* ========== ЛЕГЕНДА ========== */
+.map-legend-overlay {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-price {
+    font-weight: 600;
+    min-width: 16px;
+}
+
+.legend-label {
+    color: var(--text-secondary);
+}
+
+.gold-legend {
+    border-top: 1px solid rgba(251, 191, 36, 0.2);
+    margin-top: 4px;
+    padding-top: 5px;
+}
+
+.gold-dot {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+}
+
+.legend-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 5px 0;
+}
+
+.legend-user {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-dot {
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+    .map-wrapper {
+        height: 380px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .restaurant-marker-inner {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .restaurant-marker-price {
+        font-size: 9px;
+    }
+    
+    .map-legend-overlay {
+        bottom: 12px;
+        left: 12px;
+        padding: 6px 10px;
+    }
+    
+    .legend-title {
+        font-size: 0.6rem;
+    }
+    
+    .legend-item {
+        font-size: 0.55rem;
+    }
+    
+    .legend-user {
+        font-size: 0.55rem;
+    }
+    
+    .locate-btn span {
+        display: none;
+    }
+    
+    .locate-btn {
+        padding: 8px;
+    }
+    
+    .map-hint {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .hint-content {
+        padding: 5px 10px;
+        font-size: 0.6rem;
+    }
+    
+    .gold-crown-icon {
+        top: -8px;
+        right: -6px;
+        width: 12px;
+        height: 12px;
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-wrapper {
+        height: 320px;
+    }
+    
+    .restaurant-popup {
+        min-width: 200px;
+    }
+    
+    .popup-image {
+        height: 60px;
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .popup-info h4 {
+        font-size: 0.8rem;
+    }
+    
+    .popup-cuisine {
+        font-size: 0.6rem;
+    }
+    
+    .map-legend-overlay {
+        display: none;
+    }
+    
+    .map-controls {
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .map-wrapper {
+        height: 280px;
+    }
+    
+    .gold-crown-icon {
+        top: -6px;
+        right: -5px;
+        width: 10px;
+        height: 10px;
+        font-size: 0.45rem;
+    }
+}
+
+/* Доступность */
+@media (prefers-reduced-motion: reduce) {
+    .user-marker-pulse,
+    .restaurant-marker-pulse,
+    .gold-marker-container .restaurant-marker-inner,
+    .gold-pulse {
+        animation: none;
+    }
+    
+    .map-hint {
+        animation: none;
+    }
+}

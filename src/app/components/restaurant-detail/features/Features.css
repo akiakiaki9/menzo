@@ -1,0 +1,365 @@
+/* Features.css - улучшенный */
+
+.features-section {
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.features-section:hover {
+    border-color: rgba(230, 126, 34, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* ========== GOLD СТИЛИ ========== */
+.features-section.gold-features {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(0, 0, 0, 0.15));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.features-section.gold-features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.08), transparent);
+    animation: goldFeaturesShine 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes goldFeaturesShine {
+    0% { left: -100%; }
+    30%, 100% { left: 100%; }
+}
+
+.features-section.gold-features:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+
+/* Gold бейдж */
+.features-gold-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    color: #0a0a0a;
+    padding: 3px 10px;
+    border-radius: 30px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    margin-left: auto;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+
+.features-gold-badge svg {
+    font-size: 0.65rem;
+}
+
+/* Gold элементы фич */
+.feature-item.gold-feature-item {
+    background: rgba(251, 191, 36, 0.05);
+    border-color: rgba(251, 191, 36, 0.15);
+}
+
+.feature-item.gold-feature-item:hover {
+    border-color: rgba(251, 191, 36, 0.4);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+/* ========== ЗАГОЛОВОК ========== */
+.features-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+}
+
+.header-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(230, 126, 34, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.features-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.features-count {
+    background: rgba(230, 126, 34, 0.15);
+    color: var(--accent);
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+/* ========== СЕТКА ОСОБЕННОСТЕЙ ========== */
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Карточка особенности */
+.feature-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    cursor: default;
+}
+
+.feature-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--feature-color, var(--accent));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.feature-icon {
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+}
+
+.feature-item:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+.feature-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 0.8rem;
+}
+
+.feature-item:hover .feature-label {
+    color: var(--feature-color, var(--accent));
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .features-section {
+        margin-bottom: 24px;
+        padding: 18px;
+    }
+    
+    .features-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .header-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
+    }
+}
+
+/* Мобильные */
+@media (max-width: 768px) {
+    .features-section {
+        padding: 14px;
+        margin-bottom: 18px;
+        border-radius: 16px;
+    }
+    
+    .features-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+    
+    .header-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .features-header h3 {
+        font-size: 0.95rem;
+    }
+    
+    .features-count {
+        font-size: 0.55rem;
+        padding: 2px 7px;
+    }
+    
+    .features-gold-badge {
+        padding: 2px 8px;
+        font-size: 0.55rem;
+    }
+    
+    .features-grid {
+        gap: 8px;
+    }
+    
+    .feature-item {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        gap: 6px;
+        border-radius: 30px;
+    }
+    
+    .feature-icon {
+        font-size: 0.75rem;
+    }
+    
+    .feature-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .features-section {
+        padding: 12px;
+        margin-bottom: 14px;
+        border-radius: 14px;
+    }
+    
+    .features-header {
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+    
+    .header-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+    
+    .features-header h3 {
+        font-size: 0.85rem;
+    }
+    
+    .features-count {
+        font-size: 0.5rem;
+        padding: 2px 6px;
+    }
+    
+    .features-gold-badge {
+        padding: 2px 6px;
+        font-size: 0.5rem;
+    }
+    
+    .features-grid {
+        gap: 6px;
+    }
+    
+    .feature-item {
+        padding: 3px 8px;
+        font-size: 0.65rem;
+        gap: 4px;
+        border-radius: 25px;
+    }
+    
+    .feature-icon {
+        font-size: 0.65rem;
+    }
+    
+    .feature-label {
+        font-size: 0.65rem;
+    }
+}
+
+/* Очень маленькие */
+@media (max-width: 360px) {
+    .features-section {
+        padding: 10px;
+    }
+    
+    .features-grid {
+        gap: 5px;
+    }
+    
+    .feature-item {
+        padding: 2px 6px;
+        font-size: 0.6rem;
+    }
+    
+    .feature-icon {
+        font-size: 0.6rem;
+    }
+    
+    .feature-label {
+        font-size: 0.6rem;
+    }
+}
+
+/* ========== АНИМАЦИИ ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-item {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+/* ========== ЦВЕТА ДЛЯ РАЗНЫХ ТИПОВ ========== */
+.feature-item[data-type="wifi"]:hover .feature-icon { color: #3498db; }
+.feature-item[data-type="parking"]:hover .feature-icon { color: #2ecc71; }
+.feature-item[data-type="romantic"]:hover .feature-icon { color: #e74c3c; }
+.feature-item[data-type="live_music"]:hover .feature-icon { color: #9b59b6; }
+.feature-item[data-type="smoking"]:hover .feature-icon { color: #95a5a6; }
+.feature-item[data-type="hookah"]:hover .feature-icon { color: #e67e22; }
+.feature-item[data-type="delivery"]:hover .feature-icon { color: #f39c12; }
+
+/* ========== ДОСТУПНОСТЬ ========== */
+@media (prefers-reduced-motion: reduce) {
+    .feature-item,
+    .feature-icon,
+    .feature-item:hover,
+    .feature-item:hover .feature-icon,
+    .features-section.gold-features::before {
+        transition: none;
+        transform: none;
+        animation: none;
+    }
+}
+
+/* Тач-оптимизация */
+@media (max-width: 768px) {
+    .feature-item {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .feature-item:active {
+        transform: scale(0.97);
+        transition: transform 0.1s;
+    }
+}

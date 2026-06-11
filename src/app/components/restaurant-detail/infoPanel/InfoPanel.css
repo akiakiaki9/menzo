@@ -1,0 +1,386 @@
+/* InfoPanel.css - уменьшенная высота */
+
+.info-panel-mobile {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+    position: relative;
+}
+
+/* Gold панель */
+.info-panel-mobile.gold-panel {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(0, 0, 0, 0.2));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.info-panel-mobile.gold-panel:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+
+/* Gold бейдж на панели */
+.panel-gold-badge {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    color: #0a0a0a;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.55rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+    box-shadow: 0 1px 4px rgba(251, 191, 36, 0.3);
+}
+
+.panel-gold-badge svg {
+    font-size: 0.55rem;
+}
+
+/* Сетка информации */
+.info-grid-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+/* Карточка информации */
+.info-card-mobile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.info-card-mobile:active {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(0.98);
+}
+
+.info-icon-mobile {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.info-content-mobile {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.info-label-mobile {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.info-value-mobile {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.info-extra {
+    font-size: 0.7rem;
+}
+
+/* Контакты */
+.contacts-mobile {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contacts-header-mobile {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.contacts-header-mobile span {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.contacts-list-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.contact-mobile span {
+    font-size: 0.65rem;
+}
+
+.contact-mobile:active {
+    transform: scale(0.97);
+}
+
+.phone-mobile {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: #2ecc71;
+}
+
+.telegram-mobile {
+    background: rgba(0, 136, 204, 0.1);
+    border: 1px solid rgba(0, 136, 204, 0.3);
+    color: #0088cc;
+}
+
+.instagram-mobile {
+    background: rgba(225, 48, 108, 0.1);
+    border: 1px solid rgba(225, 48, 108, 0.3);
+    color: #e1306c;
+}
+
+/* Особенности */
+.features-mobile {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.features-header-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 8px;
+    font-size: 0.6rem;
+    color: var(--accent);
+}
+
+.features-list-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.feature-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+.feature-mobile:active {
+    transform: scale(0.97);
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты */
+@media (max-width: 768px) {
+    .info-panel-mobile {
+        padding: 10px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+    }
+    
+    .info-card-mobile {
+        padding: 5px 8px;
+        gap: 8px;
+    }
+    
+    .info-icon-mobile {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+        border-radius: 8px;
+    }
+    
+    .info-label-mobile {
+        font-size: 0.6rem;
+    }
+    
+    .info-value-mobile {
+        font-size: 0.7rem;
+    }
+    
+    .contact-mobile {
+        padding: 4px 10px;
+    }
+    
+    .contact-mobile span {
+        font-size: 0.6rem;
+    }
+    
+    .feature-mobile {
+        padding: 2px 8px;
+        font-size: 0.55rem;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .info-panel-mobile {
+        padding: 8px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .panel-gold-badge {
+        top: -6px;
+        right: 8px;
+        padding: 2px 8px;
+        font-size: 0.5rem;
+    }
+    
+    .info-grid-mobile {
+        gap: 5px;
+        margin-bottom: 8px;
+    }
+    
+    .info-card-mobile {
+        padding: 4px 6px;
+        gap: 6px;
+    }
+    
+    .info-icon-mobile {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+        border-radius: 6px;
+    }
+    
+    .info-label-mobile {
+        font-size: 0.55rem;
+    }
+    
+    .info-value-mobile {
+        font-size: 0.65rem;
+    }
+    
+    .contacts-header-mobile {
+        margin-bottom: 6px;
+    }
+    
+    .contacts-list-mobile {
+        gap: 8px;
+    }
+    
+    .contact-mobile {
+        padding: 3px 8px;
+    }
+    
+    .contact-mobile span {
+        font-size: 0.55rem;
+    }
+    
+    .features-list-mobile {
+        gap: 5px;
+    }
+    
+    .feature-mobile {
+        padding: 2px 6px;
+        font-size: 0.5rem;
+    }
+}
+
+/* Очень маленькие */
+@media (max-width: 360px) {
+    .info-panel-mobile {
+        padding: 6px;
+    }
+    
+    .info-value-mobile {
+        font-size: 0.6rem;
+    }
+    
+    .info-label-mobile {
+        font-size: 0.5rem;
+    }
+    
+    .contact-mobile {
+        padding: 2px 6px;
+    }
+    
+    .contact-mobile span {
+        display: none;
+    }
+    
+    .contact-mobile svg {
+        margin: 0;
+    }
+    
+    .feature-mobile {
+        padding: 2px 5px;
+        font-size: 0.45rem;
+    }
+}
+
+/* ========== ДОСТУПНОСТЬ ========== */
+@media (prefers-reduced-motion: reduce) {
+    .info-panel-mobile,
+    .info-card-mobile,
+    .contact-mobile,
+    .feature-mobile {
+        transition: none;
+    }
+    
+    .info-card-mobile:active,
+    .contact-mobile:active,
+    .feature-mobile:active {
+        transform: none;
+    }
+}
+
+/* Тач-оптимизация */
+@media (max-width: 768px) {
+    .contact-mobile,
+    .feature-mobile,
+    .info-card-mobile {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+}

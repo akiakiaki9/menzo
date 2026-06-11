@@ -1,0 +1,717 @@
+/* booking-modal.css - оптимизирован для ПК и мобилки без скроллбара */
+
+.booking-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: bookingFadeIn 0.3s;
+}
+
+@keyframes bookingFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.booking-modal-container {
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    max-width: 520px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(230, 126, 34, 0.3);
+    animation: bookingSlideUp 0.3s;
+}
+
+/* Скрываем скроллбар но оставляем функционал */
+.booking-modal-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.booking-modal-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.booking-modal-container::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+@keyframes bookingSlideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Хедер */
+.booking-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(230, 126, 34, 0.05);
+    border-radius: 20px 20px 0 0;
+}
+
+.booking-modal-header h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin: 0;
+    font-weight: 600;
+}
+
+.booking-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.booking-modal-close:hover {
+    color: var(--accent);
+    background: rgba(230, 126, 34, 0.1);
+}
+
+/* Информация о ресторане */
+.booking-modal-restaurant {
+    padding: 12px 22px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.booking-modal-restaurant p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.booking-modal-restaurant strong {
+    color: var(--accent);
+}
+
+/* Форма */
+.booking-form {
+    padding: 20px 22px;
+}
+
+.booking-form-group {
+    margin-bottom: 16px;
+}
+
+.booking-form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.booking-form-group input,
+.booking-form-group select,
+.booking-form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+/* Стили для select и option с темным фоном */
+.booking-form-group select {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e67e22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+.booking-form-group select option {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 10px;
+}
+
+/* Стили для option при наведении */
+.booking-form-group select option:hover {
+    background-color: #e67e22;
+    color: #ffffff;
+}
+
+/* Стили для select при focus */
+.booking-form-group select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+    background-color: #2a2a2a;
+}
+
+/* Стили для разных браузеров */
+.booking-form-group select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #ffffff;
+}
+
+.booking-form-group select::-ms-expand {
+    display: none;
+}
+
+/* Стили для input[type="date"] */
+.booking-form-group input[type="date"] {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+.booking-form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.booking-form-group input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: #ffffff;
+}
+
+.booking-form-group input[type="date"]::-webkit-datetime-edit-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.booking-form-group input[type="date"]::-webkit-datetime-edit-month-field,
+.booking-form-group input[type="date"]::-webkit-datetime-edit-day-field,
+.booking-form-group input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #ffffff;
+}
+
+.booking-form-group input:focus,
+.booking-form-group select:focus,
+.booking-form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.1);
+}
+
+.booking-form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Ряд с датой и временем */
+.booking-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Ошибка */
+.booking-error-message {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* Кнопки */
+.booking-modal-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.booking-btn-cancel,
+.booking-btn-submit {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.booking-btn-cancel {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.booking-btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.booking-btn-submit {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: white;
+}
+
+.booking-btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.booking-btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   ПЛАНШЕТЫ (до 768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+    .booking-modal-container {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+    
+    .booking-modal-header {
+        padding: 14px 18px;
+    }
+    
+    .booking-modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .booking-modal-close {
+        font-size: 1.5rem;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .booking-modal-restaurant {
+        padding: 10px 18px;
+    }
+    
+    .booking-modal-restaurant p {
+        font-size: 0.85rem;
+    }
+    
+    .booking-form {
+        padding: 16px 18px;
+    }
+    
+    .booking-form-group {
+        margin-bottom: 14px;
+    }
+    
+    .booking-form-group label {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .booking-form-group input,
+    .booking-form-group select,
+    .booking-form-group textarea {
+        padding: 9px 11px;
+        font-size: 0.85rem;
+    }
+    
+    .booking-form-row {
+        gap: 10px;
+    }
+    
+    .booking-error-message {
+        padding: 8px;
+        font-size: 0.8rem;
+        margin-bottom: 14px;
+    }
+    
+    .booking-modal-buttons {
+        gap: 10px;
+        margin-top: 18px;
+    }
+    
+    .booking-btn-cancel,
+    .booking-btn-submit {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+    .booking-modal-container {
+        max-width: 98%;
+        max-height: 80vh;
+        border-radius: 16px;
+    }
+    
+    .booking-modal-header {
+        padding: 12px 16px;
+    }
+    
+    .booking-modal-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .booking-modal-close {
+        font-size: 1.3rem;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .booking-modal-restaurant {
+        padding: 8px 16px;
+    }
+    
+    .booking-modal-restaurant p {
+        font-size: 0.8rem;
+    }
+    
+    .booking-form {
+        padding: 14px 16px;
+    }
+    
+    .booking-form-group {
+        margin-bottom: 12px;
+    }
+    
+    .booking-form-group label {
+        font-size: 0.75rem;
+        margin-bottom: 4px;
+    }
+    
+    .booking-form-group input,
+    .booking-form-group select,
+    .booking-form-group textarea {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        border-radius: 8px;
+    }
+    
+    .booking-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .booking-error-message {
+        padding: 7px;
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+    }
+    
+    .booking-modal-buttons {
+        gap: 8px;
+        margin-top: 16px;
+    }
+    
+    .booking-btn-cancel,
+    .booking-btn-submit {
+        padding: 9px;
+        font-size: 0.8rem;
+        border-radius: 25px;
+    }
+}
+
+/* ============================================
+   ОЧЕНЬ МАЛЕНЬКИЕ (до 360px)
+   ============================================ */
+
+@media (max-width: 360px) {
+    .booking-modal-container {
+        max-height: 85vh;
+    }
+    
+    .booking-modal-header {
+        padding: 10px 14px;
+    }
+    
+    .booking-modal-header h2 {
+        font-size: 1rem;
+    }
+    
+    .booking-form {
+        padding: 12px 14px;
+    }
+    
+    .booking-form-group {
+        margin-bottom: 10px;
+    }
+    
+    .booking-form-group input,
+    .booking-form-group select,
+    .booking-form-group textarea {
+        padding: 7px 9px;
+        font-size: 0.75rem;
+    }
+    
+    .booking-btn-cancel,
+    .booking-btn-submit {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================
+   УМЕНЬШЕНИЕ ДВИЖЕНИЯ
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .booking-modal-overlay,
+    .booking-modal-container {
+        animation: none;
+    }
+    
+    .booking-btn-submit:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* ============================================
+   ТАЧ-ОПТИМИЗАЦИЯ
+   ============================================ */
+
+@media (max-width: 768px) {
+    .booking-btn-cancel,
+    .booking-btn-submit,
+    .booking-modal-close {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .booking-btn-cancel:active,
+    .booking-btn-submit:active {
+        transform: scale(0.98);
+    }
+    
+    .booking-modal-close:active {
+        transform: scale(0.95);
+    }
+}
+
+/* ============================================
+   ТЕМНАЯ ТЕМА ДЛЯ SELECT (ДОПОЛНИТЕЛЬНО)
+   ============================================ */
+
+/* Для Firefox */
+.booking-form-group select {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+.booking-form-group select option {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Для выбранного option */
+.booking-form-group select option:checked {
+    background-color: #e67e22;
+    color: #ffffff;
+}
+
+/* Для Safari/Chrome */
+.booking-form-group select:focus option:checked {
+    background-color: #e67e22;
+}
+
+/* Placeholder цвет для input */
+.booking-form-group input::placeholder,
+.booking-form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Autofill стили */
+.booking-form-group input:-webkit-autofill,
+.booking-form-group input:-webkit-autofill:hover,
+.booking-form-group input:-webkit-autofill:focus,
+.booking-form-group select:-webkit-autofill,
+.booking-form-group select:-webkit-autofill:hover,
+.booking-form-group select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #2a2a2a inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.booking-unavailable {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.unavailable-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.booking-unavailable p {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.booking-phone-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+/* ============================================
+   BOOKING UNAVAILABLE MODE
+   ============================================ */
+.booking-unavailable-modal {
+    text-align: center;
+    max-width: 450px;
+}
+
+.booking-unavailable-content {
+    padding: 20px 10px 30px;
+}
+
+.unavailable-animation {
+    margin-bottom: 20px;
+}
+
+.unavailable-shield {
+    font-size: 4rem;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.booking-unavailable-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.unavailable-message {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.unavailable-divider {
+    position: relative;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.unavailable-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.unavailable-divider span {
+    position: relative;
+    background: var(--bg-secondary);
+    padding: 0 15px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.booking-phone-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    margin: 10px 0 20px;
+    transition: all 0.3s;
+    width: 100%;
+    justify-content: center;
+}
+
+.booking-phone-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+}
+
+.booking-phone-button span {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.booking-phone-button small {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.unavailable-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 15px 0;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.unavailable-note svg {
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.booking-unavailable-close {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.booking-unavailable-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}

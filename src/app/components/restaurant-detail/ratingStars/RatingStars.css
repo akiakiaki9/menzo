@@ -1,0 +1,107 @@
+/* RatingStars.css - уменьшенные размеры */
+
+.rating-stars {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star.active {
+  color: #f39c12;
+  text-shadow: 0 0 2px rgba(243, 156, 18, 0.5);
+}
+
+.star:not(.readonly):hover {
+  transform: scale(1.1);
+  color: #f39c12;
+}
+
+.star.readonly {
+  cursor: default;
+}
+
+/* Размеры звезд */
+.star.small {
+  font-size: 0.9rem;
+}
+
+.star.medium {
+  font-size: 1.3rem;
+}
+
+.star.large {
+  font-size: 1.8rem;
+}
+
+/* Отступы между звездами на мобилке */
+@media (max-width: 768px) {
+  .rating-stars {
+    gap: 3px;
+  }
+  
+  .star.small {
+    font-size: 0.8rem;
+  }
+  
+  .star.medium {
+    font-size: 1.1rem;
+  }
+  
+  .star.large {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rating-stars {
+    gap: 2px;
+  }
+  
+  .star.small {
+    font-size: 0.7rem;
+  }
+  
+  .star.medium {
+    font-size: 1rem;
+  }
+  
+  .star.large {
+    font-size: 1.3rem;
+  }
+}
+
+/* Улучшенная доступность */
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    transition: none;
+  }
+  
+  .star:not(.readonly):hover {
+    transform: none;
+  }
+}
+
+/* Тач-оптимизация */
+@media (max-width: 768px) {
+  .star:not(.readonly) {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .star:not(.readonly):active {
+    transform: scale(0.95);
+  }
+}

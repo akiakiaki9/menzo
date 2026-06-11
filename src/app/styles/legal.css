@@ -1,0 +1,625 @@
+/* ============================================
+   LEGAL PAGES (PRIVACY & TERMS)
+   ============================================ */
+
+.legal-page {
+    min-height: calc(100vh - 200px);
+    background: var(--bg-primary);
+    padding: 30px 0 50px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ============================================
+   HERO СЕКЦИЯ
+   ============================================ */
+.legal-hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, rgba(230, 126, 34, 0.1), rgba(0, 0, 0, 0.2));
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legal-hero-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.legal-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.legal-hero p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.legal-updated {
+    margin-top: 15px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   СОДЕРЖАНИЕ
+   ============================================ */
+.legal-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 30px;
+}
+
+.legal-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 8px;
+}
+
+.sidebar-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    display: block;
+    padding: 4px 0;
+}
+
+.sidebar-nav a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+}
+
+/* ============================================
+   ОСНОВНОЙ КОНТЕНТ
+   ============================================ */
+.legal-main {
+    flex: 1;
+}
+
+.legal-section {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.legal-section h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legal-section h2 svg {
+    font-size: 1.2rem;
+}
+
+.legal-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 16px 0 10px;
+    color: var(--text-primary);
+}
+
+.legal-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.legal-section ul {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.legal-section li {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   КАРТОЧКИ И БЛОКИ
+   ============================================ */
+.info-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.info-box svg {
+    font-size: 1.1rem;
+    color: #3498db;
+    flex-shrink: 0;
+}
+
+.warning-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    color: #e74c3c;
+    font-size: 0.85rem;
+}
+
+.warning-box svg {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.contact-info-box {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+.contact-info-box p {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.contact-info-box a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.contact-info-box a:hover {
+    text-decoration: underline;
+}
+
+/* Блок использования данных */
+.usage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.usage-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.usage-card svg {
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.usage-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.usage-card p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+}
+
+/* Cookie типы */
+.cookie-types {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.cookie-type {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.cookie-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.cookie-badge.necessary {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.cookie-badge.functional {
+    background: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.cookie-badge.analytics {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.cookie-type p {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+}
+
+/* Правила бронирования */
+.booking-rules {
+    margin: 16px 0;
+}
+
+.rule-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rule-number {
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 35px;
+    font-size: 0.85rem;
+}
+
+.rule-item p {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+}
+
+/* Футер страницы */
+.legal-footer-note {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.legal-footer-note p {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ (УМЕНЬШЕННЫЕ РАЗМЕРЫ)
+   ============================================ */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .legal-grid {
+        gap: 24px;
+    }
+    
+    .legal-sidebar {
+        width: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .legal-page {
+        padding: 20px 0 35px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .legal-hero {
+        margin-bottom: 30px;
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+    
+    .legal-hero-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .legal-hero h1 {
+        font-size: 1.4rem;
+    }
+    
+    .legal-hero p {
+        font-size: 0.8rem;
+    }
+    
+    .legal-updated {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+    
+    .legal-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .legal-sidebar {
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+        padding: 12px;
+        border-radius: 14px;
+    }
+    
+    .sidebar-title {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .sidebar-nav li {
+        margin-bottom: 0;
+    }
+    
+    .sidebar-nav a {
+        padding: 4px 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        font-size: 0.7rem;
+    }
+    
+    .sidebar-nav a:hover {
+        transform: none;
+    }
+    
+    .legal-section {
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    .legal-section h2 svg {
+        font-size: 1rem;
+    }
+    
+    .legal-section h3 {
+        font-size: 0.95rem;
+    }
+    
+    .legal-section p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    
+    .legal-section li {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    
+    .info-box,
+    .warning-box {
+        padding: 10px 14px;
+        font-size: 0.75rem;
+        gap: 8px;
+        border-radius: 12px;
+    }
+    
+    .info-box svg,
+    .warning-box svg {
+        font-size: 1rem;
+    }
+    
+    .usage-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .usage-card {
+        padding: 12px;
+    }
+    
+    .usage-card svg {
+        font-size: 1.3rem;
+    }
+    
+    .usage-card h4 {
+        font-size: 0.85rem;
+    }
+    
+    .cookie-types {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .cookie-type {
+        padding: 10px;
+    }
+    
+    .cookie-badge {
+        font-size: 0.6rem;
+    }
+    
+    .contact-info-box {
+        padding: 12px;
+    }
+    
+    .contact-info-box p {
+        font-size: 0.8rem;
+    }
+    
+    .rule-item {
+        gap: 10px;
+        padding: 8px 0;
+    }
+    
+    .rule-number {
+        font-size: 0.8rem;
+        min-width: 32px;
+    }
+    
+    .rule-item p {
+        font-size: 0.8rem;
+    }
+    
+    .legal-footer-note {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    
+    .legal-footer-note p {
+        font-size: 0.7rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .footer-links a {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-page {
+        padding: 15px 0 30px;
+    }
+    
+    .legal-hero {
+        padding: 16px 12px;
+    }
+    
+    .legal-hero-icon {
+        font-size: 1.8rem;
+    }
+    
+    .legal-hero h1 {
+        font-size: 1.2rem;
+    }
+    
+    .legal-hero p {
+        font-size: 0.7rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1rem;
+    }
+    
+    .legal-section p,
+    .legal-section li {
+        font-size: 0.75rem;
+    }
+    
+    .info-box,
+    .warning-box {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .usage-card h4 {
+        font-size: 0.8rem;
+    }
+    
+    .usage-card p {
+        font-size: 0.7rem;
+    }
+    
+    .cookie-type p {
+        font-size: 0.7rem;
+    }
+    
+    .contact-info-box p {
+        font-size: 0.75rem;
+    }
+    
+    .rule-number {
+        font-size: 0.75rem;
+    }
+    
+    .rule-item p {
+        font-size: 0.75rem;
+    }
+}

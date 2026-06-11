@@ -1,0 +1,21 @@
+{
+  "name": "MENZO.UZ",
+  "short_name": "MENZO",
+  "description": "Лучшие рестораны и кафе Узбекистана",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#e67e22",
+  "icons": [
+    {
+      "src": "/images/menzo.PNG",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/menzo.PNG",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

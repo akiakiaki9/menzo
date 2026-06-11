@@ -1,0 +1,579 @@
+/* City.css - уменьшенная высота */
+
+:root {
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --accent-light: rgba(245, 158, 11, 0.15);
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+}
+
+.city-page {
+    min-height: calc(100vh - 200px);
+    padding: 25px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ========== HERO БЛОК ========== */
+.city-hero {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 25px 20px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 14px;
+    transition: all 0.3s;
+    font-size: 0.8rem;
+}
+
+.back-link:hover {
+    color: var(--accent);
+    gap: 10px;
+}
+
+.city-hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.city-hero p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* ========== УПРАВЛЕНИЕ ========== */
+.city-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    flex: 1;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 36px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.clear-search {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.filter-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ========== ПАНЕЛЬ ФИЛЬТРОВ ========== */
+.filters-panel {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: 18px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    border: 1px solid var(--card-border);
+}
+
+.filters-panel:not(.open) {
+    display: none;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-group label {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-group select {
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.reset-filters {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 40px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.75rem;
+}
+
+.reset-filters:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ========== СЕТКА КАРТОЧЕК ========== */
+.restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ========== КАРТОЧКА МЕСТА ========== */
+.restaurant-card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Gold карточка */
+.restaurant-card.gold-card {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(0, 0, 0, 0.2));
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.restaurant-card.gold-card:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.2);
+}
+
+/* Gold бейдж */
+.gold-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+/* Изображение */
+.card-image {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.restaurant-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Информация карточки */
+.card-info {
+    padding: 14px;
+}
+
+.card-info h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rating {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.price {
+    color: var(--accent);
+    font-size: 0.65rem;
+    background: var(--accent-light);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.card-cuisine {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.card-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.card-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.card-link:hover {
+    gap: 8px;
+    color: var(--accent-hover);
+}
+
+/* ========== ПУСТОЕ СОСТОЯНИЕ ========== */
+.no-results {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-secondary);
+}
+
+.no-results svg {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+/* ========== ЗАГРУЗКА ========== */
+.city-loading {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.loading-spinner {
+    width: 45px;
+    height: 45px;
+    border: 3px solid var(--accent-light);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.city-loading p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* ========== ОШИБКА ========== */
+.city-error {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.city-error p {
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+/* ========== АДАПТИВНОСТЬ - УМЕНЬШЕННЫЕ РАЗМЕРЫ ========== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .city-page {
+        padding: 20px 0;
+    }
+    
+    .container {
+        padding: 0 24px;
+    }
+    
+    .city-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .restaurants-grid {
+        gap: 18px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .city-page {
+        padding: 16px 0;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .city-hero {
+        padding: 20px 16px;
+        margin-bottom: 24px;
+        border-radius: 20px;
+    }
+    
+    .city-hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .city-hero p {
+        font-size: 0.75rem;
+    }
+    
+    .back-link {
+        font-size: 0.7rem;
+        margin-bottom: 10px;
+    }
+    
+    .city-controls {
+        gap: 10px;
+    }
+    
+    .search-bar input {
+        padding: 8px 32px;
+        font-size: 0.8rem;
+    }
+    
+    .search-icon {
+        font-size: 0.75rem;
+        left: 12px;
+    }
+    
+    .filter-toggle {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .filters-panel {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .filter-group select {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .reset-filters {
+        padding: 6px 16px;
+        font-size: 0.7rem;
+    }
+    
+    .restaurants-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .card-image {
+        height: 140px;
+    }
+    
+    .card-info {
+        padding: 12px;
+    }
+    
+    .card-info h3 {
+        font-size: 0.9rem;
+    }
+    
+    .card-meta .rating {
+        font-size: 0.7rem;
+    }
+    
+    .price {
+        font-size: 0.6rem;
+    }
+    
+    .card-cuisine {
+        font-size: 0.6rem;
+    }
+    
+    .card-location {
+        font-size: 0.6rem;
+    }
+    
+    .card-link {
+        font-size: 0.7rem;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    .city-page {
+        padding: 12px 0;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+    
+    .city-hero {
+        padding: 16px 12px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+    
+    .city-hero h1 {
+        font-size: 1.1rem;
+    }
+    
+    .city-hero p {
+        font-size: 0.7rem;
+    }
+    
+    .city-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .filter-toggle {
+        justify-content: center;
+    }
+    
+    .card-image {
+        height: 120px;
+    }
+    
+    .card-info {
+        padding: 10px;
+    }
+    
+    .card-info h3 {
+        font-size: 0.85rem;
+        white-space: normal;
+    }
+    
+    .gold-badge {
+        top: 6px;
+        right: 6px;
+    }
+    
+    .no-results {
+        padding: 40px 16px;
+    }
+    
+    .no-results svg {
+        font-size: 2rem;
+    }
+    
+    .no-results h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Снижение анимаций */
+@media (prefers-reduced-motion: reduce) {
+    .restaurant-card,
+    .restaurant-card:hover,
+    .card-image img,
+    .card-link,
+    .loading-spinner {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+}

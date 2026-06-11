@@ -1,0 +1,452 @@
+/* ============================================
+   RESTAURANT DETAIL PAGE - ПОЛНЫЙ CSS
+   ============================================ */
+
+.restaurant-detail-page {
+    padding: 20px 0 60px;
+    min-height: calc(100vh - 200px);
+    background: var(--bg-primary);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ============================================
+   ХЛЕБНЫЕ КРОШКИ
+   ============================================ */
+.breadcrumb {
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: var(--accent);
+}
+
+.breadcrumb span {
+    color: var(--text-secondary);
+}
+
+.breadcrumb span:last-child {
+    color: var(--accent);
+}
+
+/* ============================================
+   ПОХОЖИЕ МЕСТА
+   ============================================ */
+.similar-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.similar-header {
+    margin-bottom: 24px;
+}
+
+.similar-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.similar-card {
+    display: flex;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.similar-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.similar-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.similar-info {
+    padding: 12px 12px 12px 0;
+    flex: 1;
+}
+
+.similar-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.similar-info p {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+}
+
+.similar-price {
+    background: rgba(230, 126, 34, 0.1);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* ============================================
+   ЗАГРУЗКА
+   ============================================ */
+.loading-container {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(230, 126, 34, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-container p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   ОШИБКА
+   ============================================ */
+.error-container {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 4rem;
+}
+
+.error-container h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.error-container p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.back-home-btn {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    border-radius: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.back-home-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+/* Планшеты (1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .similar-grid {
+        gap: 16px;
+    }
+}
+
+/* Планшеты и большие телефоны (768px) */
+@media (max-width: 768px) {
+    .restaurant-detail-page {
+        padding: 16px 0 40px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .breadcrumb {
+        font-size: 0.75rem;
+        margin-bottom: 16px;
+    }
+
+    .similar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .similar-card {
+        flex-direction: row;
+    }
+
+    .similar-card img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .similar-info h4 {
+        font-size: 0.9rem;
+    }
+}
+
+/* Маленькие телефоны (480px) */
+@media (max-width: 480px) {
+    .restaurant-detail-page {
+        padding: 12px 0 32px;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .breadcrumb {
+        font-size: 0.7rem;
+    }
+
+    .error-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .back-home-btn {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+    }
+
+    .similar-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .similar-card {
+        flex-direction: column;
+    }
+
+    .similar-card img {
+        width: 100%;
+        height: 140px;
+    }
+
+    .similar-info {
+        padding: 12px;
+    }
+
+    .similar-info h4 {
+        font-size: 0.85rem;
+    }
+}
+
+/* Горизонтальная ориентация на телефонах */
+@media (max-width: 768px) and (orientation: landscape) {
+    .similar-card {
+        flex-direction: row;
+    }
+
+    .similar-card img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Retina экраны */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .loading-spinner {
+        border-width: 2px;
+    }
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.similar-card {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* ============================================
+   ТЁМНАЯ ТЕМА (автоматическое определение)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    .similar-card {
+        background: rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* ============================================
+   УЛУЧШЕННАЯ ДОСТУПНОСТЬ (отключение анимаций)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+        animation: none;
+        transform: rotate(45deg);
+    }
+
+    .back-home-btn,
+    .similar-card {
+        transition: none;
+    }
+
+    .back-home-btn:hover {
+        transform: none;
+    }
+
+    .similar-card:hover {
+        transform: none;
+    }
+
+    .similar-card {
+        animation: none;
+    }
+}
+
+/* ============================================
+   ДОПОЛНИТЕЛЬНЫЕ СТИЛИ
+   ============================================ */
+
+/* Разделитель */
+.separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: 30px 0;
+}
+
+/* Badge для акций */
+.promo-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Скелетон загрузки для контента */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ============================================
+   СТИЛИ ДЛЯ ПОЛЯ ИМЕНИ В МОДАЛКЕ
+   ============================================ */
+.rating-name-field {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+}
+
+.rating-name-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.rating-name-field input {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.rating-name-field input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.rating-name-field small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+}

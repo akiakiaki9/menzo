@@ -1,0 +1,561 @@
+/* RecommendedRestaurants.css - уменьшенная высота */
+
+:root {
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --accent-light: rgba(245, 158, 11, 0.15);
+    --premium-gold: #fbbf24;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+}
+
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+.places-section {
+    padding: 50px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+    position: relative;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== ЗАГОЛОВОК ========== */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-light);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 16px;
+}
+
+.badge-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+.header-badge span {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+/* ========== ТОП МЕСТО НЕДЕЛИ ========== */
+.top-place-block {
+    background: transparent;
+    border-radius: 24px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.top-place-badge {
+    position: absolute !important;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+}
+
+.top-place-content {
+    display: flex;
+    gap: 30px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 24px;
+    border: 1px solid var(--card-border);
+}
+
+.top-place-image {
+    position: relative;
+    width: 280px;
+    height: 240px;
+    border-radius: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.top-place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-gold-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+}
+
+.top-place-info {
+    flex: 1;
+}
+
+.top-place-info h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+}
+
+.top-place-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 14px;
+}
+
+.top-place-stats .rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.top-place-stats .reviews-count {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.top-place-stats .cuisine-type {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+}
+
+.top-place-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.top-place-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+/* ========== СЕТКА КАРТОЧЕК ========== */
+.places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* ========== ОБЫЧНАЯ КАРТОЧКА ========== */
+.place-card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.place-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+/* ЗОЛОТАЯ КАРТОЧКА */
+.place-card.gold-card {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(0, 0, 0, 0.2));
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.place-card.gold-card:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.2);
+}
+
+/* Изображение */
+.card-image {
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.place-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.place-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.favorite-btn {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+}
+
+.favorite-btn:hover {
+    background: #ff4d4d;
+    transform: scale(1.1);
+}
+
+/* Контент карточки */
+.card-content {
+    padding: 14px;
+}
+
+.card-content h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.card-meta .rating {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.card-meta .price-level {
+    color: var(--accent);
+    font-size: 0.65rem;
+    background: var(--accent-light);
+    padding: 2px 6px;
+    border-radius: 20px;
+}
+
+.card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.card-location svg {
+    font-size: 0.6rem;
+}
+
+.card-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.card-link:hover {
+    gap: 8px;
+    color: var(--accent-hover);
+}
+
+/* Кнопка в подвале */
+.places-footer {
+    text-align: center;
+}
+
+.explore-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+/* Загрузка */
+.places-loading {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loading-spinner {
+    width: 45px;
+    height: 45px;
+    border: 3px solid var(--accent-light);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== АДАПТИВНОСТЬ - УМЕНЬШЕННЫЕ РАЗМЕРЫ ========== */
+@media (max-width: 1024px) {
+    .places-section {
+        padding: 40px 0;
+    }
+    
+    .top-place-content {
+        gap: 24px;
+        padding: 20px;
+    }
+    
+    .top-place-image {
+        width: 260px;
+        height: 220px;
+    }
+    
+    .top-place-info h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .places-section {
+        padding: 30px 0;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .section-header p {
+        font-size: 0.8rem;
+    }
+    
+    .header-badge {
+        padding: 3px 12px;
+        margin-bottom: 12px;
+    }
+    
+    .top-place-block {
+        margin-bottom: 30px;
+    }
+    
+    .top-place-badge {
+        top: 12px;
+        right: 12px;
+    }
+    
+    .top-place-content {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .top-place-image {
+        width: 100%;
+        height: 180px;
+    }
+    
+    .top-place-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .top-place-stats {
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .top-place-stats .rating,
+    .top-place-stats .reviews-count,
+    .top-place-stats .cuisine-type {
+        font-size: 0.7rem;
+    }
+    
+    .top-place-description {
+        font-size: 0.8rem;
+        margin-bottom: 16px;
+    }
+    
+    .top-place-btn {
+        padding: 8px 18px;
+        font-size: 0.8rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .places-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+    
+    .card-image {
+        height: 140px;
+    }
+    
+    .card-content {
+        padding: 12px;
+    }
+    
+    .card-content h3 {
+        font-size: 0.9rem;
+    }
+    
+    .card-meta .rating {
+        font-size: 0.7rem;
+    }
+    
+    .card-meta .price-level {
+        font-size: 0.6rem;
+    }
+    
+    .explore-all-btn {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .places-section {
+        padding: 25px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .top-place-image {
+        height: 160px;
+    }
+    
+    .top-place-info h3 {
+        font-size: 1rem;
+    }
+    
+    .top-place-stats {
+        gap: 10px;
+    }
+    
+    .top-place-stats .rating,
+    .top-place-stats .reviews-count,
+    .top-place-stats .cuisine-type {
+        font-size: 0.65rem;
+    }
+    
+    .top-place-description {
+        font-size: 0.75rem;
+    }
+    
+    .card-image {
+        height: 120px;
+    }
+    
+    .card-content {
+        padding: 10px;
+    }
+    
+    .card-content h3 {
+        font-size: 0.85rem;
+    }
+    
+    .card-location {
+        font-size: 0.6rem;
+    }
+    
+    .card-link {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .top-place-image {
+        height: 140px;
+    }
+    
+    .card-image {
+        height: 100px;
+    }
+    
+    .card-content h3 {
+        font-size: 0.8rem;
+    }
+}

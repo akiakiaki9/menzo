@@ -1,0 +1,583 @@
+/* TypeTopRestaurants.css - уменьшенные размеры */
+
+.type-top-block {
+    background: linear-gradient(135deg, rgba(230, 126, 34, 0.05), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(230, 126, 34, 0.2);
+    transition: all 0.3s;
+}
+
+.type-top-block:hover {
+    border-color: rgba(230, 126, 34, 0.4);
+    box-shadow: 0 10px 30px rgba(230, 126, 34, 0.1);
+}
+
+/* Header */
+.type-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(230, 126, 34, 0.2);
+}
+
+.type-top-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.header-icon {
+    font-size: 1.2rem;
+}
+
+.header-icon.trophy {
+    color: #f39c12;
+}
+
+.view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.view-all-link:hover {
+    gap: 10px;
+    color: var(--accent-hover);
+}
+
+/* Top List */
+.type-top-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Top Item */
+.type-top-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 14px;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+.type-top-item:hover {
+    background: rgba(230, 126, 34, 0.1);
+    transform: translateX(6px);
+}
+
+/* Rank */
+.top-rank {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rank-number {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.rank-crown {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.7rem;
+}
+
+/* Image */
+.top-image {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    position: relative;
+}
+
+.top-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.type-top-item:hover .top-image img {
+    transform: scale(1.05);
+}
+
+/* Info */
+.top-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.top-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.top-cuisine {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+
+.top-cuisine svg {
+    color: var(--accent);
+}
+
+.top-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: #f39c12;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.star-icon {
+    font-size: 0.65rem;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.price-icon {
+    font-size: 0.6rem;
+}
+
+.price-icon.level-1 { color: #f39c12; }
+.price-icon.level-2 { color: #e67e22; }
+.price-icon.level-3 { color: #d35400; }
+.price-icon.level-4 { color: #c0392b; }
+
+.reviews {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+}
+
+/* Arrow */
+.top-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s;
+    color: var(--accent);
+}
+
+.type-top-item:hover .top-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.arrow-icon {
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.type-top-footer {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.view-all-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background: rgba(230, 126, 34, 0.1);
+    border: 1px solid rgba(230, 126, 34, 0.3);
+    border-radius: 40px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.view-all-button:hover {
+    background: rgba(230, 126, 34, 0.2);
+    gap: 10px;
+    border-color: var(--accent);
+}
+
+/* Loading State */
+.type-top-block.loading-state {
+    text-align: center;
+}
+
+.loading-skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Gold styles for top items
+   ============================================ */
+.type-top-item.gold-top-item {
+    background: rgba(251, 191, 36, 0.05);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.type-top-item.gold-top-item:hover {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.3);
+}
+
+.top-gold-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ - УМЕНЬШЕННЫЕ РАЗМЕРЫ
+   ============================================ */
+
+/* Планшеты (до 1024px) */
+@media (max-width: 1024px) {
+    .type-top-block {
+        padding: 18px;
+    }
+    
+    .top-rank {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .rank-number {
+        font-size: 1rem;
+    }
+    
+    .top-image {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Мобильные устройства (до 768px) */
+@media (max-width: 768px) {
+    .type-top-block {
+        padding: 14px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+    
+    .type-top-header {
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+    }
+    
+    .type-top-header h3 {
+        font-size: 0.95rem;
+        gap: 6px;
+    }
+    
+    .header-icon {
+        font-size: 1rem;
+    }
+    
+    .view-all-link {
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+    
+    .type-top-list {
+        gap: 8px;
+    }
+    
+    .type-top-item {
+        padding: 8px;
+        gap: 10px;
+    }
+    
+    .top-rank {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .rank-number {
+        font-size: 0.9rem;
+    }
+    
+    .rank-crown {
+        font-size: 0.6rem;
+        top: -6px;
+        right: -6px;
+    }
+    
+    .top-image {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+    }
+    
+    .top-info h4 {
+        font-size: 0.85rem;
+        margin-bottom: 3px;
+    }
+    
+    .top-cuisine {
+        font-size: 0.6rem;
+        gap: 4px;
+        margin-bottom: 4px;
+    }
+    
+    .rating {
+        font-size: 0.65rem;
+        gap: 2px;
+    }
+    
+    .star-icon {
+        font-size: 0.6rem;
+    }
+    
+    .price-icon {
+        font-size: 0.55rem;
+    }
+    
+    .reviews {
+        font-size: 0.55rem;
+    }
+    
+    .top-arrow {
+        display: none;
+    }
+    
+    .view-all-button {
+        padding: 5px 14px;
+        font-size: 0.7rem;
+        gap: 5px;
+    }
+    
+    .type-top-footer {
+        margin-top: 14px;
+        padding-top: 10px;
+    }
+}
+
+/* Маленькие мобильные (до 480px) */
+@media (max-width: 480px) {
+    .type-top-block {
+        padding: 12px;
+        margin-bottom: 16px;
+        border-radius: 14px;
+    }
+    
+    .type-top-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+    
+    .type-top-header h3 {
+        font-size: 0.85rem;
+    }
+    
+    .header-icon {
+        font-size: 0.9rem;
+    }
+    
+    .type-top-item {
+        padding: 6px;
+        gap: 8px;
+    }
+    
+    .top-rank {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .rank-number {
+        font-size: 0.8rem;
+    }
+    
+    .top-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+    }
+    
+    .top-info h4 {
+        font-size: 0.8rem;
+    }
+    
+    .top-cuisine {
+        font-size: 0.55rem;
+    }
+    
+    .top-cuisine span {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .rating {
+        font-size: 0.6rem;
+    }
+    
+    .reviews {
+        display: none;
+    }
+    
+    .view-all-button span {
+        display: none;
+    }
+    
+    .view-all-button svg {
+        margin: 0;
+    }
+    
+    .view-all-button {
+        padding: 5px 12px;
+    }
+    
+    .top-gold-badge {
+        width: 15px;
+        height: 15px;
+        font-size: 0.5rem;
+    }
+}
+
+/* Очень маленькие (до 360px) */
+@media (max-width: 360px) {
+    .type-top-block {
+        padding: 10px;
+    }
+    
+    .top-rank {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .rank-number {
+        font-size: 0.75rem;
+    }
+    
+    .top-image {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .top-info h4 {
+        font-size: 0.75rem;
+    }
+    
+    .top-cuisine {
+        font-size: 0.5rem;
+    }
+    
+    .rating .reviews-count {
+        display: none;
+    }
+    
+    .price {
+        display: none;
+    }
+}
+
+/* Retina дисплеи */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .top-image img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Улучшенная доступность */
+@media (prefers-reduced-motion: reduce) {
+    .type-top-item,
+    .type-top-item:hover,
+    .top-image img,
+    .view-all-link,
+    .view-all-button,
+    .spinner {
+        transition: none;
+        transform: none;
+        animation: none;
+    }
+    
+    .top-arrow {
+        display: block;
+        opacity: 1;
+        transform: none;
+    }
+    
+    .type-top-item .top-arrow {
+        opacity: 0;
+    }
+    
+    .type-top-item:hover .top-arrow {
+        opacity: 1;
+    }
+}

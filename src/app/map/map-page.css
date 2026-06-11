@@ -1,0 +1,807 @@
+.map-page {
+    min-height: calc(100vh - 200px);
+    background: var(--bg-primary);
+    padding: 30px 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ============================================
+   HERO СЕКЦИЯ
+   ============================================ */
+.map-hero {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.map-hero h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hero-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+}
+
+.map-hero p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   TOGGLE ДЛЯ БЛИЖАЙШИХ ЗАВЕДЕНИЙ
+   ============================================ */
+.nearby-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-label input {
+    display: none;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.toggle-label input:checked + .toggle-slider {
+    background: var(--accent);
+}
+
+.toggle-label input:checked + .toggle-slider::before {
+    transform: translateX(24px);
+    background: white;
+}
+
+.toggle-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.toggle-text svg {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   ОШИБКА ГЕОЛОКАЦИИ
+   ============================================ */
+.location-error {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e74c3c;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   GOLD КАРТОЧКИ - ЭЛЕГАНТНАЯ ВЕРСИЯ
+   ============================================ */
+.list-item.gold-card {
+    background: linear-gradient(135deg, #0f0a05 0%, #1a1208 50%, #0f0a05 100%) !important;
+    border: 1px solid rgba(251, 191, 36, 0.25) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративная золотая линия сверху */
+.list-item.gold-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fbbf24, #f59e0b, #fbbf24, transparent);
+    opacity: 0.6;
+}
+
+/* Мягкое свечение при наведении */
+.list-item.gold-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(251, 191, 36, 0.08), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.list-item.gold-card:hover {
+    border-color: rgba(251, 191, 36, 0.5) !important;
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.12);
+    transform: translateY(-3px);
+}
+
+.list-item.gold-card:hover::after {
+    opacity: 1;
+}
+
+/* Золотой бейдж */
+.gold-badge-card {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gold-badge-card svg {
+    font-size: 0.7rem;
+}
+
+/* Золотой текст для названия */
+.list-item.gold-card .list-info h4 {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   ОБЫЧНЫЕ КАРТОЧКИ
+   ============================================ */
+.list-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.list-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(230, 126, 34, 0.3);
+}
+
+.list-link {
+    display: flex;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.list-image {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+}
+
+.list-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list-info {
+    padding: 10px 14px;
+    flex: 1;
+}
+
+.list-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.list-cuisine {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.list-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.65rem;
+}
+
+.list-price,
+.list-rating,
+.list-distance {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.list-rating {
+    color: #f39c12;
+}
+
+.list-distance {
+    color: var(--accent);
+}
+
+/* ============================================
+   СПИСОК РЕСТОРАНОВ
+   ============================================ */
+.restaurants-list {
+    margin-top: 32px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.list-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+}
+
+.list-icon {
+    color: var(--accent);
+}
+
+.list-count {
+    background: rgba(230, 126, 34, 0.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 0.8rem;
+}
+
+.list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+/* ============================================
+   ПУСТОЕ СОСТОЯНИЕ
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    margin-top: 32px;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.reset-btn {
+    padding: 8px 20px;
+    background: var(--accent);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.reset-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ЗАГРУЗКА
+   ============================================ */
+.map-page-loading {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.loading-spinner {
+    width: 45px;
+    height: 45px;
+    border: 3px solid rgba(230, 126, 34, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.map-loading {
+    text-align: center;
+    padding: 60px;
+    color: var(--text-secondary);
+}
+
+.map-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(230, 126, 34, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .map-hero h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-page {
+        padding: 20px 0;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .map-hero {
+        margin-bottom: 24px;
+    }
+    
+    .map-hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero-icon {
+        font-size: 1.4rem;
+    }
+    
+    .map-hero p {
+        font-size: 0.8rem;
+    }
+    
+    .nearby-toggle {
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+    
+    .toggle-text {
+        font-size: 0.75rem;
+    }
+    
+    .toggle-slider {
+        width: 44px;
+        height: 22px;
+    }
+    
+    .toggle-slider::before {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .toggle-label input:checked + .toggle-slider::before {
+        transform: translateX(22px);
+    }
+    
+    .list-link {
+        flex-direction: column;
+    }
+    
+    .list-image {
+        width: 100%;
+        height: 120px;
+    }
+    
+    .list-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .list-info h4 {
+        font-size: 0.9rem;
+    }
+    
+    .restaurants-list {
+        margin-top: 24px;
+    }
+    
+    .list-header h3 {
+        font-size: 1rem;
+    }
+    
+    .gold-badge-card {
+        top: 8px;
+        left: 8px;
+        padding: 3px 10px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .map-hero h1 svg {
+        display: none;
+    }
+    
+    .list-info h4 {
+        font-size: 0.85rem;
+    }
+    
+    .list-meta {
+        gap: 8px;
+    }
+    
+    .empty-state {
+        padding: 40px 16px;
+    }
+    
+    .empty-icon {
+        font-size: 2.5rem;
+    }
+    
+    .empty-state h3 {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-item {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* ============================================
+   ДОСТУПНОСТЬ
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .list-item,
+    .reset-filters-btn,
+    .reset-btn,
+    .map-filters,
+    .list-item.gold-card::after,
+    .toggle-slider,
+    .toggle-slider::before {
+        transition: none;
+        animation: none;
+    }
+    
+    .list-item:hover {
+        transform: none;
+    }
+    
+    .list-item.gold-card:hover::after {
+        opacity: 0;
+    }
+}
+
+/* Добавьте эти стили в конец файла map-page.css */
+
+/* ========== ПАНЕЛЬ УПРАВЛЕНИЯ ========== */
+.map-controls-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Кнопка обновления геолокации */
+.refresh-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.05));
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 50px;
+  color: #fbbf24;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.refresh-location-btn:hover:not(:disabled) {
+  background: rgba(251, 191, 36, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+}
+
+.refresh-location-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-location-btn.loading {
+  animation: btnPulse 1s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.refresh-location-btn svg.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Toggle */
+.nearby-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 18px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+}
+
+.nearby-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.nearby-toggle input {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 44px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  transition: all 0.3s;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.nearby-toggle input:checked + .toggle-slider {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.nearby-toggle input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.toggle-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.toggle-text svg {
+  color: #fbbf24;
+}
+
+/* Статус геолокации */
+.location-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+}
+
+.location-status.success {
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  color: #2ecc71;
+}
+
+.location-status.warning {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: #e74c3c;
+}
+
+.location-status svg {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.retry-btn {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: all 0.3s;
+}
+
+.retry-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Статистика */
+.map-stats-card {
+  display: flex;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px 24px;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-icon {
+  font-size: 1.6rem;
+  color: #fbbf24;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #7f8c8d;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .map-controls-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .nearby-toggle {
+    justify-content: center;
+  }
+  
+  .refresh-location-btn {
+    justify-content: center;
+  }
+  
+  .map-stats-card {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .refresh-location-btn span {
+    display: none;
+  }
+  
+  .refresh-location-btn {
+    padding: 10px;
+  }
+  
+  .refresh-location-btn svg {
+    margin: 0;
+  }
+}

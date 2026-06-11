@@ -1,0 +1,511 @@
+/* Description.css - уменьшенная высота */
+
+.description-section {
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.description-section:hover {
+    border-color: rgba(230, 126, 34, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* ========== GOLD СТИЛИ ========== */
+.description-section.gold-description {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(0, 0, 0, 0.15));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.description-section.gold-description:hover {
+    border-color: rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.1);
+}
+
+.description-gold-badge {
+    position: absolute;
+    top: -8px;
+    right: 16px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    color: #0a0a0a;
+    padding: 3px 10px;
+    border-radius: 30px;
+    font-size: 0.55rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
+}
+
+.description-gold-badge svg {
+    font-size: 0.6rem;
+}
+
+.gold-title {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gold-expand-btn {
+    background: rgba(251, 191, 36, 0.1) !important;
+    color: #fbbf24 !important;
+}
+
+.gold-expand-btn:hover {
+    background: rgba(251, 191, 36, 0.2) !important;
+    gap: 10px;
+}
+
+/* Заголовок */
+.description-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.description-header-icon {
+    width: 34px;
+    height: 34px;
+    background: rgba(230, 126, 34, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--accent);
+}
+
+.gold-description .description-header-icon {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+}
+
+.description-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+/* Контент */
+.description-content {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.description-quote-icon {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    font-size: 1.6rem;
+    color: rgba(230, 126, 34, 0.12);
+    pointer-events: none;
+}
+
+.gold-description .description-quote-icon {
+    color: rgba(251, 191, 36, 0.12);
+}
+
+.description-text-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.description-paragraph {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.description-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+.gold-description .description-paragraph {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Стили для списков */
+.description-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 12px;
+}
+
+.description-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    padding-left: 6px;
+}
+
+.description-list-marker {
+    color: var(--accent);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.gold-description .description-list-marker {
+    color: #fbbf24;
+}
+
+/* Кнопка развернуть/свернуть */
+.description-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    margin: 8px 0 0;
+    border-radius: 30px;
+    transition: all 0.3s;
+    background: rgba(230, 126, 34, 0.05);
+}
+
+.description-expand-btn:hover {
+    background: rgba(230, 126, 34, 0.1);
+    gap: 10px;
+}
+
+.description-expand-btn svg {
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+.description-expand-btn:hover svg:last-child {
+    transform: translateY(2px);
+}
+
+.description-expand-btn:hover svg:first-child {
+    transform: translateY(-2px);
+}
+
+/* Футер с информацией */
+.description-footer {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.description-footer-stats {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.description-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.description-stat svg {
+    font-size: 0.6rem;
+}
+
+/* ============================================
+   ПЛАНШЕТЫ (до 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    .description-section {
+        margin-bottom: 20px;
+    }
+    
+    .description-section h3 {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   МОБИЛЬНЫЕ (до 768px) - УМЕНЬШЕННЫЕ РАЗМЕРЫ
+   ============================================ */
+@media (max-width: 768px) {
+    .description-section {
+        padding: 14px;
+        margin-bottom: 16px;
+        border-radius: 14px;
+    }
+    
+    .description-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+    
+    .description-header-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    .description-section h3 {
+        font-size: 0.95rem;
+    }
+    
+    .description-paragraph {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    
+    .description-list li {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        gap: 5px;
+    }
+    
+    .description-quote-icon {
+        font-size: 1.3rem;
+        top: -3px;
+        left: -3px;
+    }
+    
+    .description-expand-btn {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        margin-top: 6px;
+    }
+    
+    .description-footer-stats {
+        justify-content: flex-start;
+        gap: 12px;
+    }
+    
+    .description-stat {
+        font-size: 0.55rem;
+    }
+    
+    .description-gold-badge {
+        top: -6px;
+        right: 10px;
+        padding: 2px 8px;
+        font-size: 0.5rem;
+    }
+}
+
+/* ============================================
+   МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) - МАКСИМАЛЬНО УМЕНЬШЕНО
+   ============================================ */
+@media (max-width: 480px) {
+    .description-section {
+        padding: 12px;
+        margin-bottom: 14px;
+        border-radius: 12px;
+    }
+    
+    .description-header {
+        gap: 6px;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+    
+    .description-header-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .description-section h3 {
+        font-size: 0.85rem;
+    }
+    
+    .description-content {
+        margin-bottom: 10px;
+    }
+    
+    .description-paragraph {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+    
+    .description-list li {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        margin-bottom: 4px;
+        padding-left: 3px;
+    }
+    
+    .description-list-marker {
+        font-size: 0.7rem;
+    }
+    
+    .description-quote-icon {
+        display: none;
+    }
+    
+    .description-expand-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.65rem;
+        padding: 5px 10px;
+    }
+    
+    .description-footer {
+        margin-top: 10px;
+        padding-top: 8px;
+    }
+    
+    .description-footer-stats {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+    
+    .description-stat {
+        font-size: 0.55rem;
+    }
+}
+
+/* ============================================
+   ОЧЕНЬ МАЛЕНЬКИЕ (до 360px)
+   ============================================ */
+@media (max-width: 360px) {
+    .description-section {
+        padding: 10px;
+    }
+    
+    .description-header-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+    
+    .description-section h3 {
+        font-size: 0.8rem;
+    }
+    
+    .description-paragraph {
+        font-size: 0.7rem;
+    }
+    
+    .description-list li {
+        font-size: 0.7rem;
+    }
+    
+    .description-expand-btn {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+    }
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.description-text-wrapper {
+    animation: fadeIn 0.3s ease;
+}
+
+/* ============================================
+   ТЕМНАЯ ТЕМА
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    .description-section {
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .description-section:hover {
+        background: rgba(255, 255, 255, 0.02);
+    }
+}
+
+/* ============================================
+   ДОСТУПНОСТЬ
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .description-text-wrapper {
+        animation: none;
+    }
+    
+    .description-expand-btn,
+    .description-expand-btn svg,
+    .description-expand-btn:hover {
+        transition: none;
+    }
+    
+    .description-expand-btn:hover {
+        gap: 6px;
+    }
+    
+    .description-expand-btn:hover svg {
+        transform: none;
+    }
+}
+
+/* ============================================
+   ДОПОЛНИТЕЛЬНЫЕ СТИЛИ
+   ============================================ */
+.description-paragraph strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.gold-description .description-paragraph strong {
+    color: #fbbf24;
+}
+
+.description-paragraph em {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+.description-paragraph a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.description-paragraph a:hover {
+    text-decoration: underline;
+    color: var(--accent-hover);
+}
+
+/* Тач-оптимизация для мобильных */
+@media (max-width: 768px) {
+    .description-expand-btn {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .description-expand-btn:active {
+        transform: scale(0.98);
+    }
+}

@@ -1,0 +1,387 @@
+/* StickyCTA.css - оптимизирован для ПК и мобилки */
+
+.sticky-cta {
+    position: fixed;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(230, 126, 34, 0.2);
+    padding: 10px 16px;
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-cta.visible {
+    bottom: 0;
+}
+
+.sticky-cta-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Базовые стили кнопок */
+.sticky-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Кнопки Позвонить и Написать - уменьшенные отступы */
+.sticky-cta-call,
+.sticky-cta-telegram {
+    padding: 10px 10px;
+    flex: 0.7;
+}
+
+/* Кнопка Забронировать - больше места */
+.sticky-cta-booking {
+    padding: 10px 20px;
+    flex: 1.2;
+}
+
+.sticky-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.sticky-cta-btn:active::before {
+    width: 200%;
+    height: 200%;
+}
+
+/* Иконки */
+.sticky-cta-btn svg {
+    font-size: 1rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.sticky-cta-btn:hover svg {
+    transform: scale(1.1);
+}
+
+/* Call кнопка */
+.sticky-cta-call {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+}
+
+.sticky-cta-call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+
+/* Telegram кнопка */
+.sticky-cta-telegram {
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.3);
+}
+
+.sticky-cta-telegram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+}
+
+/* Бронирование кнопка */
+.sticky-cta-booking {
+    background: linear-gradient(135deg, #e67e22, #f39c12);
+    color: white;
+    box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+}
+
+.sticky-cta-booking:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+}
+
+.sticky-cta-btn:active {
+    transform: translateY(0);
+}
+
+/* Анимация пульсации для кнопки бронирования */
+@keyframes stickyPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(230, 126, 34, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(230, 126, 34, 0);
+    }
+}
+
+.sticky-cta-booking {
+    animation: stickyPulse 2s infinite;
+}
+
+.sticky-cta-booking:hover {
+    animation: none;
+}
+
+/* ============================================
+   Безопасная зона для iPhone (notch)
+   ============================================ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .sticky-cta {
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+/* Планшеты (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sticky-cta-container {
+        max-width: 500px;
+        gap: 8px;
+    }
+    
+    .sticky-cta-call,
+    .sticky-cta-telegram {
+        padding: 9px 8px;
+        font-size: 0.85rem;
+    }
+    
+    .sticky-cta-booking {
+        padding: 9px 18px;
+        font-size: 0.85rem;
+    }
+    
+    .sticky-cta-btn svg {
+        font-size: 0.9rem;
+    }
+}
+
+/* Мобильные (до 768px) */
+@media (max-width: 768px) {
+    .sticky-cta {
+        padding: 8px 12px;
+    }
+    
+    .sticky-cta-container {
+        gap: 8px;
+    }
+    
+    .sticky-cta-call,
+    .sticky-cta-telegram {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+    
+    .sticky-cta-booking {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .sticky-cta-btn svg {
+        font-size: 0.85rem;
+    }
+    
+    .sticky-cta-call span,
+    .sticky-cta-telegram span {
+        display: inline-block;
+    }
+    
+    /* На мобильных убираем пульсацию для экономии батареи */
+    .sticky-cta-booking {
+        animation: none;
+    }
+}
+
+/* Маленькие телефоны (до 550px) - скрываем текст у иконок */
+@media (max-width: 550px) {
+    .sticky-cta-call span,
+    .sticky-cta-telegram span {
+        display: none;
+    }
+    
+    .sticky-cta-call,
+    .sticky-cta-telegram {
+        padding: 8px 10px;
+        flex: 0.5;
+    }
+    
+    .sticky-cta-booking {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+        flex: 1.5;
+    }
+    
+    .sticky-cta-btn svg {
+        font-size: 1rem;
+    }
+    
+    .sticky-cta-call svg,
+    .sticky-cta-telegram svg {
+        margin: 0;
+    }
+}
+
+/* Очень маленькие телефоны (до 400px) */
+@media (max-width: 400px) {
+    .sticky-cta {
+        padding: 6px 10px;
+    }
+    
+    .sticky-cta-container {
+        gap: 6px;
+    }
+    
+    .sticky-cta-call,
+    .sticky-cta-telegram {
+        padding: 7px 8px;
+    }
+    
+    .sticky-cta-booking {
+        padding: 7px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .sticky-cta-btn svg {
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   ТЁМНАЯ ТЕМА
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .sticky-cta {
+        background: rgba(10, 10, 10, 0.95);
+    }
+}
+
+/* ============================================
+   УЛУЧШЕННАЯ ДОСТУПНОСТЬ
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .sticky-cta,
+    .sticky-cta-btn,
+    .sticky-cta-btn::before,
+    .sticky-cta-btn svg {
+        transition: none;
+        animation: none;
+    }
+    
+    .sticky-cta-btn:active::before {
+        width: 0;
+        height: 0;
+    }
+    
+    .sticky-cta-btn:hover {
+        transform: none;
+    }
+    
+    .sticky-cta-btn:hover svg {
+        transform: none;
+    }
+    
+    .sticky-cta-booking {
+        animation: none;
+    }
+}
+
+/* ============================================
+   ТАЧ-ОПТИМИЗАЦИЯ
+   ============================================ */
+
+@media (max-width: 768px) {
+    .sticky-cta-btn {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .sticky-cta-btn:active {
+        transform: scale(0.97);
+    }
+    
+    .sticky-cta-btn:active::before {
+        width: 200%;
+        height: 200%;
+    }
+}
+
+/* ============================================
+   TOAST УВЕДОМЛЕНИЕ
+   ============================================ */
+
+.booking-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    z-index: 2000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: toastFadeIn 0.3s ease;
+    white-space: nowrap;
+}
+
+@keyframes toastFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 550px) {
+    .booking-toast {
+        bottom: 80px;
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+}
+
+.sticky-cta-btn.sticky-cta-order {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.sticky-cta-btn.sticky-cta-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(46, 204, 113, 0.4);
+}

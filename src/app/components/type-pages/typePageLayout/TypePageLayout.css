@@ -1,0 +1,677 @@
+/* TypePageLayout.css - уменьшенная высота */
+
+.type-page {
+    min-height: calc(100vh - 200px);
+    background: var(--bg-primary);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* Layout */
+.type-content {
+    display: flex;
+    gap: 25px;
+    padding: 25px 0;
+}
+
+.type-results {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Results Header */
+.results-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.results-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-icon {
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+.results-header p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-icon {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+/* Restaurants Grid */
+.restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 60vh;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.spinner-icon {
+    font-size: 1.6rem;
+    color: var(--accent);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.no-results-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.no-results-hint {
+    font-size: 0.75rem !important;
+    opacity: 0.7;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 6px 18px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.back-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 14px 0 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    background: rgba(230, 126, 34, 0.1);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.8rem;
+}
+
+.page-current {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.page-separator {
+    color: var(--text-secondary);
+}
+
+.page-total {
+    color: var(--text-secondary);
+}
+
+/* SEO Content */
+.type-seo-content {
+    margin-top: 35px;
+    padding: 20px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-size: 0.8rem;
+}
+
+.type-seo-content h2 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin: 20px 0 12px;
+}
+
+.type-seo-content h2:first-child {
+    margin-top: 0;
+}
+
+.type-seo-content h3 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin: 16px 0 8px;
+}
+
+.type-seo-content h4 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin: 12px 0 6px;
+}
+
+.type-seo-content p {
+    margin: 8px 0;
+}
+
+.type-seo-content ul,
+.type-seo-content ol {
+    margin: 8px 0;
+    padding-left: 18px;
+}
+
+.type-seo-content li {
+    margin: 4px 0;
+    line-height: 1.5;
+}
+
+.type-seo-content strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.type-seo-content a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.type-seo-content a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.type-seo-content blockquote {
+    margin: 12px 0;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+.type-seo-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 12px 0;
+}
+
+/* ========== МОБИЛЬНЫЕ ФИЛЬТРЫ ========== */
+.desktop-filters-wrapper {
+    display: block;
+}
+
+.mobile-filter-toggle-type {
+    display: none;
+    margin-bottom: 14px;
+}
+
+.filter-toggle-btn-type {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.active-dot-type {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Мобильная модалка - полный экран */
+.mobile-filters-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInFull 0.3s ease;
+}
+
+@keyframes fadeInFull {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.mobile-filters-header-full {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-primary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.mobile-filters-header-full h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.mobile-filters-close-full {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.mobile-filters-close-full:active {
+    background: var(--accent);
+    color: white;
+}
+
+.mobile-filters-content-full {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.mobile-filters-footer-full {
+    padding: 10px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 8px;
+    background: var(--bg-primary);
+    position: sticky;
+    bottom: 0;
+}
+
+.clear-filters-full {
+    flex: 1;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.7rem;
+}
+
+.clear-filters-full:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.apply-filters-full {
+    flex: 2;
+    padding: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.7rem;
+}
+
+.apply-filters-full:active {
+    transform: scale(0.98);
+}
+
+/* ========== АДАПТИВНОСТЬ - УМЕНЬШЕННЫЕ РАЗМЕРЫ ========== */
+
+/* Планшеты (до 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .type-content {
+        gap: 20px;
+        padding: 20px 0;
+    }
+    
+    .restaurants-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+    }
+    
+    .results-header h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Мобильные устройства (до 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .type-content {
+        flex-direction: column;
+        gap: 14px;
+        padding: 14px 0;
+    }
+    
+    .desktop-filters-wrapper {
+        display: none;
+    }
+    
+    .mobile-filter-toggle-type {
+        display: block;
+    }
+    
+    .results-header {
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+    }
+    
+    .results-header h2 {
+        font-size: 1.1rem;
+        gap: 6px;
+    }
+    
+    .header-icon {
+        font-size: 1.1rem;
+    }
+    
+    .results-header p {
+        font-size: 0.7rem;
+    }
+    
+    .restaurants-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pagination {
+        gap: 8px;
+        margin-top: 22px;
+        padding: 12px 0 8px;
+    }
+    
+    .pagination-btn {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .pagination-info {
+        font-size: 0.7rem;
+    }
+    
+    .no-results {
+        padding: 30px 14px;
+    }
+    
+    .no-results-icon {
+        font-size: 1.8rem;
+    }
+    
+    .no-results p {
+        font-size: 0.8rem;
+    }
+    
+    .back-link {
+        padding: 6px 14px;
+        font-size: 0.7rem;
+    }
+    
+    .type-seo-content {
+        margin-top: 22px;
+        padding: 16px 0 22px;
+    }
+    
+    .type-seo-content h2 {
+        font-size: 1rem;
+        margin: 16px 0 10px;
+    }
+    
+    .type-seo-content h3 {
+        font-size: 0.9rem;
+    }
+    
+    .type-seo-content p,
+    .type-seo-content li {
+        font-size: 0.7rem;
+    }
+}
+
+/* Маленькие мобильные (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .results-header h2 {
+        font-size: 0.95rem;
+    }
+    
+    .pagination {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .pagination-btn {
+        padding: 3px 8px;
+        font-size: 0.65rem;
+    }
+    
+    .pagination-btn svg {
+        font-size: 0.6rem;
+    }
+    
+    .pagination-info {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 4px;
+    }
+    
+    .filter-toggle-btn-type {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .mobile-filters-header-full {
+        padding: 8px 12px;
+    }
+    
+    .mobile-filters-header-full h3 {
+        font-size: 0.85rem;
+    }
+    
+    .mobile-filters-close-full {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .mobile-filters-content-full {
+        padding: 8px;
+    }
+    
+    .mobile-filters-footer-full {
+        padding: 8px 12px;
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .clear-filters-full,
+    .apply-filters-full {
+        width: 100%;
+    }
+}
+
+/* Планшеты в альбомной ориентации */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .restaurants-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Retina дисплеи */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .restaurants-grid img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Улучшенная доступность */
+@media (prefers-reduced-motion: reduce) {
+    .spinner-icon {
+        animation: none;
+    }
+    
+    .pagination-btn:hover:not(:disabled),
+    .back-link:hover {
+        transform: none;
+    }
+    
+    .mobile-filters-fullscreen {
+        animation: none;
+    }
+}
+
+/* Темная тема поддержка */
+@media (prefers-color-scheme: dark) {
+    .type-page {
+        background: var(--bg-primary);
+    }
+}
+
+/* ========== GOLD КАРТОЧКИ ========== */
+.restaurant-card {
+    position: relative;
+}
+
+.restaurant-card.gold-card {
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), rgba(0, 0, 0, 0.1));
+}
+
+.card-gold-badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-size: 0.5rem;
+    font-weight: 700;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.card-gold-badge svg {
+    font-size: 0.55rem;
+}
+
+/* ========== УЛУЧШЕННЫЕ ТЕКСТЫ ========== */
+.loading-spinner span {
+    color: var(--text-secondary);
+}
+
+.results-header p {
+    color: var(--text-secondary);
+}
+
+.no-results p {
+    color: var(--text-secondary);
+}
