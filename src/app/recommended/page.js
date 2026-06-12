@@ -15,7 +15,7 @@ export default function RecommendedPage() {
     const [error, setError] = useState(null)
 
     // ВРЕМЕННО - ПРЯМОЙ URL БЭКЕНДА
-    const API_URL = 'http://170.168.6.191'  // ← ПРЯМАЯ ССЫЛКА НА ТВОЙ VPS
+    const API_URL = 'https://api.menzo.uz'  // ← ПРЯМАЯ ССЫЛКА НА ТВОЙ VPS
 
     useEffect(() => {
         const fetchData = async () => {
