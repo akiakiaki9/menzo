@@ -22,7 +22,7 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
     const [userRated, setUserRated] = useState(false)
     const [isFavorite, setIsFavorite] = useState(false)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     useEffect(() => {
         if (!propSlug) return
