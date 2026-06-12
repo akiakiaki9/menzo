@@ -13,87 +13,46 @@ export default function RecommendedPage() {
     const [topRated, setTopRated] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [debugInfo, setDebugInfo] = useState({})
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    // ВРЕМЕННО - ПРЯМОЙ URL БЭКЕНДА
+    const API_URL = 'http://170.168.6.191'  // ← ПРЯМАЯ ССЫЛКА НА ТВОЙ VPS
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true)
             setError(null)
             
-            // Логируем информацию об окружении
-            console.log('=== ДЕБАГ ИНФОРМАЦИЯ ===')
-            console.log('API_URL:', API_URL)
-            console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL)
-            console.log('Текущий URL страницы:', window.location.href)
-            console.log('Хост:', window.location.host)
+            console.log('Подключаюсь к API:', API_URL)
             
-            setDebugInfo({
-                apiUrl: API_URL,
-                envVar: process.env.NEXT_PUBLIC_API_URL,
-                currentHost: window.location.host,
-                currentUrl: window.location.href
-            })
-
             try {
-                // Проверяем доступность API
-                console.log(`🟡 Пытаемся подключиться к: ${API_URL}/api/restaurants/recommended/?limit=20`)
-                
                 // Загружаем рекомендованные рестораны
-                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=20`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                
-                console.log('📊 Статус ответа recommended:', recommendedRes.status)
-                console.log('📊 Заголовки ответа:', Object.fromEntries(recommendedRes.headers.entries()))
-                
+                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=20`)
                 if (recommendedRes.ok) {
                     const data = await recommendedRes.json()
-                    console.log('✅ Рекомендованные рестораны получены:', data)
-                    console.log('📊 Количество ресторанов:', data.length)
+                    console.log('Рекомендованные рестораны:', data)
                     setRecommended(data)
                 } else {
-                    const errorText = await recommendedRes.text()
-                    console.error('❌ Ошибка загрузки recommended:', recommendedRes.status, errorText)
-                    setError(`Ошибка ${recommendedRes.status}: ${errorText}`)
+                    console.error('Ошибка загрузки:', recommendedRes.status)
+                    setError(`Ошибка ${recommendedRes.status}`)
                 }
 
                 // Загружаем топ ресторан
-                console.log(`🟡 Пытаемся подключиться к: ${API_URL}/api/restaurants/top_rated/`)
-                const topRes = await fetch(`${API_URL}/api/restaurants/top_rated/`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                
-                console.log('📊 Статус ответа top_rated:', topRes.status)
-                
+                const topRes = await fetch(`${API_URL}/api/restaurants/top_rated/`)
                 if (topRes.ok) {
                     const data = await topRes.json()
-                    console.log('✅ Топ ресторан получен:', data)
+                    console.log('Топ ресторан:', data)
                     setTopRated(data)
-                } else {
-                    const errorText = await topRes.text()
-                    console.error('❌ Ошибка загрузки top_rated:', topRes.status, errorText)
                 }
             } catch (err) {
-                console.error('❌❌❌ КРИТИЧЕСКАЯ ОШИБКА:', err)
-                console.error('Тип ошибки:', err.name)
-                console.error('Сообщение:', err.message)
-                console.error('Полный объект ошибки:', err)
-                setError(`Ошибка соединения: ${err.message}. API_URL: ${API_URL}`)
+                console.error('Error fetching data:', err)
+                setError(`Ошибка: ${err.message}`)
             } finally {
                 setLoading(false)
             }
         }
 
         fetchData()
-    }, [API_URL])
+    }, [])
 
     const getImageUrl = (imagePath) => {
         if (!imagePath) return '/placeholder.jpg'
@@ -113,9 +72,6 @@ export default function RecommendedPage() {
                 <div className="recommended-loading">
                     <div className="loading-spinner"></div>
                     <p>Загрузка рекомендаций...</p>
-                    <div style={{ fontSize: '12px', marginTop: '10px', color: '#666' }}>
-                        Подключение к: {API_URL}
-                    </div>
                 </div>
                 <Footer />
             </>
@@ -129,16 +85,7 @@ export default function RecommendedPage() {
                 <div className="recommended-loading" style={{ color: 'red' }}>
                     <h3>Ошибка загрузки данных</h3>
                     <p>{error}</p>
-                    <div style={{ fontSize: '12px', marginTop: '10px', textAlign: 'left', background: '#f5f5f5', padding: '10px', borderRadius: '5px' }}>
-                        <strong>Дебаг информация:</strong><br />
-                        API_URL: {debugInfo.apiUrl}<br />
-                    Переменная окружения: {debugInfo.envVar || 'не задана'}<br />
-                        Хост страницы: {debugInfo.currentHost}<br />
-                        URL страницы: {debugInfo.currentUrl}
-                    </div>
-                    <button onClick={() => window.location.reload()} style={{ marginTop: '20px', padding: '10px 20px', cursor: 'pointer' }}>
-                        Попробовать снова
-                    </button>
+                    <p style={{ fontSize: '12px' }}>API: {API_URL}</p>
                 </div>
                 <Footer />
             </>
@@ -150,18 +97,6 @@ export default function RecommendedPage() {
             <Navbar />
             <div className="recommended-page">
                 <div className="container">
-                    {/* Дебаг панель (только для разработки) */}
-                    {process.env.NODE_ENV === 'development' && (
-                        <div style={{ background: '#f0f0f0', padding: '10px', marginBottom: '20px', fontSize: '12px', borderRadius: '5px' }}>
-                            <details>
-                                <summary>🔧 Дебаг информация (API: {API_URL})</summary>
-                                <pre style={{ overflow: 'auto' }}>
-                                    {JSON.stringify(debugInfo, null, 2)}
-                                </pre>
-                            </details>
-                        </div>
-                    )}
-
                     {/* Header */}
                     <div className="page-header">
                         <Link href="/" className="back-link">
@@ -177,7 +112,6 @@ export default function RecommendedPage() {
                         </p>
                     </div>
 
-                    {/* Остальной JSX без изменений... */}
                     {/* Топ ресторан */}
                     {topRated && (
                         <div className="top-rated-section">
