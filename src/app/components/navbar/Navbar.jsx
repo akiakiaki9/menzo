@@ -108,7 +108,7 @@ export default function Navbar() {
                     <div className="mobile-menu-header">
                         <Link href="/" className="mobile-logo" onClick={closeMenu}>
                             <Image 
-                                src="/images/logo.png" 
+                                src="/images/logo.PNG" 
                                 alt="MENZO.UZ Logo" 
                                 width={42} 
                                 height={42}
