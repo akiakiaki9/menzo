@@ -36,7 +36,7 @@ export default function NearbyRestaurants() {
   const fetchNearbyRestaurants = async (lat, lng) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/restaurants/nearby/?lat=${lat}&lng=${lng}&radius=5`
+        `https://api.menzo.uz/api/restaurants/nearby/?lat=${lat}&lng=${lng}&radius=5`
       )
       const data = await response.json()
       setNearbyRestaurants(data)

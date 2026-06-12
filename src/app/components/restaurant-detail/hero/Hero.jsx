@@ -11,7 +11,7 @@ export default function Hero({ restaurant, images }) {
     const [showBookingModal, setShowBookingModal] = useState(false)
     const router = useRouter()
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     const getWorkingHoursStatus = () => {
         const currentHour = new Date().getHours()

@@ -12,7 +12,7 @@ export default function TopAndNearby() {
     const [loading, setLoading] = useState(true)
     const [locationError, setLocationError] = useState(false)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     // Загружаем топ места
     useEffect(() => {

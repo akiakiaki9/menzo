@@ -26,7 +26,7 @@ export default function MapPageClient() {
     const [showNearbyOnly, setShowNearbyOnly] = useState(false)
     const [isLocating, setIsLocating] = useState(false)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     // Сохранение местоположения в localStorage
     const saveLocationToStorage = (lat, lng) => {

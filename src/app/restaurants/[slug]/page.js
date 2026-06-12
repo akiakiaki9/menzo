@@ -6,7 +6,7 @@ export async function generateMetadata({ params }) {
     // В Next.js 15+ params — это промис, его нужно ждать
     const { slug } = await params
     
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
     
     try {
         const res = await fetch(`${API_URL}/api/restaurants/${slug}/`, {

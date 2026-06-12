@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'https://menzo-backend-main.onrender.com/api'
+const API_BASE_URL = 'https://api.menzo.uz/api'
 
 const api = axios.create({
     baseURL: API_BASE_URL,

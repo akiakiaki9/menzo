@@ -3,7 +3,7 @@ import { FaStar, FaMapMarkerAlt, FaWallet, FaEye, FaCrown } from 'react-icons/fa
 import './TypeRestaurantCard.css'
 
 export default function TypeRestaurantCard({ restaurant }) {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
     const isGold = restaurant.is_gold || false
 
     const getPriceText = (price) => {

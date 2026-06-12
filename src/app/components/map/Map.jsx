@@ -15,7 +15,7 @@ export default function Map({ restaurants = [], userLocation = null }) {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [locationStatus, setLocationStatus] = useState('idle')
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   const priceColors = {
     '$': '#2ecc71',
@@ -70,8 +70,8 @@ export default function Map({ restaurants = [], userLocation = null }) {
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
       })
 
-      const center = userLocation?.lat && userLocation?.lng 
-        ? [userLocation.lat, userLocation.lng] 
+      const center = userLocation?.lat && userLocation?.lng
+        ? [userLocation.lat, userLocation.lng]
         : [41.311081, 69.279562]
       const zoom = userLocation ? 13 : 12
 
@@ -146,10 +146,10 @@ export default function Map({ restaurants = [], userLocation = null }) {
           <div class="restaurant-marker-wrapper">
             <div class="restaurant-marker ${isGold ? 'gold-marker' : ''}" style="border-color: ${color};">
               <div class="marker-logo-wrapper">
-                ${logoUrl 
-                  ? `<img src="${logoUrl}" alt="${restaurant.name}" class="marker-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">`
-                  : ''
-                }
+                ${logoUrl
+            ? `<img src="${logoUrl}" alt="${restaurant.name}" class="marker-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">`
+            : ''
+          }
                 <div class="marker-fallback" style="display: ${logoUrl ? 'none' : 'flex'}; background: ${color}">
                   <span class="marker-price">${restaurant.price_level || '$$'}</span>
                 </div>
@@ -243,7 +243,7 @@ export default function Map({ restaurants = [], userLocation = null }) {
       }
       return
     }
-    
+
     mapRef.current?.setView([userLocation.lat, userLocation.lng], 15)
     const btn = document.querySelector('.locate-btn')
     if (btn) {
@@ -272,20 +272,20 @@ export default function Map({ restaurants = [], userLocation = null }) {
           <button onClick={zoomIn} className="control-btn" title="Приблизить"><FaPlus /></button>
           <button onClick={zoomOut} className="control-btn" title="Отдалить"><FaMinus /></button>
         </div>
-        
-        <button 
-          onClick={locateUser} 
-          className={`control-btn locate-btn ${locationStatus === 'loading' ? 'loading' : ''} ${locationStatus === 'success' ? 'success' : ''} ${locationStatus === 'error' ? 'error' : ''}`} 
+
+        <button
+          onClick={locateUser}
+          className={`control-btn locate-btn ${locationStatus === 'loading' ? 'loading' : ''} ${locationStatus === 'success' ? 'success' : ''} ${locationStatus === 'error' ? 'error' : ''}`}
           title="Моё местоположение"
         >
           <FaLocationArrow />
           <span>
-            {locationStatus === 'loading' ? 'Определение...' : 
-             locationStatus === 'success' ? 'Готово!' : 
-             locationStatus === 'error' ? 'Ошибка' : 'Моя позиция'}
+            {locationStatus === 'loading' ? 'Определение...' :
+              locationStatus === 'success' ? 'Готово!' :
+                locationStatus === 'error' ? 'Ошибка' : 'Моя позиция'}
           </span>
         </button>
-        
+
         <button onClick={toggleFullscreen} className="control-btn fullscreen-btn" title={isFullscreen ? 'Выйти из полноэкранного режима' : 'Развернуть на весь экран'}>
           {isFullscreen ? <FaCompress /> : <FaExpand />}
           <span>{isFullscreen ? 'Свернуть' : 'На весь экран'}</span>

@@ -8,7 +8,7 @@ export default function CitiesSection() {
     const [cities, setCities] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     // Словарь для отображения названий городов на русском
     const cityNames = {

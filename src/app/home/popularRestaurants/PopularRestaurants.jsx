@@ -5,7 +5,7 @@ import './PopularRestaurants.css'
 import '../../styles/gold-card.css'
 
 export default function PopularRestaurants({ restaurants }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   const isOpenNow = () => {
     const currentHour = new Date().getHours()

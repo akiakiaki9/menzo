@@ -10,7 +10,7 @@ export default function TypeFilters({ filters, setFilters }) {
     const [showMobileModal, setShowMobileModal] = useState(false)
     const [activeFiltersCount, setActiveFiltersCount] = useState(0)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     useEffect(() => {
         fetch(`${API_URL}/api/restaurants/filters/`)

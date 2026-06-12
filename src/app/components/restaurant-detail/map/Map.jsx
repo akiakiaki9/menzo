@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { FaMapMarkedAlt, FaDirections, FaLocationArrow, FaExternalLinkAlt, FaCopy, FaCheck, FaTaxi } from 'react-icons/fa'
+import { FaMapMarkedAlt, FaLocationArrow, FaCopy, FaCheck, FaTaxi } from 'react-icons/fa'
 import './Map.css'
 
 export default function Map({ latitude, longitude, address, name, isGold = false }) {

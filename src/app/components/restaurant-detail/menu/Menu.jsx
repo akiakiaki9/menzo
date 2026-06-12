@@ -1,14 +1,14 @@
 'use client'
 import { useState } from 'react'
-import { FaUtensils, FaChevronDown, FaChevronUp, FaStar, FaFire, FaLeaf } from 'react-icons/fa'
-import { GiKnifeFork, GiMeal, GiFire } from 'react-icons/gi'
+import { FaUtensils, FaChevronDown, FaChevronUp, FaStar, FaLeaf } from 'react-icons/fa'
+import { GiMeal, GiFire } from 'react-icons/gi'
 import './Menu.css'
 
 export default function Menu({ menuItems, categories = [] }) {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [expandedItems, setExpandedItems] = useState({})
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   if (!menuItems || menuItems.length === 0) return null
 
@@ -93,8 +93,8 @@ export default function Menu({ menuItems, categories = [] }) {
               <div className="menu-category-header">
                 {category.image && (
                   <div className="category-image-wrapper">
-                    <img 
-                      src={getImageUrl(category.image)} 
+                    <img
+                      src={getImageUrl(category.image)}
                       alt={category.name}
                       className="category-image"
                     />
@@ -106,7 +106,7 @@ export default function Menu({ menuItems, categories = [] }) {
                   <span className="category-items-count">{category.items.length} блюд</span>
                 </div>
               </div>
-              
+
               <div className="category-items-grid">
                 {category.items.map((item, idx) => {
                   const imageUrl = getImageUrl(item.image)
@@ -155,8 +155,8 @@ export default function Menu({ menuItems, categories = [] }) {
                             {shouldTruncate && (
                               <button
                                 className="expand-desc-btn"
-                                onClick={() => setExpandedItems(prev => ({ 
-                                  ...prev, 
+                                onClick={() => setExpandedItems(prev => ({
+                                  ...prev,
                                   [`${category.id}_${idx}`]: !prev[`${category.id}_${idx}`]
                                 }))}
                               >
@@ -208,7 +208,7 @@ export default function Menu({ menuItems, categories = [] }) {
 
   // Старая логика (без категорий) - fallback
   // ... (оставьте старый код как fallback)
-  
+
   return (
     <div className="menu-section">
       <div className="menu-header-section">

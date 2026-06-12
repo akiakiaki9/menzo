@@ -7,7 +7,7 @@ export async function POST(request) {
     console.log('1. Получены данные от клиента:', body)
     
     // Проверяем что Django запущен
-    const response = await fetch('http://localhost:8000/api/bookings/', {
+    const response = await fetch('https://api.menzo.uz/api/bookings/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

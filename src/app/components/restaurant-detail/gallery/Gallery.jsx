@@ -9,7 +9,7 @@ export default function Gallery({ images, isGold = false }) {
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   if (!images || images.length === 0) return null
 

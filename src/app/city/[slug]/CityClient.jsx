@@ -21,7 +21,7 @@ export default function CityClient({ initialSlug }) {
     const [filters, setFilters] = useState({ cuisine: 'Все', price: 'Все' })
     const [showFilters, setShowFilters] = useState(false)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
     const cityNames = {
         'tashkent': 'Ташкент',

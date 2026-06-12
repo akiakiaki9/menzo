@@ -3,7 +3,7 @@ import Link from 'next/link'
 import './restaurant-card.css'
 
 export default function RestaurantCard({ restaurant }) {
-  const API_URL = 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '/placeholder.jpg'

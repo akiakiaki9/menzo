@@ -18,7 +18,7 @@ export default function BookingModal({ restaurant, onClose, onSuccess }) {
   const [cooldownSeconds, setCooldownSeconds] = useState(0)
   const [isCooldown, setIsCooldown] = useState(false)
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
