@@ -15,8 +15,9 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
   const [isLoadingData, setIsLoadingData] = useState(true)
   const [cooldownSeconds, setCooldownSeconds] = useState(0)
   const [isCooldown, setIsCooldown] = useState(false)
+  const [showRatingModal, setShowRatingModal] = useState(false)
 
-  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz'
 
   // Таймер обратного отсчета
   useEffect(() => {
@@ -31,48 +32,54 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
     return () => clearTimeout(timer)
   }, [cooldownSeconds, isCooldown])
 
+  // Блокировка скролла при открытии
   useEffect(() => {
-    if (!isLoadingData && categories.length > 0) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-      document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = `${scrollbarWidth}px`
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    document.body.style.overflow = 'hidden'
+    document.body.style.paddingRight = `${scrollbarWidth}px`
 
-      return () => {
-        document.body.style.overflow = ''
-        document.body.style.paddingRight = ''
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+    }
+  }, [])
+
+  // Загрузка данных
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [catsData, userRatings] = await Promise.all([
+          fetch(`${API_URL}/api/ratings/categories/`).then(res => res.json()),
+          fetch(`${API_URL}/api/ratings/${restaurantId}/user_rating/`).then(res => res.json())
+        ])
+        
+        setCategories(catsData)
+        setHasRated(userRatings)
+
+        const initial = {}
+        catsData.forEach(cat => {
+          initial[cat.id] = userRatings[cat.id] || null
+        })
+        setRatings(initial)
+
+        if (userRatings.customer_name) {
+          setCustomerName(userRatings.customer_name)
+        }
+
+        if (userRatings.comment) {
+          setComment(userRatings.comment)
+        }
+        if (userRatings.id) {
+          setExistingReviewId(userRatings.id)
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки:', error)
+      } finally {
+        setIsLoadingData(false)
       }
     }
-  }, [isLoadingData, categories.length])
 
-  useEffect(() => {
-    Promise.all([
-      fetch(`${API_URL}/api/ratings/categories/`).then(res => res.json()),
-      fetch(`${API_URL}/api/ratings/${restaurantId}/user_rating/`).then(res => res.json())
-    ]).then(([catsData, userRatings]) => {
-      setCategories(catsData)
-      setHasRated(userRatings)
-
-      const initial = {}
-      catsData.forEach(cat => {
-        initial[cat.id] = userRatings[cat.id] || null
-      })
-      setRatings(initial)
-
-      if (userRatings.customer_name) {
-        setCustomerName(userRatings.customer_name)
-      }
-
-      if (userRatings.comment) {
-        setComment(userRatings.comment)
-      }
-      if (userRatings.id) {
-        setExistingReviewId(userRatings.id)
-      }
-      setIsLoadingData(false)
-    }).catch(error => {
-      console.error('Ошибка загрузки:', error)
-      setIsLoadingData(false)
-    })
+    fetchData()
   }, [restaurantId, API_URL])
 
   const handleRating = (categoryId, score) => {
@@ -80,9 +87,7 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
   }
 
   const handleSubmit = async () => {
-    if (isCooldown) {
-      return
-    }
+    if (isCooldown) return
     
     setLoading(true)
 
@@ -94,6 +99,7 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
     if (ratingsArray.length === 0) {
       setLoading(false)
       onSuccess()
+      onClose()
       return
     }
 
@@ -111,7 +117,6 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
 
       const data = await response.json()
 
-      // Обработка ошибки 429
       if (response.status === 429) {
         let waitSeconds = 60
         
@@ -147,12 +152,13 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
   const allRated = categories.length > 0 && categories.every(cat => ratings[cat.id] !== null)
   const hasExistingRating = hasRated[Object.keys(hasRated)[0]]
 
+  // Показываем загрузку
   if (isLoadingData) {
     return (
       <div className="rating-modal-overlay" onClick={onClose}>
         <div className="rating-modal" onClick={(e) => e.stopPropagation()}>
           <div className="rating-loading">
-            <div className="spinner"></div>
+            <div className={`spinner ${isGold ? 'gold-spinner' : ''}`}></div>
             <p>Загрузка...</p>
           </div>
         </div>
@@ -273,13 +279,6 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
             <button onClick={handleSubmit} className={`rating-done ${isGold ? 'gold-done' : ''}`} disabled={loading || isCooldown}>
               {loading ? 'Сохранение...' : isCooldown ? `Подождите ${cooldownSeconds}с` : (hasExistingRating ? 'Сохранить' : 'Готово')}
             </button>
-          </div>
-        )}
-
-        {loading && (
-          <div className="rating-loading">
-            <div className={`spinner ${isGold ? 'gold-spinner' : ''}`}></div>
-            <p>Сохранение оценки...</p>
           </div>
         )}
       </div>

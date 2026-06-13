@@ -1,599 +1,493 @@
-/* RatingModal.css - с плавной анимацией */
+/* RatingModal.css - Полная рабочая версия */
 
 .rating-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    animation: ratingFadeIn 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: ratingFadeIn 0.3s ease;
 }
 
 @keyframes ratingFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Gold overlay */
 .rating-modal-overlay.gold-overlay {
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
 }
 
 .rating-modal {
-    background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
-    border-radius: 20px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 20px;
-    position: relative;
-    border: 1px solid rgba(230, 126, 34, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    animation: ratingSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Экономия места */
-    scrollbar-width: thin;
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: ratingSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  scrollbar-width: thin;
 }
 
 @keyframes ratingSlideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-/* Gold modal */
 .rating-modal.gold-modal {
-    background: linear-gradient(135deg, #1a1a0a, #0d0d0a);
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.1);
+  background: linear-gradient(135deg, #1a1a0a, #0d0d0a);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  box-shadow: 0 20px 40px rgba(251, 191, 36, 0.1);
 }
 
 .modal-gold-badge {
-    position: absolute;
-    top: -8px;
-    right: 16px;
-    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-    color: #0a0a0a;
-    padding: 3px 10px;
-    border-radius: 30px;
-    font-size: 0.55rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    z-index: 10;
-    box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
-    animation: goldBadgePop 0.3s ease 0.1s both;
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+  color: #0a0a0a;
+  padding: 3px 10px;
+  border-radius: 30px;
+  font-size: 0.55rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(251, 191, 36, 0.3);
+  animation: goldBadgePop 0.3s ease 0.1s both;
 }
 
 @keyframes goldBadgePop {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .modal-gold-badge svg {
-    font-size: 0.6rem;
+  font-size: 0.6rem;
 }
 
-/* Scrollbar */
 .rating-modal::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 .rating-modal::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
 }
 
 .rating-modal::-webkit-scrollbar-thumb {
-    background: #e67e22;
-    border-radius: 2px;
+  background: #e67e22;
+  border-radius: 2px;
 }
 
 .gold-modal::-webkit-scrollbar-thumb {
-    background: #fbbf24;
+  background: #fbbf24;
 }
 
 .rating-modal-close {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: #aaa;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .rating-modal-close:hover {
-    color: #e67e22;
-    background: rgba(230, 126, 34, 0.1);
+  color: #e67e22;
+  background: rgba(230, 126, 34, 0.1);
 }
 
 .gold-modal .rating-modal-close:hover {
-    color: #fbbf24;
+  color: #fbbf24;
 }
 
 .rating-modal h2 {
-    text-align: center;
-    margin-bottom: 4px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
 }
 
 .gold-title {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .rating-modal-subtitle {
-    text-align: center;
-    color: #aaa;
-    margin-bottom: 12px;
-    font-size: 0.75rem;
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 16px;
+  font-size: 0.75rem;
 }
 
-/* Поле имени */
 .rating-name-field {
-    margin-bottom: 12px;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
 }
 
 .rating-name-field label {
-    display: block;
-    margin-bottom: 4px;
-    color: #aaa;
-    font-size: 0.7rem;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
 .rating-name-field input {
-    width: 100%;
-    padding: 6px 10px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 0.85rem;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.8rem;
 }
 
 .rating-name-field input:focus {
-    outline: none;
-    border-color: #e67e22;
+  outline: none;
+  border-color: #e67e22;
 }
 
 .rating-name-field small {
-    display: block;
-    margin-top: 4px;
-    color: #666;
-    font-size: 0.6rem;
+  display: block;
+  margin-top: 4px;
+  color: #666;
+  font-size: 0.6rem;
 }
 
-/* Категории */
 .rating-category-item {
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #2a2a2a;
-    animation: categoryFadeIn 0.3s ease backwards;
-}
-
-.rating-category-item:nth-child(1) { animation-delay: 0.05s; }
-.rating-category-item:nth-child(2) { animation-delay: 0.10s; }
-.rating-category-item:nth-child(3) { animation-delay: 0.15s; }
-.rating-category-item:nth-child(4) { animation-delay: 0.20s; }
-.rating-category-item:nth-child(5) { animation-delay: 0.25s; }
-
-@keyframes categoryFadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 .rating-category-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .category-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-}
-
-.category-icon {
-    font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .category-name {
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #fff;
 }
 
 .already-rated {
-    background: rgba(39, 174, 96, 0.15);
-    color: #27ae60;
-    padding: 1px 6px;
-    border-radius: 12px;
-    font-size: 0.55rem;
-    font-weight: 500;
+  background: rgba(39, 174, 96, 0.15);
+  color: #27ae60;
+  padding: 1px 6px;
+  border-radius: 12px;
+  font-size: 0.55rem;
+  font-weight: 500;
 }
 
-/* Звезды */
 .stars-container {
-    display: flex;
-    gap: 6px;
-    margin: 4px 0;
+  display: flex;
+  gap: 4px;
 }
 
 .star-btn {
-    background: none;
-    border: none;
-    font-size: 28px; /* Увеличили с 22px */
-    cursor: pointer;
-    color: #444;
-    transition: all 0.2s;
-    padding: 0;
-    width: 38px; /* Увеличили с 30px */
-    height: 38px; /* Увеличили с 30px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #444;
+  transition: all 0.2s;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
 }
 
 .star-btn:hover {
-    transform: scale(1.15);
-    color: #f39c12;
+  transform: scale(1.1);
+  color: #f39c12;
 }
 
 .star-btn.active {
-    color: #f39c12;
+  color: #f39c12;
 }
 
 .gold-star-btn.active {
-    color: #fbbf24;
-    text-shadow: 0 0 3px rgba(251, 191, 36, 0.5);
+  color: #fbbf24;
+  text-shadow: 0 0 3px rgba(251, 191, 36, 0.5);
 }
 
 .current-rating {
-    margin-top: 5px;
-    color: #e67e22;
-    font-size: 0.7rem;
+  margin-top: 6px;
+  color: #e67e22;
+  font-size: 0.65rem;
 }
 
-/* Комментарий */
 .rating-comment {
-    margin: 12px 0;
+  margin: 16px 0;
 }
 
 .rating-comment label {
-    display: block;
-    margin-bottom: 5px;
-    color: #aaa;
-    font-size: 0.7rem;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
 .rating-comment textarea {
-    width: 100%;
-    padding: 8px;
-    background: #2a2a2a;
-    border: 1px solid #333;
-    border-radius: 10px;
-    color: #fff;
-    resize: vertical;
-    font-family: inherit;
-    font-size: 0.85rem;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 8px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.8rem;
 }
 
 .rating-comment textarea:focus {
-    outline: none;
-    border-color: #e67e22;
-    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+  outline: none;
+  border-color: #e67e22;
 }
 
-/* Кнопки */
 .rating-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .rating-cancel {
-    flex: 1;
-    padding: 8px;
-    background: #2a2a2a;
-    border: 1px solid #333;
-    border-radius: 30px;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s;
+  flex: 1;
+  padding: 8px;
+  background: #2a2a2a;
+  border: 1px solid #333;
+  border-radius: 30px;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s;
 }
 
 .rating-cancel:hover {
-    border-color: #e67e22;
-    color: #e67e22;
+  border-color: #e67e22;
+  color: #e67e22;
 }
 
 .rating-submit {
-    flex: 1;
-    padding: 8px;
-    background: #444;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    cursor: not-allowed;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: all 0.3s;
+  flex: 1;
+  padding: 8px;
+  background: #444;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: not-allowed;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .rating-submit.active {
-    background: linear-gradient(135deg, #e67e22, #f39c12);
-    cursor: pointer;
+  background: linear-gradient(135deg, #e67e22, #f39c12);
+  cursor: pointer;
 }
 
 .rating-submit.active:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+  transform: translateY(-1px);
 }
 
 .gold-submit.active {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-    box-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
 }
 
-/* Успех */
 .rating-success {
-    text-align: center;
-    padding: 12px 0;
+  text-align: center;
+  padding: 12px 0;
 }
 
 .success-icon {
-    font-size: 2.8rem;
-    margin-bottom: 12px;
-    animation: successPop 0.4s ease backwards;
-}
-
-@keyframes successPop {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  font-size: 2.8rem;
+  margin-bottom: 12px;
 }
 
 .success-stats {
-    background: #2a2a2a;
-    border-radius: 12px;
-    padding: 10px;
-    margin: 12px 0;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 8px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 12px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .success-stats div {
-    font-size: 0.7rem;
-    color: #aaa;
+  font-size: 0.7rem;
+  color: #aaa;
 }
 
 .rating-done {
-    margin-top: 12px;
-    padding: 8px 24px;
-    background: linear-gradient(135deg, #e67e22, #f39c12);
-    border: none;
-    border-radius: 30px;
-    color: white;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: all 0.3s;
+  margin-top: 12px;
+  padding: 8px 24px;
+  background: linear-gradient(135deg, #e67e22, #f39c12);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .rating-done:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.rating-done:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .gold-done {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-    box-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
 }
 
-/* Загрузка */
 .rating-loading {
-    text-align: center;
-    padding: 25px;
+  text-align: center;
+  padding: 25px;
 }
 
 .spinner {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #333;
-    border-top-color: #e67e22;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #333;
+  border-top-color: #e67e22;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
 }
 
 .gold-spinner {
-    border-top-color: #fbbf24;
+  border-top-color: #fbbf24;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* ========== АДАПТИВНОСТЬ ========== */
+/* Адаптив */
 @media (max-width: 768px) {
-    .rating-modal {
-        padding: 16px;
-        border-radius: 18px;
-    }
-    
-    .rating-modal h2 {
-        font-size: 1.1rem;
-    }
-    
-    .rating-modal-subtitle {
-        font-size: 0.7rem;
-        margin-bottom: 14px;
-    }
-    
-    .category-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-    
-    .category-icon {
-        font-size: 0.9rem;
-    }
-    
-    .category-name {
-        font-size: 0.75rem;
-    }
-    
-    .star-btn {
-        font-size: 24px;
-        width: 34px;
-        height: 34px;
-    }
-    
-    .stars-container {
-        gap: 4px;
-    }
-    
-    .rating-category-item {
-        margin-bottom: 10px;
-        padding-bottom: 8px;
-    }
-    
-    .rating-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
+  .rating-modal {
+    padding: 16px;
+  }
+  
+  .rating-modal h2 {
+    font-size: 1rem;
+  }
+  
+  .star-btn {
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .rating-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 480px) {
-    .rating-modal {
-        padding: 14px;
-        border-radius: 16px;
-    }
-    
-    .rating-modal h2 {
-        font-size: 0.9rem;
-    }
-    
-    .modal-gold-badge {
-        top: -6px;
-        right: 10px;
-        padding: 2px 8px;
-        font-size: 0.5rem;
-    }
-    
-    .star-btn {
-        font-size: 22px;
-        width: 32px;
-        height: 32px;
-    }
-    
-    .category-name {
-        font-size: 0.8rem;
-    }
-    
-    .already-rated {
-        font-size: 0.5rem;
-        padding: 1px 5px;
-    }
-    
-    .current-rating {
-        font-size: 0.6rem;
-    }
-    
-    .rating-comment textarea {
-        padding: 6px;
-        font-size: 0.75rem;
-    }
-    
-    .rating-cancel,
-    .rating-submit,
-    .rating-done {
-        padding: 6px;
-        font-size: 0.7rem;
-    }
-    
-    .success-icon {
-        font-size: 2rem;
-    }
+  .rating-modal {
+    padding: 14px;
+  }
+  
+  .rating-modal h2 {
+    font-size: 0.9rem;
+  }
+  
+  .star-btn {
+    font-size: 18px;
+    width: 26px;
+    height: 26px;
+  }
+  
+  .modal-gold-badge {
+    top: -6px;
+    right: 10px;
+    padding: 2px 8px;
+    font-size: 0.5rem;
+  }
+  
+  .rating-category-item {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+  
+  .category-name {
+    font-size: 0.7rem;
+  }
+  
+  .stars-container {
+    gap: 2px;
+  }
 }
 
-/* Уменьшение движения */
 @media (prefers-reduced-motion: reduce) {
-    .rating-modal-overlay,
-    .rating-modal,
-    .modal-gold-badge,
-    .rating-category-item,
-    .success-icon {
-        animation: none;
-    }
-    
-    .star-btn:hover,
-    .rating-submit.active:hover,
-    .rating-done:hover,
-    .rating-cancel:hover {
-        transform: none;
-    }
-    
-    .spinner {
-        animation: none;
-    }
+  .rating-modal-overlay,
+  .rating-modal,
+  .modal-gold-badge {
+    animation: none;
+  }
+  
+  .spinner {
+    animation: none;
+  }
 }

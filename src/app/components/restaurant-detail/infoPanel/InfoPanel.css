@@ -384,3 +384,68 @@
         -webkit-tap-highlight-color: transparent;
     }
 }
+
+/* Новые стили для дополнительных контактов */
+
+.email-mobile {
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    color: #3498db;
+}
+
+.facebook-mobile {
+    background: rgba(59, 89, 152, 0.1);
+    border: 1px solid rgba(59, 89, 152, 0.3);
+    color: #3b5998;
+}
+
+.website-mobile {
+    background: rgba(155, 89, 182, 0.1);
+    border: 1px solid rgba(155, 89, 182, 0.3);
+    color: #9b59b6;
+}
+
+/* Адаптив для новых контактов */
+@media (max-width: 480px) {
+    .contact-mobile span {
+        display: inline-block;
+    }
+    
+    .email-mobile span,
+    .facebook-mobile span,
+    .website-mobile span {
+        display: inline-block;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 420px) {
+    .contacts-list-mobile {
+        gap: 6px;
+    }
+    
+    .contact-mobile {
+        padding: 3px 8px;
+    }
+    
+    .contact-mobile span {
+        font-size: 0.55rem;
+    }
+}
+
+/* Для экранов меньше 360px - скрываем текст, оставляем только иконки */
+@media (max-width: 360px) {
+    .contact-mobile span {
+        display: none;
+    }
+    
+    .contact-mobile {
+        padding: 5px;
+        width: 28px;
+        justify-content: center;
+    }
+    
+    .contact-mobile svg {
+        margin: 0;
+    }
+}

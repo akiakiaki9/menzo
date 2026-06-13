@@ -1,4 +1,4 @@
-import { FaWallet, FaUtensils, FaClock, FaCoffee, FaPhone, FaTelegramPlane, FaTags, FaGlassCheers, FaBreadSlice, FaInstagram, FaCrown } from 'react-icons/fa'
+import { FaWallet, FaUtensils, FaClock, FaCoffee, FaPhone, FaTelegramPlane, FaTags, FaGlassCheers, FaBreadSlice, FaInstagram, FaCrown, FaEnvelope, FaFacebook, FaGlobe } from 'react-icons/fa'
 import { GiKnifeFork, GiMeal } from 'react-icons/gi'
 import './InfoPanel.css'
 
@@ -59,7 +59,8 @@ export default function InfoPanel({ restaurant }) {
         }
     ]
 
-    const hasContacts = restaurant.phone || restaurant.telegram || restaurant.instagram
+    // Проверяем наличие любых контактов
+    const hasContacts = restaurant.phone || restaurant.telegram || restaurant.instagram || restaurant.email || restaurant.facebook || restaurant.website
 
     return (
         <div className={`info-panel-mobile ${restaurant.is_gold ? 'gold-panel' : ''}`}>
@@ -107,7 +108,7 @@ export default function InfoPanel({ restaurant }) {
                                 className="contact-mobile telegram-mobile"
                             >
                                 <FaTelegramPlane size={12} />
-                                <span>TG</span>
+                                <span>Telegram</span>
                             </a>
                         )}
                         {restaurant.instagram && (
@@ -118,7 +119,38 @@ export default function InfoPanel({ restaurant }) {
                                 className="contact-mobile instagram-mobile"
                             >
                                 <FaInstagram size={12} />
-                                <span>IG</span>
+                                <span>Instagram</span>
+                            </a>
+                        )}
+                        {restaurant.email && (
+                            <a
+                                href={`mailto:${restaurant.email}`}
+                                className="contact-mobile email-mobile"
+                            >
+                                <FaEnvelope size={12} />
+                                <span>Email</span>
+                            </a>
+                        )}
+                        {restaurant.facebook && (
+                            <a
+                                href={restaurant.facebook.startsWith('http') ? restaurant.facebook : `https://facebook.com/${restaurant.facebook.replace('@', '')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="contact-mobile facebook-mobile"
+                            >
+                                <FaFacebook size={12} />
+                                <span>Facebook</span>
+                            </a>
+                        )}
+                        {restaurant.website && (
+                            <a
+                                href={restaurant.website.startsWith('http') ? restaurant.website : `https://${restaurant.website}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="contact-mobile website-mobile"
+                            >
+                                <FaGlobe size={12} />
+                                <span>Сайт</span>
                             </a>
                         )}
                     </div>
@@ -134,7 +166,7 @@ export default function InfoPanel({ restaurant }) {
                     <div className="features-list-mobile">
                         {restaurant.features.slice(0, 4).map((feature, idx) => (
                             <span key={idx} className="feature-mobile">
-                                {feature.icon || '✓'} {typeof feature === 'string' ? feature.substring(0, 18) : feature.label.substring(0, 18)}
+                                {feature.icon || '✓'} {typeof feature === 'string' ? feature.substring(0, 18) : feature.label?.substring(0, 18) || feature.value?.substring(0, 18)}
                             </span>
                         ))}
                     </div>

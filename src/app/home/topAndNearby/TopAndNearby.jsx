@@ -155,7 +155,7 @@ export default function TopAndNearby() {
                                         </p>
                                         <div className="ranked-meta">
                                             <span className="gold-rating gold-rating-small">
-                                                <FaStar /> {place.rating || place.overall_rating || '4.5'}
+                                                <FaStar /> {place.rating || place.overall_rating || '0'}
                                             </span>
                                             <span className="price">{getPriceIcon(place.price_level)}</span>
                                         </div>

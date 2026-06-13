@@ -1114,3 +1114,63 @@
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/* Дополнительные стили для новых иконок контактов */
+
+.email-icon {
+    background: rgba(52, 152, 219, 0.15);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.email-icon:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.facebook-icon {
+    background: rgba(59, 89, 152, 0.15);
+    border: 1px solid rgba(59, 89, 152, 0.3);
+}
+
+.facebook-icon:hover {
+    background: #3b5998;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.website-icon {
+    background: rgba(155, 89, 182, 0.15);
+    border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.website-icon:hover {
+    background: #9b59b6;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Адаптив для новых иконок */
+@media (max-width: 768px) {
+    .restaurant-contacts {
+        gap: 8px;
+    }
+    
+    .contact-link-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-contacts {
+        gap: 6px;
+    }
+    
+    .contact-link-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+}
