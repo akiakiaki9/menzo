@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
-  FaArrowLeft, FaPhone, FaTelegramPlane, FaInstagram,
+  FaArrowLeft, FaPhone, FaTelegramPlane, FaInstagram, FaEnvelope, FaFacebook, FaGlobe,
   FaMapMarkerAlt, FaStar, FaClock,
   FaShoppingCart, FaSearch, FaTimes,
   FaUtensils, FaCoffee, FaHamburger, FaPizzaSlice,
@@ -41,7 +41,7 @@ export default function RestaurantMenuPage() {
   const categoriesScrollRef = useRef(null)
   let touchStartX = 0
 
-  const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
+  const API_URL = 'https://api.menzo.uz'
 
   // Блокировка скролла при открытой корзине
   useEffect(() => {
@@ -169,8 +169,6 @@ export default function RestaurantMenuPage() {
           setUserRated(hasRated)
         }
 
-        // ✅ Загружаем меню даже если is_menu_published === false,
-        // потом на рендеринге покажем сообщение или меню
         const categoriesRes = await fetch(`${API_URL}/api/restaurants/${slug}/menu_categories/`)
         const categoriesData = await categoriesRes.json()
         const activeCategories = categoriesData.filter(c => c.is_active)
@@ -223,7 +221,8 @@ export default function RestaurantMenuPage() {
 
   const filteredItems = menuItems.filter(item => {
     const matchesCategory = activeCategory ? item.category === activeCategory : true
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    const matchesSearch = searchQuery === '' ? true : 
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()))
     return matchesCategory && matchesSearch
   })
@@ -436,18 +435,35 @@ export default function RestaurantMenuPage() {
               </div>
 
               <div className="restaurant-contacts">
-                <a href={`tel:${restaurant.phone}`} className="contact-link phone-link">
-                  <FaPhone />
-                  <span>{restaurant.phone}</span>
-                </a>
+                {restaurant.phone && (
+                  <a href={`tel:${restaurant.phone}`} className="contact-link phone-link">
+                    <FaPhone />
+                    <span>{restaurant.phone}</span>
+                  </a>
+                )}
                 {restaurant.telegram && (
-                  <a href={restaurant.telegram} target="_blank" rel="noopener noreferrer" className="contact-link-icon telegram-icon">
+                  <a href={restaurant.telegram.startsWith('http') ? restaurant.telegram : `https://t.me/${restaurant.telegram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="contact-link-icon telegram-icon">
                     <FaTelegramPlane />
                   </a>
                 )}
                 {restaurant.instagram && (
-                  <a href={restaurant.instagram} target="_blank" rel="noopener noreferrer" className="contact-link-icon instagram-icon">
+                  <a href={restaurant.instagram.startsWith('http') ? restaurant.instagram : `https://instagram.com/${restaurant.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="contact-link-icon instagram-icon">
                     <FaInstagram />
+                  </a>
+                )}
+                {restaurant.email && (
+                  <a href={`mailto:${restaurant.email}`} className="contact-link-icon email-icon">
+                    <FaEnvelope />
+                  </a>
+                )}
+                {restaurant.facebook && (
+                  <a href={restaurant.facebook.startsWith('http') ? restaurant.facebook : `https://facebook.com/${restaurant.facebook.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="contact-link-icon facebook-icon">
+                    <FaFacebook />
+                  </a>
+                )}
+                {restaurant.website && (
+                  <a href={restaurant.website.startsWith('http') ? restaurant.website : `https://${restaurant.website}`} target="_blank" rel="noopener noreferrer" className="contact-link-icon website-icon">
+                    <FaGlobe />
                   </a>
                 )}
               </div>
@@ -496,22 +512,28 @@ export default function RestaurantMenuPage() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
           >
-            {menuCategories.map(category => (
-              <button
-                key={category.id}
-                className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
-                onClick={() => handleCategoryChange(category.id)}
-              >
-                {category.image ? (
-                  <div className="category-tab-image">
-                    <img src={getImageUrl(category.image)} alt={category.name} />
-                  </div>
-                ) : (
-                  <span className="category-icon">{category.icon || getCategoryIcon(category.name)}</span>
-                )}
-                <span className="category-name">{category.name}</span>
-              </button>
-            ))}
+            {menuCategories.map(category => {
+              const categoryItems = menuItems.filter(item => item.category === category.id)
+              if (categoryItems.length === 0) return null
+              
+              return (
+                <button
+                  key={category.id}
+                  className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
+                  onClick={() => handleCategoryChange(category.id)}
+                >
+                  {category.image ? (
+                    <div className="category-tab-image">
+                      <img src={getImageUrl(category.image)} alt={category.name} />
+                    </div>
+                  ) : (
+                    <span className="category-icon">{category.icon || getCategoryIcon(category.name)}</span>
+                  )}
+                  <span className="category-name">{category.name}</span>
+                  <span className="category-count">{categoryItems.length}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
       </div>
@@ -688,8 +710,12 @@ export default function RestaurantMenuPage() {
               <p>Лучшие блюда для вас</p>
             </div>
             <div className="mini-footer-phone">
-              <FaPhone />
-              <a href={`tel:${restaurant.phone}`}>{restaurant.phone}</a>
+              {restaurant.phone && (
+                <>
+                  <FaPhone />
+                  <a href={`tel:${restaurant.phone}`}>{restaurant.phone}</a>
+                </>
+              )}
             </div>
           </div>
           <div className="mini-footer-copyright">
