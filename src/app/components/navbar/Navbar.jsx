@@ -54,15 +54,12 @@ export default function Navbar() {
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
                 <div className="container">
                     <Link href="/" className="logo" onClick={closeMenu}>
-                        <Image 
+                        <img 
                             src="/images/logo.PNG" 
-                            alt="MENZO.UZ Logo" 
-                            width={50} 
-                            height={50}
+                            alt="MENZO.UZ Logo"
                             className="logo-image"
                             priority
                         />
-                        <span className="logo-text">MENZO<span>.UZ</span></span>
                     </Link>
 
                     <button
@@ -107,14 +104,11 @@ export default function Navbar() {
                 <div className="mobile-menu-container">
                     <div className="mobile-menu-header">
                         <Link href="/" className="mobile-logo" onClick={closeMenu}>
-                            <Image 
+                            <img 
                                 src="/images/logo.PNG" 
-                                alt="MENZO.UZ Logo" 
-                                width={42} 
-                                height={42}
+                                alt="MENZO.UZ Logo"
                                 className="mobile-logo-image"
                             />
-                            <span className="logo-text">MENZO<span>.UZ</span></span>
                         </Link>
                         <button className="mobile-menu-close" onClick={closeMenu}>
                             <FiX size={28} />

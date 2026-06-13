@@ -16,14 +16,11 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-section footer-brand">
             <div className="footer-logo">
-              <Image
-                src="/images/logo.PNG"
+              <img
+                src="/images/menzo-bg.PNG"
                 alt="MENZO.UZ Logo"
-                width={45}
-                height={45}
                 className="footer-logo-image"
               />
-              <h3>MENZO<span>.UZ</span></h3>
             </div>
             <p className="footer-description">
               Откройте для себя лучшие места Узбекистана —
