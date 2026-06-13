@@ -61,7 +61,7 @@ export default function MapPageClient() {
                     setIsLocating(false)
                 },
                 (error) => {
-                    console.error("Ошибка геолокации:", error)
+                    // // console.error("Ошибка геолокации:", error)
                     const storedLocation = getStoredLocation()
                     if (storedLocation) {
                         setLocation(storedLocation)
@@ -97,7 +97,7 @@ export default function MapPageClient() {
             setNearbyRestaurants(Array.isArray(nearbyData) ? nearbyData : [])
             setLoading(false)
         }).catch(err => {
-            console.error('Error:', err)
+            // console.error('Error:', err)
             setLoading(false)
         })
     }, [location, API_URL])

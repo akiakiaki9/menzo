@@ -35,11 +35,11 @@ export default function CitiesSection() {
                 const res = await fetch(`${API_URL}/api/restaurants/cities/`)
                 if (res.ok) {
                     const data = await res.json()
-                    console.log('Города с ресторанами:', data)
+                    // console.log('Города с ресторанами:', data)
                     setCities(data)
                 }
             } catch (err) {
-                console.error('Error fetching cities:', err)
+                //  console.error('Error fetching cities:', err)
             } finally {
                 setLoading(false)
             }

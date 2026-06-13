@@ -25,7 +25,7 @@ export default function TopAndNearby() {
                     fetchNearbyRestaurants(coords.lat, coords.lng)
                 },
                 (error) => {
-                    console.error("Геолокация отклонена:", error)
+                    //  console.error("Геолокация отклонена:", error)
                     setLocationError(true)
                     setLoading(false)
                 }
@@ -45,7 +45,7 @@ export default function TopAndNearby() {
             setNearbyRestaurants(data.slice(0, 3))
             setLoading(false)
         } catch (error) {
-            console.error('Ошибка:', error)
+            // console.error('Ошибка:', error)
             setLoading(false)
         }
     }

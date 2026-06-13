@@ -58,7 +58,7 @@ export default function Map({ restaurants = [], userLocation = null }) {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
   }, [])
 
-  // Инициализация карты - ИСПРАВЛЕННЫЙ СЛОЙ
+  // Инициализация карты
   useEffect(() => {
     if (mapRef.current) return
 
@@ -77,7 +77,6 @@ export default function Map({ restaurants = [], userLocation = null }) {
 
       const mapInstance = L.map('map').setView(center, zoom)
 
-      // ИСПРАВЛЕНО: Используем стандартный OpenStreetMap с полной детализацией
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
@@ -232,7 +231,7 @@ export default function Map({ restaurants = [], userLocation = null }) {
             setTimeout(() => setLocationStatus('idle'), 2000)
           },
           (error) => {
-            console.error('Geolocation error:', error)
+            // console.error('Geolocation error:', error) // закомментировано для продакшена
             setLocationStatus('error')
             setTimeout(() => setLocationStatus('idle'), 3000)
           }

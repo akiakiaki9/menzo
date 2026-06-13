@@ -65,7 +65,7 @@ export default function Hero({ restaurants }) {
           setCities(data)
         }
       } catch (err) {
-        console.error('Error fetching cities:', err)
+        // console.error('Error fetching cities:', err)
       } finally {
         setCitiesLoading(false)
       }

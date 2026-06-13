@@ -22,7 +22,7 @@ export default function TypeFilters({ filters, setFilters }) {
                 const cuisines = ['Все', ...data.cuisines.map(c => c.label)]
                 setCuisineOptions(cuisines)
             })
-            .catch(err => console.error('Error fetching cuisines:', err))
+            // .catch(err => // console.error('Error fetching cuisines:', err))
     }, [API_URL])
 
     // Подсчет активных фильтров

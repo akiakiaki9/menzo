@@ -30,7 +30,7 @@ export default function StickyCTA({ phone, telegram, restaurantId, restaurantSlu
 
   const handleBookingClick = () => {
     if (!restaurantId) {
-      console.error('❌ restaurantId не передан в StickyCTA')
+      // console.error('❌ restaurantId не передан в StickyCTA')
       alert('Ошибка: данные ресторана не загружены')
       return
     }
@@ -40,7 +40,7 @@ export default function StickyCTA({ phone, telegram, restaurantId, restaurantSlu
   const handleOrderClick = () => {
     const routeSlug = restaurantSlug || restaurantId
     if (!routeSlug) {
-      console.error('❌ restaurantSlug / restaurantId не передан в StickyCTA')
+      // console.error('❌ restaurantSlug / restaurantId не передан в StickyCTA')
       alert('Ошибка: данные ресторана не загружены')
       return
     }

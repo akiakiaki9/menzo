@@ -12,7 +12,7 @@ import '../../styles/gold-card.css'
 export default function CityClient({ initialSlug }) {
     const slug = initialSlug
 
-    console.log('🏙️ CityClient - slug:', slug)
+    // console.log('🏙️ CityClient - slug:', slug) // закомментировано для продакшена
 
     const [restaurants, setRestaurants] = useState([])
     const [loading, setLoading] = useState(true)
@@ -45,10 +45,10 @@ export default function CityClient({ initialSlug }) {
     const cityName = cityNames[slug] || slug || 'Узбекистане'
 
     useEffect(() => {
-        console.log('🔍 useEffect - slug:', slug)
+        // console.log('🔍 useEffect - slug:', slug) // закомментировано для продакшена
 
         if (!slug) {
-            console.log('❌ slug пустой, выходим')
+            // console.log('❌ slug пустой, выходим') // закомментировано для продакшена
             setLoading(false)
             return
         }
@@ -58,21 +58,21 @@ export default function CityClient({ initialSlug }) {
             setError(null)
             try {
                 const url = `${API_URL}/api/restaurants/?region=${slug}`
-                console.log('📡 Запрос к API:', url)
+                // console.log('📡 Запрос к API:', url) // закомментировано для продакшена
                 const res = await fetch(url)
-                console.log('📡 Статус ответа:', res.status)
+                // console.log('📡 Статус ответа:', res.status) // закомментировано для продакшена
 
                 if (res.ok) {
                     const data = await res.json()
-                    console.log('✅ Получено мест:', data.length)
+                    // console.log('✅ Получено мест:', data.length) // закомментировано для продакшена
                     setRestaurants(data)
                 } else {
                     const errorText = await res.text()
-                    console.error('❌ Ошибка:', errorText)
+                    // console.error('❌ Ошибка:', errorText) // закомментировано для продакшена
                     setError(`Ошибка загрузки: ${res.status}`)
                 }
             } catch (err) {
-                console.error('❌ Error fetching:', err)
+                // console.error('❌ Error fetching:', err) // закомментировано для продакшена
                 setError('Ошибка соединения с сервером')
             } finally {
                 setLoading(false)
@@ -251,4 +251,4 @@ export default function CityClient({ initialSlug }) {
             <Footer />
         </>
     )
-};
+}

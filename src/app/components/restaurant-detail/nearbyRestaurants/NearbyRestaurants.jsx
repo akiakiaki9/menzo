@@ -22,7 +22,7 @@ export default function NearbyRestaurants() {
           fetchNearbyRestaurants(coords.lat, coords.lng)
         },
         (error) => {
-          console.error("Ошибка геолокации:", error)
+          // console.error("Ошибка геолокации:", error)
           setLocationError("Не удалось определить ваше местоположение")
           setLoading(false)
         }
@@ -42,7 +42,7 @@ export default function NearbyRestaurants() {
       setNearbyRestaurants(data)
       setLoading(false)
     } catch (error) {
-      console.error("Ошибка загрузки ресторанов:", error)
+      // console.error("Ошибка загрузки ресторанов:", error)
       setLoading(false)
     }
   }

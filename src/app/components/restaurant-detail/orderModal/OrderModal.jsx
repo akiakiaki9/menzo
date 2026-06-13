@@ -132,7 +132,7 @@ export default function OrderModal({ restaurant, cart, cartTotal, onClose, onSuc
                 setError(data.error || 'Ошибка оформления')
             }
         } catch (err) {
-            console.error('Error:', err)
+            // console.error('Error:', err)
             setError('Ошибка соединения')
         } finally {
             setLoading(false)

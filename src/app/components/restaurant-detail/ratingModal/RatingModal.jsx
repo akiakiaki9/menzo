@@ -140,10 +140,10 @@ export default function RatingModal({ restaurantId, restaurantName, onClose, onS
         onSuccess()
         onClose()
       } else {
-        console.error('Ошибка:', data)
+        // console.error('Ошибка:', data)
       }
     } catch (error) {
-      console.error('Ошибка отправки:', error)
+      // console.error('Ошибка отправки:', error)
     } finally {
       setLoading(false)
     }

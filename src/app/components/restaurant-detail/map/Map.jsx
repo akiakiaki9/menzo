@@ -18,7 +18,7 @@ export default function Map({ latitude, longitude, address, name, isGold = false
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (err) {
-      console.error('Ошибка копирования:', err)
+      // console.error('Ошибка копирования:', err)
     }
   }
 

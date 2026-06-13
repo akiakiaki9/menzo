@@ -62,7 +62,7 @@ export default function CatalogContent() {
                 setLoading(false)
             })
             .catch(err => {
-                console.error('Error:', err)
+                // console.error('Error:', err)
                 setLoading(false)
             })
     }, [API_URL])

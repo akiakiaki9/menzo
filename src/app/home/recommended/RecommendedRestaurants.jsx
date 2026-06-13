@@ -27,7 +27,7 @@ export default function RecommendedRestaurants() {
                     setTopRated(data)
                 }
             } catch (err) {
-                console.error('Error fetching:', err)
+                // console.error('Error fetching:', err)
             } finally {
                 setLoading(false)
             }

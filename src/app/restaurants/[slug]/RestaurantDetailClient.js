@@ -48,7 +48,7 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
                     setGoodReviews(reviewsData)
                 }
             } catch (err) {
-                console.error('Error:', err)
+                // console.error('Error:', err)
             } finally {
                 setLoading(false)
             }
@@ -85,7 +85,7 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
                     url: window.location.href
                 })
             } catch (err) {
-                console.log('Ошибка шаринга:', err)
+                // console.log('Ошибка шаринга:', err)
             }
         } else {
             navigator.clipboard.writeText(window.location.href)

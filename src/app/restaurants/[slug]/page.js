@@ -62,7 +62,7 @@ export async function generateMetadata({ params }) {
             }
         }
     } catch (error) {
-        console.error('Error generating metadata:', error)
+        // console.error('Error generating metadata:', error)
         return {
             title: 'Ресторан | MENZO.UZ',
             description: 'Лучшие рестораны и кафе Узбекистана. Бронирование столиков онлайн.'

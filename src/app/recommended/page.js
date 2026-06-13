@@ -22,17 +22,17 @@ export default function RecommendedPage() {
             setLoading(true)
             setError(null)
             
-            console.log('Подключаюсь к API:', API_URL)
+            // console.log('Подключаюсь к API:', API_URL)
             
             try {
                 // Загружаем рекомендованные рестораны
                 const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=20`)
                 if (recommendedRes.ok) {
                     const data = await recommendedRes.json()
-                    console.log('Рекомендованные рестораны:', data)
+                    // console.log('Рекомендованные рестораны:', data)
                     setRecommended(data)
                 } else {
-                    console.error('Ошибка загрузки:', recommendedRes.status)
+                    // console.error('Ошибка загрузки:', recommendedRes.status)
                     setError(`Ошибка ${recommendedRes.status}`)
                 }
 
@@ -40,11 +40,11 @@ export default function RecommendedPage() {
                 const topRes = await fetch(`${API_URL}/api/restaurants/top_rated/`)
                 if (topRes.ok) {
                     const data = await topRes.json()
-                    console.log('Топ ресторан:', data)
+                    // console.log('Топ ресторан:', data)
                     setTopRated(data)
                 }
             } catch (err) {
-                console.error('Error fetching data:', err)
+                // console.error('Error fetching data:', err)
                 setError(`Ошибка: ${err.message}`)
             } finally {
                 setLoading(false)

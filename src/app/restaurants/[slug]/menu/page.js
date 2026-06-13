@@ -136,7 +136,7 @@ export default function RestaurantMenuPage() {
         }
       }
     } catch (err) {
-      console.error('Ошибка загрузки корзины:', err)
+      // console.error('Ошибка загрузки корзины:', err)
     }
   }
 
@@ -185,7 +185,7 @@ export default function RestaurantMenuPage() {
         await loadCart(restaurantData.id)
 
       } catch (err) {
-        console.error('Error:', err)
+        
       } finally {
         setLoading(false)
       }
@@ -308,10 +308,10 @@ export default function RestaurantMenuPage() {
           setTimeout(() => cartBtnElement.classList.remove('cart-bump'), 300)
         }
       } else {
-        console.error('Ошибка добавления:', result)
+        // console.error('Ошибка добавления:', result)
       }
     } catch (err) {
-      console.error('Error adding to cart:', err)
+      // console.error('Error adding to cart:', err)
     }
   }
 
@@ -342,7 +342,7 @@ export default function RestaurantMenuPage() {
         }
       }
     } catch (err) {
-      console.error('Error removing from cart:', err)
+      // console.error('Error removing from cart:', err)
     }
   }
 

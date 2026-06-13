@@ -42,6 +42,6 @@ export default async function CityPage({ params }) {
     // В Next.js 15 params - это Promise, нужно развернуть через await
     const resolvedParams = await params
     const slug = resolvedParams?.slug
-    console.log('🔍 page.js - slug:', slug)
+    // console.log('🔍 page.js - slug:', slug)
     return <CityClient initialSlug={slug} />
 }

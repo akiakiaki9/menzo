@@ -37,7 +37,7 @@ export default function TypePageLayout({ typeData }) {
                 setLoading(false)
             })
             .catch(err => {
-                console.error('Error:', err)
+                // console.error('Error:', err)
                 setLoading(false)
             })
     }, [typeData.type, API_URL])

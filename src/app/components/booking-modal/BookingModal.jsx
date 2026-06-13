@@ -148,7 +148,7 @@ export default function BookingModal({ restaurant, onClose, onSuccess }) {
         }
       }
     } catch (err) {
-      console.error('❌ Ошибка:', err)
+      // console.error('❌ Ошибка:', err) // закомментировано для продакшена
       setError('Ошибка соединения с сервером. Проверьте подключение.')
     } finally {
       setLoading(false)

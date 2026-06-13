@@ -17,7 +17,7 @@ export default function ContactsClient() {
         e.preventDefault()
         setLoading(true)
         await new Promise(resolve => setTimeout(resolve, 1000))
-        console.log('Форма отправлена:', formData)
+        // console.log('Форма отправлена:', formData)
         setSubmitted(true)
         setTimeout(() => setSubmitted(false), 5000)
         setFormData({ name: '', email: '', message: '' })
