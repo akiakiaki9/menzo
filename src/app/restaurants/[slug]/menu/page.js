@@ -403,7 +403,6 @@ export default function RestaurantMenuPage() {
           <div className="menu-header-content">
             <Link href={`/restaurants/${slug}`} className="back-button">
               <FaArrowLeft />
-              <span>Назад</span>
             </Link>
 
             <div className="restaurant-info">
