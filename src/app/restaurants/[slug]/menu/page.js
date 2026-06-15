@@ -8,7 +8,7 @@ import {
   FaShoppingCart, FaSearch, FaTimes,
   FaUtensils, FaCoffee, FaHamburger, FaPizzaSlice,
   FaIceCream, FaBeer, FaWineBottle, FaLeaf,
-  FaBookOpen, FaPenFancy
+  FaBookOpen, FaPenFancy, FaTimesCircle, FaArrowUp
 } from 'react-icons/fa'
 import { GiKnifeFork, GiMeal, GiChickenLeg, GiFishCorpse } from 'react-icons/gi'
 
@@ -37,11 +37,34 @@ export default function RestaurantMenuPage() {
   const [userRated, setUserRated] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [stylesApplied, setStylesApplied] = useState(false)
+  
+  // Состояния для модалки фото
+  const [showPhotoModal, setShowPhotoModal] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   const categoriesScrollRef = useRef(null)
   let touchStartX = 0
 
   const API_URL = 'https://api.menzo.uz'
+
+  // Показать модалку с фото
+  const openPhotoModal = (item) => {
+    setSelectedItem(item)
+    setShowPhotoModal(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  // Закрыть модалку с фото
+  const closePhotoModal = () => {
+    setShowPhotoModal(false)
+    setSelectedItem(null)
+    document.body.style.overflow = ''
+  }
+
+  // Кнопка "Наверх"
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   // Блокировка скролла при открытой корзине
   useEffect(() => {
@@ -68,7 +91,6 @@ export default function RestaurantMenuPage() {
     }
   }, [showCart])
 
-  // Функция для скролла категорий с зажатием
   const handleTouchStart = (e) => {
     touchStartX = e.touches[0].clientX
   }
@@ -83,10 +105,8 @@ export default function RestaurantMenuPage() {
 
   const handleCategoryChange = (categoryId) => {
     if (activeCategory === categoryId || isTransitioning) return
-
     setIsTransitioning(true)
     setActiveCategory(categoryId)
-
     setTimeout(() => {
       setIsTransitioning(false)
     }, 250)
@@ -135,9 +155,7 @@ export default function RestaurantMenuPage() {
           setCart([])
         }
       }
-    } catch (err) {
-      // console.error('Ошибка загрузки корзины:', err)
-    }
+    } catch (err) {}
   }
 
   useEffect(() => {
@@ -185,7 +203,6 @@ export default function RestaurantMenuPage() {
         await loadCart(restaurantData.id)
 
       } catch (err) {
-        
       } finally {
         setLoading(false)
       }
@@ -253,7 +270,6 @@ export default function RestaurantMenuPage() {
     return () => clearTimeout(timeout)
   }, [filteredItems])
 
-  // Анимация добавления в корзину
   const addToCartWithAnimation = async (item, event) => {
     if (!restaurantId) return
 
@@ -308,10 +324,8 @@ export default function RestaurantMenuPage() {
           setTimeout(() => cartBtnElement.classList.remove('cart-bump'), 300)
         }
       } else {
-        // console.error('Ошибка добавления:', result)
       }
     } catch (err) {
-      // console.error('Error adding to cart:', err)
     }
   }
 
@@ -342,7 +356,6 @@ export default function RestaurantMenuPage() {
         }
       }
     } catch (err) {
-      // console.error('Error removing from cart:', err)
     }
   }
 
@@ -570,7 +583,11 @@ export default function RestaurantMenuPage() {
               <div className={`menu-items-grid ${isTransitioning ? 'fade-out' : 'fade-in'} ${stylesApplied ? 'styles-ready' : ''}`}>
                 {filteredItems.map((item, index) => (
                   <div key={item.id} className="menu-item-card" style={{ animationDelay: `${index * 0.05}s` }}>
-                    <div className="item-image">
+                    <div 
+                      className="item-image" 
+                      onClick={() => openPhotoModal(item)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <img 
                         src={item.image ? getImageUrl(item.image) : '/images/placeholder-menu.png'} 
                         alt={item.name}
@@ -663,6 +680,45 @@ export default function RestaurantMenuPage() {
         <FaShoppingCart />
         {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
       </button>
+
+      {/* Кнопка "Наверх" - появляется при скролле */}
+      <button className="scroll-to-top-btn" onClick={scrollToTop} aria-label="Наверх">
+        <FaArrowUp />
+      </button>
+
+      {/* Модалка с фото блюда */}
+      {showPhotoModal && selectedItem && (
+        <div className="photo-modal-overlay" onClick={closePhotoModal}>
+          <div className="photo-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="photo-modal-close" onClick={closePhotoModal}>
+              <FaTimes />
+            </button>
+            <div className="photo-modal-image">
+              <img 
+                src={getImageUrl(selectedItem.image)} 
+                alt={selectedItem.name}
+              />
+            </div>
+            <div className="photo-modal-info">
+              <h3>{selectedItem.name}</h3>
+              <p className="photo-modal-price">{Number(selectedItem.price).toLocaleString()} сум</p>
+              {selectedItem.description && (
+                <p className="photo-modal-description">{selectedItem.description}</p>
+              )}
+              <button 
+                className="photo-modal-add-btn"
+                onClick={(e) => {
+                  addToCartWithAnimation(selectedItem, e)
+                  closePhotoModal()
+                }}
+              >
+                <FaShoppingCart />
+                В корзину
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Модалки */}
       {showOrderModal && (
