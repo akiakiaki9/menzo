@@ -15,7 +15,7 @@ export default function TypePageLayout({ typeData }) {
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
-    const [showMobileFilters, setShowMobileFilters] = useState(false)
+    const [showFilters, setShowFilters] = useState(false)
     const [filters, setFilters] = useState({
         cuisine: 'Все',
         price: 'Все',
@@ -95,15 +95,6 @@ export default function TypePageLayout({ typeData }) {
                             <TypeFilters filters={filters} setFilters={setFilters} />
                         </div>
 
-                        {/* Кнопка фильтров для мобильных */}
-                        <div className="mobile-filter-toggle-type">
-                            <button className="filter-toggle-btn-type" onClick={() => setShowMobileFilters(true)}>
-                                <FaFilter />
-                                <span>Фильтры</span>
-                                {hasActiveFilters && <span className="active-dot-type" />}
-                            </button>
-                        </div>
-
                         <div className="type-results">
                             <TypeTopRestaurants type={typeData.type} />
 
@@ -116,6 +107,20 @@ export default function TypePageLayout({ typeData }) {
                                     <FaSearch className="search-icon" />
                                     Найдено {filteredRestaurants.length} мест
                                 </p>
+                            </div>
+
+                            {/* Мобильная кнопка фильтров - как в CityClient */}
+                            <div className="mobile-filter-toggle-type">
+                                <button className="filter-toggle-type" onClick={() => setShowFilters(!showFilters)}>
+                                    <FaFilter />
+                                    <span>Фильтры</span>
+                                    {hasActiveFilters && <span className="filters-count">{hasActiveFilters ? '!' : ''}</span>}
+                                </button>
+                            </div>
+
+                            {/* Панель фильтров - как в CityClient */}
+                            <div className={`filters-panel-type ${showFilters ? 'open' : ''}`}>
+                                <TypeFilters filters={filters} setFilters={setFilters} />
                             </div>
 
                             {filteredRestaurants.length === 0 ? (
@@ -161,31 +166,6 @@ export default function TypePageLayout({ typeData }) {
                         </div>
                     </div>
 
-                    {/* Мобильная панель фильтров - полный экран */}
-                    {showMobileFilters && (
-                        <div className="mobile-filters-fullscreen">
-                            <div className="mobile-filters-header-full">
-                                <h3>Фильтры</h3>
-                                <button className="mobile-filters-close-full" onClick={() => setShowMobileFilters(false)}>
-                                    <FaTimes />
-                                </button>
-                            </div>
-                            <div className="mobile-filters-content-full">
-                                <TypeFilters filters={filters} setFilters={setFilters} isMobile={true} />
-                            </div>
-                            <div className="mobile-filters-footer-full">
-                                <button className="clear-filters-full" onClick={() => {
-                                    setFilters({ cuisine: 'Все', price: 'Все', sort: 'rating' })
-                                }}>
-                                    Сбросить все
-                                </button>
-                                <button className="apply-filters-full" onClick={() => setShowMobileFilters(false)}>
-                                    Показать {filteredRestaurants.length} мест
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
                     {/* SEO контент */}
                     {typeData.longDescription && (
                         <div className="type-seo-content" dangerouslySetInnerHTML={{ __html: typeData.longDescription }} />
@@ -195,4 +175,4 @@ export default function TypePageLayout({ typeData }) {
             <Footer />
         </>
     )
-};
+}

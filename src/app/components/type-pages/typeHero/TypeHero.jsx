@@ -1,4 +1,4 @@
-import { FaStore, FaStar, FaMoneyBillWave, FaMapMarkerAlt, FaUtensils, FaCoffee, FaHamburger, FaGlassCheers, FaMugHot, FaLeaf, FaBreadSlice, FaConciergeBell } from 'react-icons/fa'
+import { FaStore, FaStar, FaMoneyBillWave, FaUtensils, FaCoffee, FaHamburger, FaGlassCheers, FaMugHot, FaLeaf, FaBreadSlice, FaConciergeBell } from 'react-icons/fa'
 import './TypeHero.css'
 
 export default function TypeHero({ typeData, count }) {
@@ -19,22 +19,8 @@ export default function TypeHero({ typeData, count }) {
     return iconMap[type] || iconMap['default']
   }
 
-  // Дефолтные фичи для разных типов заведений
-  const getDefaultFeatures = (type) => {
-    const featuresMap = {
-      'restaurants': ['🍽️ Авторская кухня', '🍷 Винная карта', '🎵 Живая музыка'],
-      'cafes': ['☕ Ароматный кофе', '🍰 Домашние десерты', '📚 Уютная атмосфера'],
-      'fast-food': ['⚡ Быстрое обслуживание', '🍟 Вкусные бургеры', '🚗 Доставка 24/7'],
-      'restobars': ['🍹 Коктейльная карта', '🎶 Вечеринки', '🍕 Легкие закуски'],
-      'coffeehouses': ['☕ Кофе из разных стран', '🥐 Свежие круассаны', '💻 Wi-Fi'],
-      'teahouses': ['🍵 Настоящий чай', '🍬 Восточные сладости', '🧘 Атмосфера уюта'],
-      'bakeries': ['🥖 Свежая выпечка', '🎂 Торты на заказ', '🥐 Круассаны'],
-      'canteens': ['🍲 Домашняя еда', '💰 Доступные цены', '🍛 Комплексные обеды']
-    }
-    return featuresMap[type] || ['⭐ Проверенные заведения', '📋 Актуальные меню', '📍 Удобное расположение']
-  }
-
-  const features = typeData.features?.length > 0 ? typeData.features : getDefaultFeatures(typeData.type)
+  // Используем только реальные фичи из API, если они есть
+  const features = typeData.features || []
 
   return (
     <section className="type-hero">
@@ -50,16 +36,6 @@ export default function TypeHero({ typeData, count }) {
           </h1>
           
           <p className="type-hero-description">{typeData.description}</p>
-
-          {features.length > 0 && (
-            <div className="type-hero-features">
-              {features.map((feature, idx) => (
-                <span key={idx} className="feature-badge">
-                  {feature}
-                </span>
-              ))}
-            </div>
-          )}
 
           <div className="type-hero-stats">
             <span className="stat">
