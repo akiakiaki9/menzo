@@ -8,7 +8,7 @@ import {
   FaShoppingCart, FaSearch, FaTimes,
   FaUtensils, FaCoffee, FaHamburger, FaPizzaSlice,
   FaIceCream, FaBeer, FaWineBottle, FaLeaf,
-  FaBookOpen, FaPenFancy, FaTimesCircle, FaArrowUp
+  FaBookOpen, FaPenFancy, FaArrowUp
 } from 'react-icons/fa'
 import { GiKnifeFork, GiMeal, GiChickenLeg, GiFishCorpse } from 'react-icons/gi'
 
@@ -46,6 +46,30 @@ export default function RestaurantMenuPage() {
   let touchStartX = 0
 
   const API_URL = 'https://api.menzo.uz'
+
+  // Добавляем мета-теги для предотвращения кэширования
+  useEffect(() => {
+    const metaCacheControl = document.createElement('meta')
+    metaCacheControl.httpEquiv = 'Cache-Control'
+    metaCacheControl.content = 'no-cache, no-store, must-revalidate'
+    document.head.appendChild(metaCacheControl)
+
+    const metaPragma = document.createElement('meta')
+    metaPragma.httpEquiv = 'Pragma'
+    metaPragma.content = 'no-cache'
+    document.head.appendChild(metaPragma)
+
+    const metaExpires = document.createElement('meta')
+    metaExpires.httpEquiv = 'Expires'
+    metaExpires.content = '0'
+    document.head.appendChild(metaExpires)
+
+    return () => {
+      document.head.removeChild(metaCacheControl)
+      document.head.removeChild(metaPragma)
+      document.head.removeChild(metaExpires)
+    }
+  }, [])
 
   // Показать модалку с фото
   const openPhotoModal = (item) => {
@@ -126,7 +150,8 @@ export default function RestaurantMenuPage() {
 
   const handleRatingSuccess = async () => {
     if (restaurant) {
-      const res = await fetch(`${API_URL}/api/restaurants/${restaurant.id}/`)
+      const timestamp = new Date().getTime()
+      const res = await fetch(`${API_URL}/api/restaurants/${restaurant.id}/?_=${timestamp}`)
       if (res.ok) {
         const data = await res.json()
         setRatingStats(data.rating_stats)
@@ -163,7 +188,8 @@ export default function RestaurantMenuPage() {
 
     const fetchData = async () => {
       try {
-        const restaurantRes = await fetch(`${API_URL}/api/restaurants/${slug}/`)
+        const timestamp = new Date().getTime()
+        const restaurantRes = await fetch(`${API_URL}/api/restaurants/${slug}/?_=${timestamp}`)
         if (!restaurantRes.ok) {
           setLoading(false)
           return
@@ -180,14 +206,14 @@ export default function RestaurantMenuPage() {
         setRestaurantId(restaurantData.id)
         setRatingStats(restaurantData.rating_stats)
 
-        const ratingRes = await fetch(`${API_URL}/api/ratings/${restaurantData.id}/user_rating/`).catch(() => ({ ok: false }))
+        const ratingRes = await fetch(`${API_URL}/api/ratings/${restaurantData.id}/user_rating/?_=${timestamp}`).catch(() => ({ ok: false }))
         if (ratingRes.ok) {
           const ratingData = await ratingRes.json()
           const hasRated = Object.values(ratingData).some(v => v !== null)
           setUserRated(hasRated)
         }
 
-        const categoriesRes = await fetch(`${API_URL}/api/restaurants/${slug}/menu_categories/`)
+        const categoriesRes = await fetch(`${API_URL}/api/restaurants/${slug}/menu_categories/?_=${timestamp}`)
         const categoriesData = await categoriesRes.json()
         const activeCategories = categoriesData.filter(c => c.is_active)
         setMenuCategories(activeCategories)
@@ -196,7 +222,7 @@ export default function RestaurantMenuPage() {
           setActiveCategory(activeCategories[0].id)
         }
 
-        const menuRes = await fetch(`${API_URL}/api/restaurants/${slug}/`)
+        const menuRes = await fetch(`${API_URL}/api/restaurants/${slug}/?_=${timestamp}`)
         const menuData = await menuRes.json()
         setMenuItems(menuData.menu_items || [])
 
@@ -374,8 +400,27 @@ export default function RestaurantMenuPage() {
   if (loading) {
     return (
       <div className="menu-loading">
-        <div className="loading-spinner"></div>
-        <p>Загрузка меню...</p>
+        <div className="loading-container">
+          <div className="loading-content">
+            <div className="loading-logo">MENZO</div>
+            <div className="loading-spinner-wrapper">
+              <div className="loading-spinner"></div>
+              <div className="loading-spinner-ring"></div>
+            </div>
+            <div className="loading-text">
+              <span>Загружаем меню</span>
+              <span className="loading-dots">
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+              </span>
+            </div>
+            <div className="loading-progress">
+              <div className="loading-progress-bar"></div>
+            </div>
+            <p className="loading-subtitle">Лучшие блюда Узбекистана</p>
+          </div>
+        </div>
       </div>
     )
   }

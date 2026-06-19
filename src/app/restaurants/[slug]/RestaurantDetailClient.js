@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-
 import './restaurant-detail.css'
 import Navbar from '@/app/components/navbar/Navbar'
 import Hero from '@/app/components/restaurant-detail/hero/Hero'
@@ -24,25 +23,52 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
 
     const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
+    // Добавляем мета-теги для предотвращения кэширования
+    useEffect(() => {
+        const metaCacheControl = document.createElement('meta')
+        metaCacheControl.httpEquiv = 'Cache-Control'
+        metaCacheControl.content = 'no-cache, no-store, must-revalidate'
+        document.head.appendChild(metaCacheControl)
+
+        const metaPragma = document.createElement('meta')
+        metaPragma.httpEquiv = 'Pragma'
+        metaPragma.content = 'no-cache'
+        document.head.appendChild(metaPragma)
+
+        const metaExpires = document.createElement('meta')
+        metaExpires.httpEquiv = 'Expires'
+        metaExpires.content = '0'
+        document.head.appendChild(metaExpires)
+
+        return () => {
+            document.head.removeChild(metaCacheControl)
+            document.head.removeChild(metaPragma)
+            document.head.removeChild(metaExpires)
+        }
+    }, [])
+
     useEffect(() => {
         if (!propSlug) return
 
         const fetchRestaurant = async () => {
             try {
-                const res = await fetch(`${API_URL}/api/restaurants/${propSlug}/`)
+                // Добавляем timestamp для обхода кэша
+                const timestamp = new Date().getTime()
+                
+                const res = await fetch(`${API_URL}/api/restaurants/${propSlug}/?_=${timestamp}`)
                 if (!res.ok) throw new Error('Restaurant not found')
                 const data = await res.json()
                 setRestaurant(data)
                 setRatingStats(data.rating_stats)
 
-                const ratingRes = await fetch(`${API_URL}/api/ratings/${data.id}/user_rating/`).catch(() => ({ ok: false }))
+                const ratingRes = await fetch(`${API_URL}/api/ratings/${data.id}/user_rating/?_=${timestamp}`).catch(() => ({ ok: false }))
                 if (ratingRes.ok) {
                     const ratingData = await ratingRes.json()
                     const hasRated = Object.values(ratingData).some(v => v !== null)
                     setUserRated(hasRated)
                 }
 
-                const reviewsRes = await fetch(`${API_URL}/api/restaurants/${propSlug}/good_reviews/`).catch(() => ({ ok: false }))
+                const reviewsRes = await fetch(`${API_URL}/api/restaurants/${propSlug}/good_reviews/?_=${timestamp}`).catch(() => ({ ok: false }))
                 if (reviewsRes.ok) {
                     const reviewsData = await reviewsRes.json()
                     setGoodReviews(reviewsData)
@@ -59,13 +85,14 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
 
     const handleRatingSuccess = async () => {
         if (restaurant) {
-            const res = await fetch(`${API_URL}/api/restaurants/${restaurant.id}/`)
+            const timestamp = new Date().getTime()
+            const res = await fetch(`${API_URL}/api/restaurants/${restaurant.id}/?_=${timestamp}`)
             if (res.ok) {
                 const data = await res.json()
                 setRatingStats(data.rating_stats)
                 setUserRated(true)
 
-                const reviewsRes = await fetch(`${API_URL}/api/restaurants/${restaurant.slug}/good_reviews/`)
+                const reviewsRes = await fetch(`${API_URL}/api/restaurants/${restaurant.slug}/good_reviews/?_=${timestamp}`)
                 if (reviewsRes.ok) {
                     const reviewsData = await reviewsRes.json()
                     setGoodReviews(reviewsData)
@@ -81,7 +108,7 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
             try {
                 await navigator.share({
                     title: restaurant.name,
-                    text: `Посмотрите ${restaurant.name} на TAVSIA.UZ`,
+                    text: `Посмотрите ${restaurant.name} на MENZO.UZ`,
                     url: window.location.href
                 })
             } catch (err) {
@@ -98,8 +125,25 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
             <>
                 <Navbar />
                 <div className="loading-container">
-                    <div className="loading-spinner"></div>
-                    <p>Загрузка...</p>
+                    <div className="loading-content">
+                        <div className="loading-logo">MENZO</div>
+                        <div className="loading-spinner-wrapper">
+                            <div className="loading-spinner"></div>
+                            <div className="loading-spinner-ring"></div>
+                        </div>
+                        <div className="loading-text">
+                            <span>Загружаем</span>
+                            <span className="loading-dots">
+                                <span>.</span>
+                                <span>.</span>
+                                <span>.</span>
+                            </span>
+                        </div>
+                        <div className="loading-progress">
+                            <div className="loading-progress-bar"></div>
+                        </div>
+                        <p className="loading-subtitle">Лучшие места Узбекистана</p>
+                    </div>
                 </div>
             </>
         )
@@ -178,4 +222,4 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
             )}
         </>
     )
-};
+}
