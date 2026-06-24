@@ -13,18 +13,24 @@ export default function TypeTopRestaurants({ type }) {
 
     const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
 
-    // Загружаем топ-5 ресторанов
+    // Загружаем рестораны и сортируем по рейтингу
     useEffect(() => {
         if (!type) return
 
         setLoading(true)
-        fetch(`${API_URL}/api/restaurants/?type=${type}&limit=10&sort=rating`)
+        fetch(`${API_URL}/api/restaurants/?type=${type}`)
             .then(res => {
                 if (!res.ok) throw new Error('Network response was not ok')
                 return res.json()
             })
             .then(data => {
-                setTopRestaurants(data.slice(0, 5))
+                // Фильтруем рестораны с рейтингом и сортируем по убыванию
+                const withRating = data
+                    .filter(r => r.rating !== null && r.rating !== undefined && r.rating > 0)
+                    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+                
+                // Берем первые 5
+                setTopRestaurants(withRating.slice(0, 5))
                 setLoading(false)
             })
             .catch(err => {

@@ -69,6 +69,12 @@ export default function TypePageLayout({ typeData }) {
 
     const hasActiveFilters = filters.cuisine !== 'Все' || filters.price !== 'Все' || filters.sort !== 'rating'
 
+    // Берем ТОП 5 ресторанов для компонента TypeTopRestaurants
+    const topRestaurants = [...filteredRestaurants]
+        .filter(r => r.rating !== null && r.rating !== undefined && r.rating > 0)
+        .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+        .slice(0, 5)
+
     if (loading) {
         return (
             <>
@@ -96,7 +102,11 @@ export default function TypePageLayout({ typeData }) {
                         </div>
 
                         <div className="type-results">
-                            <TypeTopRestaurants type={typeData.type} />
+                            {/* Передаем ТОП 5 ресторанов */}
+                            <TypeTopRestaurants 
+                                type={typeData.type} 
+                                topRestaurants={topRestaurants}
+                            />
 
                             <div className="results-header">
                                 <h2>

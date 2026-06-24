@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -35,13 +35,10 @@ export default function RestaurantMenuPage() {
   const [showRatingModal, setShowRatingModal] = useState(false)
   const [ratingStats, setRatingStats] = useState(null)
   const [userRated, setUserRated] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [stylesApplied, setStylesApplied] = useState(false)
   
-  // Состояния для модалки фото
-  const [showPhotoModal, setShowPhotoModal] = useState(false)
-  const [selectedItem, setSelectedItem] = useState(null)
-
+  // Рефы для категорий и секций
+  const categoriesRef = useRef(null)
+  const sectionRefs = useRef({})
   const categoriesScrollRef = useRef(null)
   let touchStartX = 0
 
@@ -127,13 +124,41 @@ export default function RestaurantMenuPage() {
     touchStartX = touchEndX
   }
 
-  const handleCategoryChange = (categoryId) => {
-    if (activeCategory === categoryId || isTransitioning) return
-    setIsTransitioning(true)
+  // Прокрутка карусели к активной категории
+  const scrollToActiveCategory = useCallback((categoryId) => {
+    if (!categoriesScrollRef.current || !categoryId) return
+    
+    const container = categoriesScrollRef.current
+    const activeButton = container.querySelector(`.category-tab.active`)
+    
+    if (activeButton) {
+      const containerRect = container.getBoundingClientRect()
+      const buttonRect = activeButton.getBoundingClientRect()
+      
+      // Вычисляем позицию для прокрутки, чтобы кнопка была по центру
+      const scrollLeft = container.scrollLeft + (buttonRect.left - containerRect.left) - containerRect.width / 2 + buttonRect.width / 2
+      
+      container.scrollTo({
+        left: Math.max(0, scrollLeft),
+        behavior: 'smooth'
+      })
+    }
+  }, [])
+
+  // Обработчик клика по категории - скролл к секции
+  const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId)
-    setTimeout(() => {
-      setIsTransitioning(false)
-    }, 250)
+    
+    // Прокручиваем карусель к выбранной кнопке
+    setTimeout(() => scrollToActiveCategory(categoryId), 100)
+    
+    const section = sectionRefs.current[categoryId]
+    if (section) {
+      const headerOffset = categoriesRef.current ? categoriesRef.current.offsetHeight + 20 : 120
+      const elementPosition = section.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+    }
   }
 
   const handleBookingClick = () => {
@@ -180,7 +205,7 @@ export default function RestaurantMenuPage() {
           setCart([])
         }
       }
-    } catch (err) {}
+    } catch (err) { }
   }
 
   useEffect(() => {
@@ -237,6 +262,47 @@ export default function RestaurantMenuPage() {
     fetchData()
   }, [slug, API_URL])
 
+  // Отслеживание скролла для подсветки категорий
+  useEffect(() => {
+    const handleScroll = () => {
+      const categories = menuCategories.filter(cat => 
+        menuItems.some(item => item.category === cat.id)
+      )
+      
+      if (categories.length === 0) return
+      
+      let foundCategory = null
+      // Ищем текущую видимую секцию
+      for (let i = categories.length - 1; i >= 0; i--) {
+        const cat = categories[i]
+        const section = sectionRefs.current[cat.id]
+        if (section) {
+          const rect = section.getBoundingClientRect()
+          if (rect.top <= 150) {
+            foundCategory = cat.id
+            break
+          }
+        }
+      }
+      
+      if (foundCategory && activeCategory !== foundCategory) {
+        setActiveCategory(foundCategory)
+        // Прокручиваем карусель к активной кнопке
+        setTimeout(() => scrollToActiveCategory(foundCategory), 50)
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [menuCategories, menuItems, activeCategory, scrollToActiveCategory])
+
+  // Прокрутка к первой категории при загрузке
+  useEffect(() => {
+    if (activeCategory && menuCategories.length > 0) {
+      setTimeout(() => scrollToActiveCategory(activeCategory), 300)
+    }
+  }, [activeCategory, menuCategories, scrollToActiveCategory])
+
   const getCategoryIcon = (categoryName) => {
     const icons = {
       'Закуски': <GiKnifeFork />,
@@ -262,39 +328,18 @@ export default function RestaurantMenuPage() {
     return `${API_URL}/media/${imagePath}`
   }
 
+  // Фильтрация товаров по поиску
   const filteredItems = menuItems.filter(item => {
-    const matchesCategory = activeCategory ? item.category === activeCategory : true
-    const matchesSearch = searchQuery === '' ? true : 
+    const matchesSearch = searchQuery === '' ? true :
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()))
-    return matchesCategory && matchesSearch
+    return matchesSearch
   })
 
-  const currentCategory = menuCategories.find(c => c.id === activeCategory)
-
-  useEffect(() => {
-    const forceApplyStyles = () => {
-      const grid = document.querySelector('.menu-items-grid')
-      if (grid) {
-        grid.style.display = 'none'
-        setTimeout(() => {
-          grid.style.display = ''
-          setStylesApplied(true)
-        }, 10)
-      }
-      
-      const cards = document.querySelectorAll('.menu-item-card')
-      cards.forEach(card => {
-        card.style.opacity = '0'
-        setTimeout(() => {
-          card.style.opacity = '1'
-        }, 5)
-      })
-    }
-    
-    const timeout = setTimeout(forceApplyStyles, 100)
-    return () => clearTimeout(timeout)
-  }, [filteredItems])
+  // Группировка товаров по категориям
+  const getItemsByCategory = (categoryId) => {
+    return filteredItems.filter(item => item.category === categoryId)
+  }
 
   const addToCartWithAnimation = async (item, event) => {
     if (!restaurantId) return
@@ -313,16 +358,16 @@ export default function RestaurantMenuPage() {
     flyingItem.style.fontSize = '28px'
     flyingItem.style.zIndex = '9999'
     flyingItem.style.pointerEvents = 'none'
-    
+
     const cartBtn = document.querySelector('.cart-floating-btn')
     if (cartBtn) {
       const cartRect = cartBtn.getBoundingClientRect()
       flyingItem.style.setProperty('--fly-end-x', `${cartRect.left - rect.left}px`)
       flyingItem.style.setProperty('--fly-end-y', `${cartRect.top - rect.top}px`)
     }
-    
+
     document.body.appendChild(flyingItem)
-    
+
     setTimeout(() => {
       flyingItem.remove()
     }, 500)
@@ -343,7 +388,7 @@ export default function RestaurantMenuPage() {
         } else {
           setCart([...cart, { ...item, quantity: 1 }])
         }
-        
+
         const cartBtnElement = document.querySelector('.cart-floating-btn')
         if (cartBtnElement) {
           cartBtnElement.classList.add('cart-bump')
@@ -396,6 +441,10 @@ export default function RestaurantMenuPage() {
     setShowCart(false)
     alert('✅ Заказ успешно отправлен! Ресторан свяжется с вами в ближайшее время.')
   }
+
+  // Состояния для модалки фото
+  const [showPhotoModal, setShowPhotoModal] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
 
   if (loading) {
     return (
@@ -450,6 +499,11 @@ export default function RestaurantMenuPage() {
   }
 
   const isGold = restaurant.is_gold || false
+  
+  // Активные категории с товарами
+  const activeMenuCategories = menuCategories.filter(cat => 
+    menuItems.some(item => item.category === cat.id)
+  )
 
   return (
     <div className={`menu-page ${isGold ? 'gold-menu' : ''}`}>
@@ -485,10 +539,11 @@ export default function RestaurantMenuPage() {
                   <FaClock />
                   <span>{restaurant.working_hours || '11:00 - 23:00'}</span>
                 </div>
-                <div className="meta-item">
-                  <FaMapMarkerAlt />
-                  <span>{restaurant.address?.split(',')[0] || restaurant.region_label}</span>
-                </div>
+              </div>
+
+              <div className="meta-address">
+                <FaMapMarkerAlt />
+                <span className="full-address">{restaurant.address || restaurant.region_label || 'Адрес не указан'}</span>
               </div>
 
               <div className="restaurant-contacts">
@@ -560,8 +615,8 @@ export default function RestaurantMenuPage() {
         </div>
       </div>
 
-      {/* Категории */}
-      <div className="menu-categories-section">
+      {/* Закрепленная карусель категорий */}
+      <div className="menu-categories-section sticky-categories" ref={categoriesRef}>
         <div className="container">
           <div
             className="categories-scroll"
@@ -569,15 +624,15 @@ export default function RestaurantMenuPage() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
           >
-            {menuCategories.map(category => {
+            {activeMenuCategories.map(category => {
               const categoryItems = menuItems.filter(item => item.category === category.id)
               if (categoryItems.length === 0) return null
-              
+
               return (
                 <button
                   key={category.id}
                   className={`category-tab ${activeCategory === category.id ? 'active' : ''}`}
-                  onClick={() => handleCategoryChange(category.id)}
+                  onClick={() => handleCategoryClick(category.id)}
                 >
                   {category.image ? (
                     <div className="category-tab-image">
@@ -595,75 +650,82 @@ export default function RestaurantMenuPage() {
         </div>
       </div>
 
-      {/* Баннер категории */}
-      {currentCategory && currentCategory.image && (
-        <div className="category-banner">
-          <img src={getImageUrl(currentCategory.image)} alt={currentCategory.name} />
-          <div className="category-banner-overlay">
-            <div className="category-banner-content">
-              <h2>{currentCategory.name}</h2>
-              <p>{filteredItems.length} блюд</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Меню */}
-      <div className="menu-items-section">
+      {/* Вертикальное меню с категориями */}
+      <div className="menu-items-section vertical-menu">
         <div className="container">
           {filteredItems.length === 0 ? (
             <div className="no-items">
               <FaUtensils />
               <h3>Блюда не найдены</h3>
-              <p>Попробуйте изменить поиск или выберите другую категорию</p>
+              <p>Попробуйте изменить поиск</p>
             </div>
           ) : (
-            <>
-              {!currentCategory?.image && (
-                <div className="category-header-without-banner">
-                  <h2>{currentCategory?.name || 'Меню'}</h2>
-                  <p>{filteredItems.length} блюд</p>
-                </div>
-              )}
-              <div className={`menu-items-grid ${isTransitioning ? 'fade-out' : 'fade-in'} ${stylesApplied ? 'styles-ready' : ''}`}>
-                {filteredItems.map((item, index) => (
-                  <div key={item.id} className="menu-item-card" style={{ animationDelay: `${index * 0.05}s` }}>
-                    <div 
-                      className="item-image" 
-                      onClick={() => openPhotoModal(item)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <img 
-                        src={item.image ? getImageUrl(item.image) : '/images/placeholder-menu.png'} 
-                        alt={item.name}
-                        onError={(e) => {
-                          e.target.src = '/images/placeholder-menu.png'
-                        }}
-                      />
-                      {item.is_recommended && <span className="recommended-badge">⭐ Хит</span>}
+            <div className="vertical-menu-wrapper">
+              {activeMenuCategories.map(category => {
+                const categoryItems = getItemsByCategory(category.id)
+                if (categoryItems.length === 0) return null
+                
+                return (
+                  <div 
+                    key={category.id} 
+                    className="category-section"
+                    ref={el => sectionRefs.current[category.id] = el}
+                    id={`category-${category.id}`}
+                  >
+                    <div className="category-section-header">
+                      <h2 className="category-section-title">
+                        {category.image && (
+                          <span className="category-section-icon">
+                            <img src={getImageUrl(category.image)} alt={category.name} />
+                          </span>
+                        )}
+                        {category.name}
+                      </h2>
+                      <span className="category-section-count">{categoryItems.length} блюд</span>
                     </div>
-                    <div className="item-info">
-                      <div className="item-header">
-                        <h3>{item.name}</h3>
-                        <span className="item-price">{Number(item.price).toLocaleString()} сум</span>
-                      </div>
-                      {item.description && (
-                        <p className="item-description">{item.description}</p>
-                      )}
-                      <div className="item-actions">
-                        <button 
-                          className="add-to-cart-btn" 
-                          onClick={(e) => addToCartWithAnimation(item, e)}
-                        >
-                          <FaShoppingCart />
-                          <span>В корзину</span>
-                        </button>
-                      </div>
+                    
+                    <div className="category-items-grid">
+                      {categoryItems.map((item, index) => (
+                        <div key={item.id} className="menu-item-card" style={{ animationDelay: `${index * 0.05}s` }}>
+                          <div
+                            className="item-image"
+                            onClick={() => openPhotoModal(item)}
+                            style={{ cursor: 'pointer' }}
+                          >
+                            <img
+                              src={item.image ? getImageUrl(item.image) : '/images/placeholder-menu.png'}
+                              alt={item.name}
+                              onError={(e) => {
+                                e.target.src = '/images/placeholder-menu.png'
+                              }}
+                            />
+                            {item.is_recommended && <span className="recommended-badge">⭐ Хит</span>}
+                          </div>
+                          <div className="item-info">
+                            <div className="item-header">
+                              <h3>{item.name}</h3>
+                              <span className="item-price">{Number(item.price).toLocaleString()} сум</span>
+                            </div>
+                            {item.description && (
+                              <p className="item-description">{item.description}</p>
+                            )}
+                            <div className="item-actions">
+                              <button
+                                className="add-to-cart-btn"
+                                onClick={(e) => addToCartWithAnimation(item, e)}
+                              >
+                                <FaShoppingCart />
+                                <span>В корзину</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </>
+                )
+              })}
+            </div>
           )}
         </div>
       </div>
@@ -726,7 +788,7 @@ export default function RestaurantMenuPage() {
         {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
       </button>
 
-      {/* Кнопка "Наверх" - появляется при скролле */}
+      {/* Кнопка "Наверх" */}
       <button className="scroll-to-top-btn" onClick={scrollToTop} aria-label="Наверх">
         <FaArrowUp />
       </button>
@@ -739,8 +801,8 @@ export default function RestaurantMenuPage() {
               <FaTimes />
             </button>
             <div className="photo-modal-image">
-              <img 
-                src={getImageUrl(selectedItem.image)} 
+              <img
+                src={getImageUrl(selectedItem.image)}
                 alt={selectedItem.name}
               />
             </div>
@@ -750,7 +812,7 @@ export default function RestaurantMenuPage() {
               {selectedItem.description && (
                 <p className="photo-modal-description">{selectedItem.description}</p>
               )}
-              <button 
+              <button
                 className="photo-modal-add-btn"
                 onClick={(e) => {
                   addToCartWithAnimation(selectedItem, e)

@@ -8,11 +8,11 @@
 }
 
 /* ============================================
-   HEADER
+   HEADER - УВЕЛИЧЕННЫЙ
    ============================================ */
 .menu-header {
     position: relative;
-    height: 420px;
+    height: 520px;
     background-size: cover;
     background-position: center;
 }
@@ -23,7 +23,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 1px;
+    height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent), rgba(245,158,11,0.3), var(--accent), transparent);
     z-index: 3;
 }
@@ -31,13 +31,13 @@
 .menu-header-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.168), rgba(0, 0, 0, 0.212));
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
 }
 
 .menu-header-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 32px;
+    padding: 24px 32px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -48,22 +48,25 @@
 .back-button {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    color: rgba(255,255,255,0.8);
+    gap: 8px;
+    color: rgba(255,255,255,0.9);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     width: fit-content;
-    background: rgba(0,0,0,0.4);
-    padding: 5px 12px;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 22px;
     border-radius: 30px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
     transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .back-button:hover {
     color: var(--accent);
-    gap: 8px;
-    background: rgba(0,0,0,0.6);
+    gap: 12px;
+    background: rgba(0,0,0,0.7);
+    border-color: var(--accent);
 }
 
 .restaurant-info {
@@ -72,135 +75,224 @@
     margin-bottom: auto;
 }
 
+/* Лого - увеличен до 150px */
 .restaurant-logo {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--accent);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     background: #1a1a1a;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    padding: 4px;
+    border: none;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
+    background-size: 300% 300%;
+    animation: goldBorderSpin 4s ease-in-out infinite;
+}
+
+.restaurant-logo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #0a0a0a;
+}
+
+@keyframes goldBorderSpin {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .restaurant-logo-placeholder {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    margin: 0 auto 12px;
+    margin: 0 auto 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
+    font-size: 4rem;
     color: white;
-    box-shadow: 0 10px 25px rgba(230,126,34,0.3);
+    box-shadow: 0 10px 30px rgba(230,126,34,0.3);
+    padding: 4px;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
+    background-size: 300% 300%;
+    animation: goldBorderSpin 4s ease-in-out infinite;
 }
 
+.restaurant-logo-placeholder > * {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+}
+
+/* Название - ближе к лого */
 .restaurant-info h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     color: white;
     margin-bottom: 12px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 15px rgba(0,0,0,0.4);
+    letter-spacing: -0.5px;
 }
 
+/* Рейтинг и время работы - в одной строке */
 .restaurant-meta {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .meta-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.9);
-    font-size: 0.8rem;
-    background: rgba(0,0,0,0.4);
-    padding: 4px 12px;
+    gap: 10px;
+    color: rgba(255,255,255,0.95);
+    font-size: 0.95rem;
+    background: rgba(0,0,0,0.5);
+    padding: 8px 20px;
     border-radius: 30px;
     backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
-.meta-item svg { color: var(--accent); }
+.meta-item svg { 
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.meta-item .star-icon {
+    color: #fbbf24;
+}
+
+/* Адрес - отдельно снизу, полный */
+.meta-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.4);
+    padding: 8px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-top: 6px;
+    justify-content: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.meta-address svg {
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.meta-address .full-address {
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.4;
+    text-align: center;
+}
 
 .restaurant-contacts {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
+    margin-top: 12px;
     margin-bottom: 8px;
 }
 
 .contact-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 16px;
+    gap: 10px;
+    padding: 10px 24px;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(4px);
-    border-radius: 40px;
+    border-radius: 50px;
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     transition: all 0.3s;
     border: 1px solid rgba(255,255,255,0.15);
+}
+
+.contact-link svg {
+    font-size: 1.1rem;
 }
 
 .contact-link-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 42px;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(4px);
     border-radius: 50%;
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: all 0.3s;
     border: 1px solid rgba(255,255,255,0.15);
 }
 
 .contact-link:hover,
 .contact-link-icon:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .contact-link:hover { background: var(--accent); }
 .telegram-icon:hover { background: #0088cc; }
 .instagram-icon:hover { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+.email-icon:hover { background: #3498db; }
+.facebook-icon:hover { background: #3b5998; }
+.website-icon:hover { background: #9b59b6; }
 
 .restaurant-action-buttons {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 16px;
     flex-wrap: wrap;
-    margin-top: 12px;
+    margin-top: 14px;
 }
 
 .action-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 18px;
+    gap: 10px;
+    padding: 10px 24px;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(4px);
-    border-radius: 40px;
+    border-radius: 50px;
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     transition: all 0.3s;
     cursor: pointer;
     border: 1px solid rgba(255,255,255,0.15);
 }
 
-.action-btn:hover { transform: translateY(-2px); }
+.action-btn svg {
+    font-size: 1.1rem;
+}
+
+.action-btn:hover { transform: translateY(-3px); }
 
 .rating-action-btn { background: rgba(52,152,219,0.2); border-color: rgba(52,152,219,0.4); }
 .rating-action-btn:hover { background: rgba(52,152,219,0.4); box-shadow: 0 4px 15px rgba(52,152,219,0.2); }
@@ -270,12 +362,12 @@
 
 .clear-search:hover { color: var(--accent); }
 
-/* Категории */
+/* Категории - увеличены по высоте */
 .categories-scroll {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     overflow-x: auto;
-    padding: 6px 0;
+    padding: 8px 0;
     scrollbar-width: thin;
     cursor: grab;
 }
@@ -288,8 +380,8 @@
 .category-tab {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
+    gap: 10px;
+    padding: 14px 28px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 50px;
@@ -297,9 +389,10 @@
     cursor: pointer;
     transition: all 0.25s ease;
     white-space: nowrap;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 500;
     flex-shrink: 0;
+    min-height: 56px;
 }
 
 .category-tab:hover {
@@ -314,11 +407,11 @@
     color: white;
 }
 
-.category-icon { font-size: 1rem; }
+.category-icon { font-size: 1.2rem; }
 
 .category-tab-image {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     overflow: hidden;
     background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
@@ -327,6 +420,17 @@
 
 .category-tab.active .category-tab-image { border-color: white; }
 .category-tab-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.category-count {
+    font-size: 0.85rem;
+    padding: 2px 10px;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.1);
+}
+
+.category-tab.active .category-count {
+    background: rgba(255,255,255,0.2);
+}
 
 /* Баннер категории */
 .category-banner {
@@ -383,7 +487,7 @@
 .menu-items-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 24px;
+    gap: 28px;
     transition: opacity 0.25s ease;
 }
 
@@ -398,7 +502,7 @@
     to { opacity: 1; }
 }
 
-/* Карточка блюда - вертикальная с четырехугольным фото */
+/* Карточка блюда */
 .menu-item-card {
     display: flex;
     flex-direction: column;
@@ -423,7 +527,6 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Фото блюда - четырехугольное (прямоугольник 16:9) */
 .item-image {
     position: relative;
     width: 100%;
@@ -542,43 +645,6 @@
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(230,126,34,0.3);
-}
-
-.add-to-cart-btn:active {
-    transform: translateY(0);
-}
-
-/* Анимация добавления в корзину */
-@keyframes cartBump {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-@keyframes cartFly {
-    0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: translate(calc(var(--fly-end-x, 100px) * 0.5), calc(var(--fly-end-y, -50px) * 0.5)) scale(0.8);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translate(var(--fly-end-x, 200px), var(--fly-end-y, -100px)) scale(0);
-        opacity: 0;
-    }
-}
-
-.cart-bump {
-    animation: cartBump 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cart-flying-item {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: none;
-    animation: cartFly 0.5s ease-out forwards;
 }
 
 /* Корзина */
@@ -772,8 +838,8 @@
     position: fixed;
     bottom: 25px;
     right: 25px;
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     background: linear-gradient(135deg, var(--accent), var(--accent-hover));
     border: none;
     border-radius: 50%;
@@ -806,6 +872,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Кнопка "Наверх" */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    z-index: 95;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    opacity: 0.8;
+}
+
+.scroll-to-top-btn:hover {
+    transform: translateY(-3px);
+    opacity: 1;
+    box-shadow: 0 6px 16px rgba(230,126,34,0.4);
 }
 
 /* Мини-футер */
@@ -869,7 +963,9 @@
     color: var(--text-secondary);
 }
 
-/* Загрузка и ошибки */
+/* ============================================
+   ЗАГРУЗКА И ОШИБКИ
+   ============================================ */
 .menu-loading,
 .menu-error,
 .menu-unavailable {
@@ -884,16 +980,130 @@
     padding: 50px 20px;
 }
 
-.loading-spinner {
-    width: 45px;
-    height: 45px;
-    border: 3px solid rgba(230,126,34,0.2);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.loading-container {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.loading-logo {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.loading-spinner-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid rgba(230,126,34,0.1);
+    border-top-color: var(--accent);
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner-ring {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgba(230,126,34,0.2);
+    border-right-color: rgba(230,126,34,0.1);
+    animation: spin 1.5s linear infinite reverse;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.loading-dots {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.loading-dots span {
+    animation: dots 1.4s ease-in-out infinite;
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+.loading-dots span:nth-child(1) { animation-delay: 0s; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dots {
+    0%, 80%, 100% { opacity: 0.2; transform: translateY(0); }
+    40% { opacity: 1; transform: translateY(-6px); }
+}
+
+.loading-progress {
+    width: 200px;
+    height: 3px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 2px;
+    animation: progressBar 2s ease-in-out infinite;
+}
+
+@keyframes progressBar {
+    0% { width: 0%; transform: translateX(0); }
+    50% { width: 70%; transform: translateX(0); }
+    100% { width: 100%; transform: translateX(0); }
+}
+
+.loading-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    margin-top: -8px;
+}
 
 .error-icon,
 .unavailable-icon {
@@ -942,288 +1152,8 @@
     box-shadow: 0 8px 20px rgba(230,126,34,0.3);
 }
 
-/* GOLD СТИЛИ */
-.menu-page.gold-menu .menu-header { border-bottom: 2px solid rgba(251,191,36,0.3); }
-.menu-page.gold-menu .menu-header::after { background: linear-gradient(90deg, transparent, #fbbf24, #f59e0b, #d97706, #fbbf24, transparent); }
-.menu-page.gold-menu .back-button { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); }
-.menu-page.gold-menu .back-button:hover { background: rgba(251,191,36,0.25); color: #fbbf24; }
-.menu-page.gold-menu .restaurant-logo { border-color: #fbbf24; box-shadow: 0 0 20px rgba(251,191,36,0.3); }
-.menu-page.gold-menu .restaurant-logo-placeholder { background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706); }
-.menu-page.gold-menu .restaurant-info h1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.menu-page.gold-menu .category-tab.active { background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706); }
-.menu-page.gold-menu .category-tab:hover:not(.active) { border-color: #fbbf24; color: #fbbf24; }
-.menu-page.gold-menu .menu-item-card { border: 1px solid rgba(251,191,36,0.15); background: linear-gradient(135deg, rgba(251,191,36,0.05), rgba(0,0,0,0.1)); }
-.menu-page.gold-menu .menu-item-card:hover { border-color: rgba(251,191,36,0.4); box-shadow: 0 0 20px rgba(251,191,36,0.1); }
-.menu-page.gold-menu .item-price { color: #fbbf24; text-shadow: 0 0 5px rgba(251,191,36,0.3); }
-.menu-page.gold-menu .add-to-cart-btn { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); color: #fbbf24; }
-.menu-page.gold-menu .add-to-cart-btn:hover { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #0a0a0a; }
-.menu-page.gold-menu .cart-floating-btn { background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706); box-shadow: 0 4px 15px rgba(251,191,36,0.4); }
-.menu-page.gold-menu .cart-floating-btn:hover { box-shadow: 0 8px 25px rgba(251,191,36,0.6); }
-.menu-page.gold-menu .checkout-btn { background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706); }
-.menu-page.gold-menu .rating-action-btn { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.3); }
-.menu-page.gold-menu .rating-action-btn:hover { background: rgba(251,191,36,0.3); box-shadow: 0 4px 15px rgba(251,191,36,0.2); }
-.menu-page.gold-menu .booking-action-btn { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.3); }
-.menu-page.gold-menu .booking-action-btn:hover { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #0a0a0a; }
-
 /* ============================================
-   АДАПТИВНОСТЬ
-   ============================================ */
-
-/* ПК версия - 3 колонки */
-@media (min-width: 1025px) {
-    .menu-items-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 24px;
-    }
-    
-    .item-image {
-        height: 200px;
-    }
-}
-
-/* Планшеты - 2 колонки */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .container { padding: 0 24px; }
-    .menu-items-grid { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 20px; 
-    }
-    .item-image {
-        height: 180px;
-    }
-}
-
-/* Мобильные - 2 колонки */
-@media (max-width: 768px) {
-    .menu-header { height: 380px; }
-    .menu-header-content { padding: 16px 20px; }
-    .restaurant-logo, .restaurant-logo-placeholder { width: 70px; height: 70px; font-size: 1.8rem; }
-    .restaurant-info h1 { font-size: 1.5rem; margin-bottom: 10px; }
-    .restaurant-meta { gap: 10px; margin-bottom: 12px; }
-    .meta-item { font-size: 0.65rem; padding: 3px 10px; }
-    .restaurant-contacts { gap: 10px; }
-    .contact-link { padding: 5px 12px; font-size: 0.7rem; }
-    .contact-link-icon { width: 30px; height: 30px; font-size: 0.85rem; }
-    .restaurant-action-buttons { gap: 10px; margin-top: 10px; }
-    .action-btn { padding: 5px 14px; font-size: 0.75rem; }
-    .container { padding: 0 16px; }
-    
-    .menu-items-grid { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 16px; 
-    }
-    
-    .item-image {
-        height: 160px;
-    }
-    
-    .item-header h3 { font-size: 0.95rem; }
-    .item-price { font-size: 0.9rem; }
-    .item-description { font-size: 0.75rem; }
-    .item-info { padding: 12px; }
-    
-    .category-tab { padding: 5px 12px; gap: 6px; font-size: 0.75rem; }
-    .category-tab-image { width: 24px; height: 24px; }
-    .category-banner { height: 130px; margin-bottom: 20px; }
-    .category-banner-content h2 { font-size: 1.2rem; }
-    .cart-sidebar { width: 100%; right: -100%; }
-    .cart-floating-btn { bottom: 18px; right: 18px; width: 46px; height: 46px; }
-    .menu-mini-footer { padding: 14px 0; margin-top: 25px; }
-    .mini-footer-content { flex-direction: column; text-align: center; gap: 10px; margin-bottom: 10px; }
-    .mini-footer-info h4 { font-size: 0.85rem; }
-    .mini-footer-phone a { font-size: 0.75rem; }
-}
-
-@media (max-width: 550px) {
-    .menu-items-grid { gap: 12px; }
-    .item-image { height: 140px; }
-    .item-header h3 { font-size: 0.85rem; }
-    .item-price { font-size: 0.85rem; }
-    .add-to-cart-btn { padding: 8px 10px; font-size: 0.75rem; }
-}
-
-@media (max-width: 480px) {
-    .menu-header { height: 350px; }
-    .restaurant-logo, .restaurant-logo-placeholder { width: 60px; height: 60px; font-size: 1.5rem; }
-    .restaurant-info h1 { font-size: 1.3rem; }
-    .meta-item { font-size: 0.6rem; padding: 2px 8px; }
-    .contact-link { padding: 4px 10px; font-size: 0.65rem; }
-    .contact-link-icon { width: 28px; height: 28px; font-size: 0.8rem; }
-    .action-btn { padding: 4px 12px; font-size: 0.7rem; }
-    .category-tab { padding: 4px 10px; }
-    .category-name { font-size: 0.65rem; }
-    
-    .menu-items-grid { gap: 10px; }
-    .item-image { height: 120px; }
-    .item-header h3 { font-size: 0.8rem; }
-    .item-price { font-size: 0.8rem; }
-    .item-description { font-size: 0.7rem; }
-    .item-info { padding: 10px; }
-    .menu-mini-footer { padding: 12px 0; margin-top: 20px; }
-    .mini-footer-info h4 { font-size: 0.8rem; }
-    .mini-footer-info p { font-size: 0.65rem; }
-    .mini-footer-copyright { font-size: 0.55rem; }
-    .cart-item-image { width: 40px; height: 40px; }
-    .cart-item-name { font-size: 0.7rem; }
-    .cart-item-actions button { width: 22px; height: 22px; font-size: 0.8rem; }
-}
-
-@media (max-width: 380px) {
-    .item-image { height: 100px; }
-    .item-header h3 { font-size: 0.75rem; }
-    
-    .add-to-cart-btn span { display: none; }
-    .add-to-cart-btn svg { margin: 0; font-size: 1rem; }
-    .add-to-cart-btn { padding: 8px; }
-    
-    .action-btn span { display: none; }
-    .action-btn { padding: 7px 10px; }
-    .action-btn svg { margin: 0; font-size: 0.85rem; }
-}
-
-/* Доступность */
-@media (prefers-reduced-motion: reduce) {
-    .menu-item-card, .category-tab, .add-to-cart-btn, .cart-floating-btn, .checkout-btn,
-    .menu-items-grid, .menu-items-grid.fade-out, .menu-items-grid.fade-in {
-        transition: none;
-        animation: none;
-    }
-    .menu-items-grid.fade-out, .menu-items-grid.fade-in { opacity: 1; }
-    .loading-spinner { animation: none; }
-}
-
-/* Принудительные стили */
-.menu-items-grid {
-    display: grid !important;
-}
-
-.menu-items-grid.styles-ready {
-    display: grid !important;
-}
-
-.fade-in {
-    animation: fadeIn 0.2s ease forwards;
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.15s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Дополнительные стили для новых иконок контактов */
-
-.email-icon {
-    background: rgba(52, 152, 219, 0.15);
-    border: 1px solid rgba(52, 152, 219, 0.3);
-}
-
-.email-icon:hover {
-    background: #3498db;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.facebook-icon {
-    background: rgba(59, 89, 152, 0.15);
-    border: 1px solid rgba(59, 89, 152, 0.3);
-}
-
-.facebook-icon:hover {
-    background: #3b5998;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.website-icon {
-    background: rgba(155, 89, 182, 0.15);
-    border: 1px solid rgba(155, 89, 182, 0.3);
-}
-
-.website-icon:hover {
-    background: #9b59b6;
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* Адаптив для новых иконок */
-@media (max-width: 768px) {
-    .restaurant-contacts {
-        gap: 8px;
-    }
-    
-    .contact-link-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .restaurant-contacts {
-        gap: 6px;
-    }
-    
-    .contact-link-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
-    }
-}
-
-/* ============================================
-   КНОПКА "НАВЕРХ"
-   ============================================ */
-.scroll-to-top-btn {
-    position: fixed;
-    bottom: 100px;
-    left: 25px;
-    bottom: 25px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    z-index: 95;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    opacity: 0.8;
-}
-
-.scroll-to-top-btn:hover {
-    transform: translateY(-3px);
-    opacity: 1;
-    box-shadow: 0 6px 16px rgba(230, 126, 34, 0.4);
-}
-
-.scroll-to-top-btn:active {
-    transform: translateY(0);
-}
-
-/* Адаптив для кнопки наверх */
-@media (max-width: 768px) {
-    .scroll-to-top-btn {
-        bottom: 80px;
-        left: 15px;
-        bottom: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-}
-
-/* ============================================
-   МОДАЛКА С ФОТО БЛЮДА
+   МОДАЛКА С ФОТО
    ============================================ */
 .photo-modal-overlay {
     position: fixed;
@@ -1231,7 +1161,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0,0,0,0.95);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -1253,18 +1183,12 @@
     overflow: hidden;
     position: relative;
     animation: photoModalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(230, 126, 34, 0.3);
+    border: 1px solid rgba(230,126,34,0.3);
 }
 
 @keyframes photoModalSlideUp {
-    from {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .photo-modal-close {
@@ -1274,7 +1198,7 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0,0,0,0.6);
     border: none;
     color: white;
     cursor: pointer;
@@ -1350,264 +1274,638 @@
     filter: brightness(1.05);
 }
 
-/* Gold стили для модалки фото */
-.gold-menu .photo-modal-content {
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    background: linear-gradient(135deg, #1a1a0a, #0d0d0a);
-}
-
-.gold-menu .photo-modal-price {
-    color: #fbbf24;
-}
-
-.gold-menu .photo-modal-add-btn {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
-}
-
-/* Адаптив для модалки фото */
-@media (max-width: 768px) {
-    .photo-modal-image {
-        height: 250px;
-    }
-    
-    .photo-modal-info h3 {
-        font-size: 1.1rem;
-    }
-    
-    .photo-modal-price {
-        font-size: 1rem;
-    }
-    
-    .photo-modal-description {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .photo-modal-image {
-        height: 200px;
-    }
-    
-    .photo-modal-info {
-        padding: 16px;
-    }
-    
-    .photo-modal-info h3 {
-        font-size: 1rem;
-    }
-}
-
 /* ============================================
-   ЗАГРУЗКА С АНИМАЦИЕЙ
+   АДАПТИВНОСТЬ
    ============================================ */
 
-.loading-container {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+/* Планшеты */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .container { padding: 0 24px; }
+    .menu-items-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 20px; 
+    }
+    .item-image { height: 180px; }
+    .menu-header { height: 450px; }
+    .restaurant-info h1 { font-size: 2.2rem; }
+    .restaurant-logo { width: 120px; height: 120px; }
+    .restaurant-logo-placeholder { width: 120px; height: 120px; font-size: 3.2rem; }
+    .category-tab { padding: 12px 22px; font-size: 0.9rem; min-height: 50px; }
 }
 
-.loading-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    text-align: center;
-}
-
-.loading-logo {
-    font-size: 2.8rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 2px;
-    animation: logoPulse 2s ease-in-out infinite;
-}
-
-@keyframes logoPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.8; }
-}
-
-.loading-spinner-wrapper {
-    position: relative;
-    width: 60px;
-    height: 60px;
-}
-
-.loading-spinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid rgba(230, 126, 34, 0.1);
-    border-top-color: var(--accent);
-    animation: spin 0.8s linear infinite;
-}
-
-.loading-spinner-ring {
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top-color: rgba(230, 126, 34, 0.2);
-    border-right-color: rgba(230, 126, 34, 0.1);
-    animation: spin 1.5s linear infinite reverse;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.loading-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.loading-dots {
-    display: inline-flex;
-    gap: 2px;
-}
-
-.loading-dots span {
-    animation: dots 1.4s ease-in-out infinite;
-    font-size: 1.3rem;
-    color: var(--accent);
-}
-
-.loading-dots span:nth-child(1) { animation-delay: 0s; }
-.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes dots {
-    0%, 80%, 100% { opacity: 0.2; transform: translateY(0); }
-    40% { opacity: 1; transform: translateY(-6px); }
-}
-
-.loading-progress {
-    width: 200px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.loading-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-    border-radius: 2px;
-    animation: progressBar 2s ease-in-out infinite;
-}
-
-@keyframes progressBar {
-    0% { width: 0%; transform: translateX(0); }
-    50% { width: 70%; transform: translateX(0); }
-    100% { width: 100%; transform: translateX(0); }
-}
-
-.loading-subtitle {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    opacity: 0.5;
-    margin-top: -8px;
-}
-
-/* Адаптив загрузки */
+/* Мобильные */
 @media (max-width: 768px) {
-    .loading-logo {
-        font-size: 2.2rem;
+    .menu-header { height: 420px; }
+    .menu-header-content { padding: 16px 20px; }
+    .back-button { font-size: 0.8rem; padding: 6px 14px; }
+    .restaurant-logo { width: 90px; height: 90px; }
+    .restaurant-logo-placeholder { width: 90px; height: 90px; font-size: 2.5rem; }
+    .restaurant-info h1 { font-size: 1.8rem; margin-bottom: 10px; }
+    .restaurant-meta { gap: 10px; margin-bottom: 6px; }
+    .meta-item { font-size: 0.7rem; padding: 4px 12px; gap: 6px; }
+    .meta-address { font-size: 0.7rem; padding: 4px 14px; max-width: 90%; margin-top: 4px; }
+    .restaurant-contacts { gap: 10px; margin-top: 8px; }
+    .contact-link { padding: 6px 14px; font-size: 0.8rem; gap: 6px; }
+    .contact-link-icon { width: 34px; height: 34px; font-size: 0.95rem; }
+    .action-btn { padding: 6px 16px; font-size: 0.8rem; gap: 6px; }
+    .action-btn svg { font-size: 0.9rem; }
+    .restaurant-action-buttons { gap: 10px; margin-top: 10px; }
+    .container { padding: 0 16px; }
+    .menu-items-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 16px; 
     }
-    
-    .loading-spinner-wrapper {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .loading-spinner {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .loading-spinner-ring {
-        width: 58px;
-        height: 58px;
-    }
-    
-    .loading-text {
-        font-size: 0.95rem;
-    }
-    
-    .loading-progress {
-        width: 160px;
-    }
+    .item-image { height: 160px; }
+    .category-tab { padding: 10px 18px; font-size: 0.8rem; gap: 6px; min-height: 48px; }
+    .category-tab-image { width: 28px; height: 28px; }
+    .category-icon { font-size: 1rem; }
+    .category-count { font-size: 0.7rem; padding: 1px 8px; }
+    .cart-sidebar { width: 100%; right: -100%; }
+    .cart-floating-btn { bottom: 18px; right: 18px; width: 48px; height: 48px; }
+    .scroll-to-top-btn { bottom: 18px; left: 18px; width: 40px; height: 40px; font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
-    .loading-logo {
-        font-size: 1.8rem;
-    }
+    .menu-header { height: 380px; }
+    .restaurant-logo { width: 75px; height: 75px; }
+    .restaurant-logo-placeholder { width: 75px; height: 75px; font-size: 2rem; }
+    .restaurant-info h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    .restaurant-meta { gap: 6px; margin-bottom: 4px; flex-wrap: wrap; justify-content: center; }
+    .meta-item { font-size: 0.6rem; padding: 3px 8px; gap: 4px; }
+    .meta-address { font-size: 0.6rem; padding: 3px 10px; max-width: 95%; margin-top: 3px; }
+    .contact-link { padding: 4px 10px; font-size: 0.7rem; gap: 4px; }
+    .contact-link-icon { width: 28px; height: 28px; font-size: 0.8rem; }
+    .action-btn { padding: 4px 12px; font-size: 0.7rem; gap: 4px; }
+    .action-btn svg { font-size: 0.8rem; }
+    .category-tab { padding: 8px 14px; font-size: 0.7rem; gap: 4px; min-height: 42px; }
+    .category-tab-image { width: 22px; height: 22px; }
+    .category-count { font-size: 0.6rem; padding: 1px 6px; }
+    .menu-items-grid { gap: 12px; }
+    .item-image { height: 140px; }
+}
+
+@media (max-width: 380px) {
+    .menu-header { height: 340px; }
+    .restaurant-logo { width: 60px; height: 60px; }
+    .restaurant-logo-placeholder { width: 60px; height: 60px; font-size: 1.6rem; }
+    .restaurant-info h1 { font-size: 1.2rem; margin-bottom: 6px; }
+    .menu-items-grid { gap: 10px; }
+    .item-image { height: 120px; }
+    .category-tab { padding: 6px 10px; font-size: 0.65rem; min-height: 36px; }
+    .category-tab-image { width: 18px; height: 18px; }
     
-    .loading-spinner-wrapper {
-        width: 40px;
-        height: 40px;
-    }
+    .add-to-cart-btn span { display: none; }
+    .add-to-cart-btn svg { margin: 0; font-size: 1rem; }
+    .add-to-cart-btn { padding: 8px; }
     
-    .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border-width: 2px;
-    }
-    
-    .loading-spinner-ring {
-        width: 48px;
-        height: 48px;
-        border-width: 2px;
-    }
-    
-    .loading-text {
-        font-size: 0.85rem;
-    }
-    
-    .loading-progress {
-        width: 120px;
-    }
-    
-    .loading-subtitle {
-        font-size: 0.65rem;
-    }
+    .action-btn span { display: none; }
+    .action-btn { padding: 5px 8px; }
+    .action-btn svg { margin: 0; font-size: 0.85rem; }
 }
 
 /* Уменьшение движения */
 @media (prefers-reduced-motion: reduce) {
-    .loading-logo {
+    .menu-item-card, .category-tab, .add-to-cart-btn, .cart-floating-btn, .checkout-btn,
+    .menu-items-grid, .menu-items-grid.fade-out, .menu-items-grid.fade-in {
+        transition: none;
         animation: none;
     }
-    
-    .loading-spinner,
-    .loading-spinner-ring {
-        animation: none;
+    .menu-items-grid.fade-out, .menu-items-grid.fade-in { opacity: 1; }
+    .loading-spinner { animation: none; }
+    .loading-logo { animation: none; }
+    .loading-spinner, .loading-spinner-ring { animation: none; }
+    .loading-dots span { animation: none; }
+    .loading-progress-bar { animation: none; width: 100%; }
+    .goldBorderSpin { animation: none; }
+}
+
+/* Адаптив загрузки */
+@media (max-width: 768px) {
+    .loading-logo { font-size: 2.2rem; }
+    .loading-spinner-wrapper { width: 50px; height: 50px; }
+    .loading-spinner { width: 50px; height: 50px; }
+    .loading-spinner-ring { width: 58px; height: 58px; }
+    .loading-text { font-size: 0.95rem; }
+    .loading-progress { width: 160px; }
+}
+
+@media (max-width: 480px) {
+    .loading-logo { font-size: 1.8rem; }
+    .loading-spinner-wrapper { width: 40px; height: 40px; }
+    .loading-spinner { width: 40px; height: 40px; border-width: 2px; }
+    .loading-spinner-ring { width: 48px; height: 48px; border-width: 2px; }
+    .loading-text { font-size: 0.85rem; }
+    .loading-progress { width: 120px; }
+    .loading-subtitle { font-size: 0.65rem; }
+}
+
+/* ============================================
+   GOLD СТИЛИ
+   ============================================ */
+.menu-page.gold-menu .menu-header::after {
+    background: linear-gradient(90deg, transparent, #fbbf24, #f59e0b, #d97706, #fbbf24, transparent);
+}
+
+.menu-page.gold-menu .back-button {
+    background: rgba(251,191,36,0.15);
+    border: 1px solid rgba(251,191,36,0.3);
+}
+.menu-page.gold-menu .back-button:hover {
+    background: rgba(251,191,36,0.25);
+    color: #fbbf24;
+}
+
+.menu-page.gold-menu .restaurant-info h1 {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.menu-page.gold-menu .category-tab.active {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+}
+
+.menu-page.gold-menu .category-tab:hover:not(.active) {
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
+
+.menu-page.gold-menu .menu-item-card {
+    border: 1px solid rgba(251,191,36,0.15);
+    background: linear-gradient(135deg, rgba(251,191,36,0.05), rgba(0,0,0,0.1));
+}
+
+.menu-page.gold-menu .menu-item-card:hover {
+    border-color: rgba(251,191,36,0.4);
+    box-shadow: 0 0 20px rgba(251,191,36,0.1);
+}
+
+.menu-page.gold-menu .item-price {
+    color: #fbbf24;
+    text-shadow: 0 0 5px rgba(251,191,36,0.3);
+}
+
+.menu-page.gold-menu .add-to-cart-btn {
+    background: rgba(251,191,36,0.1);
+    border-color: rgba(251,191,36,0.3);
+    color: #fbbf24;
+}
+
+.menu-page.gold-menu .add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+}
+
+.menu-page.gold-menu .cart-floating-btn {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    box-shadow: 0 4px 15px rgba(251,191,36,0.4);
+}
+
+.menu-page.gold-menu .checkout-btn {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+}
+
+.menu-page.gold-menu .rating-action-btn {
+    background: rgba(251,191,36,0.15);
+    border-color: rgba(251,191,36,0.3);
+}
+
+.menu-page.gold-menu .rating-action-btn:hover {
+    background: rgba(251,191,36,0.3);
+}
+
+.menu-page.gold-menu .booking-action-btn {
+    background: rgba(251,191,36,0.15);
+    border-color: rgba(251,191,36,0.3);
+}
+
+.menu-page.gold-menu .booking-action-btn:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0a0a;
+}
+
+.menu-page.gold-menu .photo-modal-content {
+    border-color: rgba(251,191,36,0.4);
+    background: linear-gradient(135deg, #1a1a0a, #0d0d0a);
+}
+
+.menu-page.gold-menu .photo-modal-price {
+    color: #fbbf24;
+}
+
+.menu-page.gold-menu .photo-modal-add-btn {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+}
+
+/* Принудительные стили */
+.menu-items-grid {
+    display: grid !important;
+}
+
+.menu-items-grid.styles-ready {
+    display: grid !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Закрепленная карусель категорий */
+.sticky-categories {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-primary);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Вертикальное меню */
+.vertical-menu {
+    padding-top: 10px;
+}
+
+.vertical-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Секция категории */
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.category-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(230,126,34,0.15);
+}
+
+.category-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.category-section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.category-section-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-section-count {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 14px;
+    border-radius: 50px;
+}
+
+/* Сетка товаров внутри категории */
+.category-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
     
-    .loading-dots span {
-        animation: none;
+    .category-section-title {
+        font-size: 1.2rem;
     }
     
-    .loading-progress-bar {
-        animation: none;
-        width: 100%;
+    .vertical-menu-wrapper {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .category-section-title {
+        font-size: 1rem;
+    }
+    
+    .vertical-menu-wrapper {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 380px) {
+    .category-items-grid {
+        gap: 10px;
+    }
+}
+
+/* Закрепленная карусель категорий */
+.sticky-categories {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-primary);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Вертикальное меню */
+.vertical-menu {
+    padding-top: 10px;
+}
+
+.vertical-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Секция категории */
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scroll-margin-top: 100px;
+}
+
+.category-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(230,126,34,0.15);
+}
+
+.category-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.category-section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.category-section-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-section-count {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.05);
+    padding: 4px 14px;
+    border-radius: 50px;
+}
+
+/* Сетка товаров внутри категории */
+.category-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ============================================
+   ЗАКРЕПЛЕННАЯ КАРУСЕЛЬ КАТЕГОРИЙ
+   ============================================ */
+.menu-categories-section {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    background: var(--bg-primary);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.menu-page.gold-menu .menu-categories-section {
+    border-bottom: 1px solid rgba(251,191,36,0.15);
+    box-shadow: 0 4px 20px rgba(251,191,36,0.05);
+}
+
+.menu-categories-section .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.categories-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 0;
+    scrollbar-width: thin;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+}
+
+.categories-scroll:active {
+    cursor: grabbing;
+}
+
+.categories-scroll::-webkit-scrollbar {
+    height: 3px;
+}
+
+.categories-scroll::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+}
+
+.categories-scroll::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    min-height: 56px;
+}
+
+.category-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.category-tab.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 15px rgba(230,126,34,0.3);
+}
+
+/* Адаптив */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-categories-section {
+        padding: 8px 0;
+    }
+    
+    .menu-categories-section .container {
+        padding: 0 16px;
+    }
+    
+    .category-tab {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+        gap: 6px;
+        min-height: 48px;
+    }
+    
+    .category-tab-image {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .category-icon {
+        font-size: 1rem;
+    }
+    
+    .category-count {
+        font-size: 0.7rem;
+        padding: 1px 8px;
+    }
+    
+    .category-section {
+        scroll-margin-top: 80px;
+    }
+    
+    .category-section-title {
+        font-size: 1.2rem;
+    }
+    
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .vertical-menu-wrapper {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-categories-section {
+        padding: 6px 0;
+    }
+    
+    .category-tab {
+        padding: 8px 14px;
+        font-size: 0.7rem;
+        gap: 4px;
+        min-height: 42px;
+    }
+    
+    .category-tab-image {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .category-section {
+        scroll-margin-top: 70px;
+    }
+    
+    .category-section-title {
+        font-size: 1rem;
+    }
+    
+    .category-section-count {
+        font-size: 0.7rem;
+        padding: 2px 10px;
+    }
+    
+    .category-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .vertical-menu-wrapper {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 380px) {
+    .category-tab {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+        min-height: 36px;
+    }
+    
+    .category-tab-image {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .category-items-grid {
+        gap: 10px;
     }
 }

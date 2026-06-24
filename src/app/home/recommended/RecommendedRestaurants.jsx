@@ -15,16 +15,28 @@ export default function RecommendedRestaurants() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=6`)
+                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=10`)
                 if (recommendedRes.ok) {
-                    const data = await recommendedRes.json()
+                    let data = await recommendedRes.json()
+                    
+                    if (Array.isArray(data)) {
+                        // Фильтруем рестораны с рейтингом
+                        const withRating = data.filter(item => item.rating !== null && item.rating !== undefined && item.rating > 0)
+                        const withoutRating = data.filter(item => item.rating === null || item.rating === undefined || item.rating === 0)
+                        
+                        // Сортируем с рейтингом по убыванию
+                        withRating.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+                        
+                        // Объединяем: сначала с рейтингом, потом без рейтинга
+                        data = [...withRating, ...withoutRating]
+                    }
+                    
                     setRecommended(data)
-                }
-
-                const topRes = await fetch(`${API_URL}/api/restaurants/top_rated/`)
-                if (topRes.ok) {
-                    const data = await topRes.json()
-                    setTopRated(data)
+                    
+                    // Самый лучший ресторан - первый в отсортированном списке
+                    if (data && data.length > 0) {
+                        setTopRated(data[0])
+                    }
                 }
             } catch (err) {
                 // console.error('Error fetching:', err)
@@ -52,6 +64,9 @@ export default function RecommendedRestaurants() {
         )
     }
 
+    // Берем первые 6 для сетки (без первого, так как он уже в "Выборе недели")
+    const displayRecommended = Array.isArray(recommended) ? recommended.slice(1, 7) : []
+
     return (
         <section className="places-section">
             <div className="container">
@@ -64,6 +79,7 @@ export default function RecommendedRestaurants() {
                     <p>Выбор наших гостей — лучшие гастрономические точки Узбекистана</p>
                 </div>
 
+                {/* Выбор недели - самый лучший ресторан */}
                 {topRated && (
                     <div className="top-place-block">
                         <div className="top-place-badge gold-badge">
@@ -109,8 +125,9 @@ export default function RecommendedRestaurants() {
                     </div>
                 )}
 
+                {/* Список остальных ресторанов */}
                 <div className="places-grid">
-                    {recommended.map(place => (
+                    {displayRecommended.map(place => (
                         <div
                             key={place.id}
                             className={`place-card ${place.is_gold ? 'gold-card gold-card-shine' : ''}`}
@@ -162,4 +179,4 @@ export default function RecommendedRestaurants() {
             </div>
         </section>
     )
-};
+}
