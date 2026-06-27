@@ -14,37 +14,68 @@ export default function RecommendedPage() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    // ВРЕМЕННО - ПРЯМОЙ URL БЭКЕНДА
-    const API_URL = 'https://api.menzo.uz'  // ← ПРЯМАЯ ССЫЛКА НА ТВОЙ VPS
+    const API_URL = 'https://api.menzo.uz'
+
+    // Добавляем мета-теги для предотвращения кэширования
+    useEffect(() => {
+        const metaCacheControl = document.createElement('meta')
+        metaCacheControl.httpEquiv = 'Cache-Control'
+        metaCacheControl.content = 'no-cache, no-store, must-revalidate'
+        document.head.appendChild(metaCacheControl)
+
+        const metaPragma = document.createElement('meta')
+        metaPragma.httpEquiv = 'Pragma'
+        metaPragma.content = 'no-cache'
+        document.head.appendChild(metaPragma)
+
+        const metaExpires = document.createElement('meta')
+        metaExpires.httpEquiv = 'Expires'
+        metaExpires.content = '0'
+        document.head.appendChild(metaExpires)
+
+        return () => {
+            document.head.removeChild(metaCacheControl)
+            document.head.removeChild(metaPragma)
+            document.head.removeChild(metaExpires)
+        }
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true)
             setError(null)
             
-            // console.log('Подключаюсь к API:', API_URL)
-            
             try {
+                const timestamp = new Date().getTime()
+                
                 // Загружаем рекомендованные рестораны
-                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=20`)
+                const recommendedRes = await fetch(`${API_URL}/api/restaurants/recommended/?limit=20&_=${timestamp}`)
                 if (recommendedRes.ok) {
-                    const data = await recommendedRes.json()
-                    // console.log('Рекомендованные рестораны:', data)
-                    setRecommended(data)
+                    let data = await recommendedRes.json()
+                    
+                    // Сортируем рестораны по рейтингу (от высокого к низкому)
+                    // Сначала учитываем is_gold, потом рейтинг
+                    data = data.sort((a, b) => {
+                        // Если оба gold или оба не gold - сортируем по рейтингу
+                        if (a.is_gold === b.is_gold) {
+                            return (b.rating || 0) - (a.rating || 0)
+                        }
+                        // Gold всегда выше
+                        return a.is_gold ? -1 : 1
+                    })
+                    
+                    // Топ ресторан (первый в списке после сортировки)
+                    const top = data.length > 0 ? data[0] : null
+                    
+                    // Остальные рестораны (без первого)
+                    const rest = data.length > 1 ? data.slice(1) : []
+                    
+                    setTopRated(top)
+                    setRecommended(rest)
                 } else {
-                    // console.error('Ошибка загрузки:', recommendedRes.status)
                     setError(`Ошибка ${recommendedRes.status}`)
                 }
-
-                // Загружаем топ ресторан
-                const topRes = await fetch(`${API_URL}/api/restaurants/top_rated/`)
-                if (topRes.ok) {
-                    const data = await topRes.json()
-                    // console.log('Топ ресторан:', data)
-                    setTopRated(data)
-                }
             } catch (err) {
-                // console.error('Error fetching data:', err)
                 setError(`Ошибка: ${err.message}`)
             } finally {
                 setLoading(false)
@@ -61,7 +92,7 @@ export default function RecommendedPage() {
         return `${API_URL}/media/${imagePath}`
     }
 
-    // Отделяем Gold рестораны от обычных для отображения
+    // Отделяем Gold рестораны от обычных для отображения (без топ-ресторана)
     const goldRestaurants = recommended.filter(r => r.is_gold === true)
     const regularRestaurants = recommended.filter(r => r.is_gold !== true)
 
@@ -70,8 +101,27 @@ export default function RecommendedPage() {
             <>
                 <Navbar />
                 <div className="recommended-loading">
-                    <div className="loading-spinner"></div>
-                    <p>Загрузка рекомендаций...</p>
+                    <div className="loading-container">
+                        <div className="loading-content">
+                            <div className="loading-logo">MENZO</div>
+                            <div className="loading-spinner-wrapper">
+                                <div className="loading-spinner"></div>
+                                <div className="loading-spinner-ring"></div>
+                            </div>
+                            <div className="loading-text">
+                                <span>Загружаем рекомендации</span>
+                                <span className="loading-dots">
+                                    <span>.</span>
+                                    <span>.</span>
+                                    <span>.</span>
+                                </span>
+                            </div>
+                            <div className="loading-progress">
+                                <div className="loading-progress-bar"></div>
+                            </div>
+                            <p className="loading-subtitle">Лучшие места Узбекистана</p>
+                        </div>
+                    </div>
                 </div>
                 <Footer />
             </>
@@ -112,7 +162,7 @@ export default function RecommendedPage() {
                         </p>
                     </div>
 
-                    {/* Топ ресторан */}
+                    {/* Топ ресторан (самый высокий рейтинг) */}
                     {topRated && (
                         <div className="top-rated-section">
                             <div className="top-rated-badge">
@@ -166,7 +216,7 @@ export default function RecommendedPage() {
                         </div>
                     )}
 
-                    {/* Gold рестораны (премиум) */}
+                    {/* Gold рестораны (премиум) - отсортированы по рейтингу */}
                     {goldRestaurants.length > 0 && (
                         <div className="gold-section">
                             <div className="section-header">
@@ -216,7 +266,7 @@ export default function RecommendedPage() {
                         </div>
                     )}
 
-                    {/* Обычные рекомендованные рестораны */}
+                    {/* Обычные рекомендованные рестораны - отсортированы по рейтингу */}
                     {regularRestaurants.length > 0 && (
                         <div className="regular-section">
                             <div className="section-header">
@@ -255,7 +305,7 @@ export default function RecommendedPage() {
                     )}
 
                     {/* Если нет ресторанов вообще */}
-                    {recommended.length === 0 && (
+                    {recommended.length === 0 && !topRated && (
                         <div className="empty-state">
                             <FaCrown />
                             <h3>Пока нет рекомендованных ресторанов</h3>

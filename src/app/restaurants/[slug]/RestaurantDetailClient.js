@@ -21,7 +21,7 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
     const [userRated, setUserRated] = useState(false)
     const [isFavorite, setIsFavorite] = useState(false)
 
-    const API_URL = 'https://api.menzo.uz' || 'http://localhost:8000'
+    const API_URL = 'https://api.menzo.uz'
 
     // Добавляем мета-теги для предотвращения кэширования
     useEffect(() => {
@@ -52,7 +52,6 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
 
         const fetchRestaurant = async () => {
             try {
-                // Добавляем timestamp для обхода кэша
                 const timestamp = new Date().getTime()
                 
                 const res = await fetch(`${API_URL}/api/restaurants/${propSlug}/?_=${timestamp}`)
@@ -180,25 +179,35 @@ export default function RestaurantDetailClient({ slug: propSlug }) {
                         <span>{restaurant.name}</span>
                     </div>
 
-                    {/* Основные компоненты */}
+                    {/* 1. Hero - главное фото и название */}
                     <Hero restaurant={restaurant} images={images} />
+                    
+                    {/* 2. InfoPanel - контакты, цена, кухня */}
                     <InfoPanel restaurant={restaurant} />
+                    
+                    {/* 3. RatingStats - рейтинг и кнопка оценки */}
                     <RatingStats
                         stats={ratingStats}
                         onRateClick={() => setShowRatingModal(true)}
                         userRated={userRated}
                         isGold={restaurant.is_gold}
                     />
+                    
+                    {/* 4. Description - описание ресторана */}
                     <Description description={restaurant.description} isGold={restaurant.is_gold} />
+                    
+                    {/* 5. Features - особенности/удобства */}
                     <Features features={features} isGold={restaurant.is_gold} />
+                    
+                    {/* 6. Gallery - галерея фото */}
                     <Gallery images={images} isGold={restaurant.is_gold} />
 
-                    {/* Отзывы - компонент карусели */}
+                    {/* 7. Reviews - отзывы (карусель) */}
                     {goodReviews && goodReviews.length > 0 && (
                         <Reviews reviews={goodReviews} isGold={restaurant.is_gold} />
                     )}
 
-                    {/* Карта */}
+                    {/* 8. Map - карта */}
                     {restaurant.latitude && restaurant.longitude && (
                         <Map
                             latitude={parseFloat(restaurant.latitude)}
